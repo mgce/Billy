@@ -28,6 +28,11 @@ namespace Billy.SharedKernel.Domain
         {
             ModifiedAt = DateTime.Now;
         }
+
+        public void Delete()
+        {
+            State = State.Deleted;
+        }
         
     }
 
