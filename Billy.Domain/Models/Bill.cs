@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Billy.SharedKernel.Domain;
 using Billy.SharedKernel.Domain.Enums;
+using Billy.SharedKernel.Exceptions;
 
 namespace Billy.Domain.Models
 {
@@ -35,7 +36,7 @@ namespace Billy.Domain.Models
         {
             if (string.IsNullOrEmpty(name))
             {
-                throw new Exception("Name cannot be empty");
+                throw new NameCannotBeEmptyException();
             }
             Name = name;
         }
