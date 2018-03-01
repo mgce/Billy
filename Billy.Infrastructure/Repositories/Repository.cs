@@ -48,7 +48,7 @@ namespace Billy.Infrastructure.Repositories
             }
         }
 
-        public async void Delete(T entity)
+        public void Delete(T entity)
         {
             entity.Delete();
             Update(entity);
