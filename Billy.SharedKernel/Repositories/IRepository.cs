@@ -6,10 +6,10 @@ namespace Billy.SharedKernel.Repositories
 {
     public interface IRepository<T> where T : BaseEntity
     {
-        Task<T> Get(T entity);
+        Task<T> Get(long id);
         Task<IEnumerable<T>> GetAll();
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        Task Add(T entity);
+        Task Update(T entity);
+        Task Delete(T entity);
     }
 }

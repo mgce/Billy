@@ -18,9 +18,9 @@ namespace Billy.Infrastructure.Repositories
             _context = dataContext;
         }
 
-        public async Task<T> Get(T entity)
+        public async Task<T> Get(long id)
         {
-            return await _context.Set<T>().SingleOrDefaultAsync(x => x == entity);
+            return await _context.Set<T>().SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<T>> GetAll()
@@ -28,13 +28,13 @@ namespace Billy.Infrastructure.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
-        public async void Add(T entity)
+        public async Task Add(T entity)
         {
             await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
-        public async void Update(T entity)
+        public async Task Update(T entity)
         {
             if (entity == null)
             {
@@ -48,10 +48,10 @@ namespace Billy.Infrastructure.Repositories
             }
         }
 
-        public void Delete(T entity)
+        public async Task Delete(T entity)
         {
             entity.Delete();
-            Update(entity);
+            await Update(entity);
         }
 
         private async Task<T> GetById(long id)

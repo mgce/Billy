@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Billy.Application.Exceptions;
 using Billy.SharedKernel.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -26,6 +27,11 @@ namespace Billy.Web.Exceptions
             {
                 message = "A server error occurred.";
                 status = HttpStatusCode.NotImplemented;
+            }
+            else if (exceptionType == typeof(BillyException))
+            {
+                message = context.Exception.ToString();
+                status = HttpStatusCode.InternalServerError;
             }
             else if (exceptionType == typeof(DomainException))
             {

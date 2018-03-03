@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Billy.SharedKernel.Domain;
 using Billy.SharedKernel.Domain.Enums;
 using Billy.SharedKernel.Exceptions;
@@ -68,6 +69,16 @@ namespace Billy.Domain.Models
         public void SetCategory(Category category)
         {
             Category = category;
+        }
+
+        public void Update(string name, Amount amount, DateTime paymentDate, Supplier supplier, Category category)
+        {
+            SetName(name);
+            SetAmount(amount);
+            SetPaymentDate(paymentDate);
+            SetPaymentStatus(PaymentStatus.NotPaid);
+            AddSuplier(supplier);
+            SetCategory(category);
         }
     }
 }
