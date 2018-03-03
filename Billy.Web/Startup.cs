@@ -4,6 +4,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Billy.Application.Container.Modules;
 using Billy.Infrastructure;
 using Billy.Infrastructure.Identity.Models;
 using Billy.Web.Exceptions;
@@ -15,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -26,11 +30,11 @@ namespace Billy.Web
         {
             Configuration = configuration;
         }
-
+        public IContainer ApplicationContainer { get; private set; }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options =>
             {
@@ -59,15 +63,20 @@ namespace Billy.Web
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtConfiguration:JwtIssuer"])),
                     ClockSkew = TimeSpan.Zero
                 };
+
             });
-
-            
-
 
             services.AddMvc(config =>
             {
                 config.Filters.Add(typeof(CustomExceptionFilter));
             });
+
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+            builder.RegisterModule<RepositoryModule>();
+            builder.RegisterModule<IdentityModule>();
+            ApplicationContainer = builder.Build();
+            return new AutofacServiceProvider(ApplicationContainer);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,5 +90,6 @@ namespace Billy.Web
             app.UseAuthentication();
             app.UseMvc();
         }
+
     }
 }
