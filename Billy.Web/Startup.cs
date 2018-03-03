@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +32,7 @@ namespace Billy.Web
         {
             Configuration = configuration;
         }
-        public IContainer ApplicationContainer { get; private set; }
+        public Autofac.IContainer ApplicationContainer { get; private set; }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -38,7 +40,7 @@ namespace Billy.Web
         {
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlServer(Configuration["DefaultConnection"]);
+                options.UseSqlServer(Configuration["SecondConnection"]);
             });
 
             services.AddIdentity<User, IdentityRole>()

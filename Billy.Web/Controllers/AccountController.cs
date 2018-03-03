@@ -36,19 +36,20 @@ namespace Billy.Web.Controllers
                 return BadRequest(dto);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(dto.Email, dto.Password, false, true);
+            var result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, true);
             if (!result.Succeeded)
             {
                 throw new Exception("Invalid login or password");
             }
-            var user = _userManager.Users.SingleOrDefault(u => u.Email == dto.Email);
+            var user = _userManager.Users.SingleOrDefault(u => u.UserName == dto.Username);
+
             return Ok(_jwtGenerator.Create(user));
         }
 
         [HttpPost]
         [AllowAnonymous]
         [Route("account/register")]
-        public async Task<IActionResult> Register(RegisterDto dto)
+        public async Task<IActionResult> Register([FromBody]RegisterDto dto)
         {
             if (!ModelState.IsValid)
             {
