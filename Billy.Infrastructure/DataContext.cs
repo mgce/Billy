@@ -24,8 +24,10 @@ namespace Billy.Infrastructure
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<BaseEntity>()
-                .HasKey(be => be.Id);
+            builder.Entity<Bill>().HasKey(x => x.Id);
+            builder.Entity<Supplier>().HasKey(x => x.Id);
+            builder.Entity<Category>().HasKey(x => x.Id);
+            builder.Entity<Amount>().HasKey(x => x.Id);
 
             builder.Entity<Bill>()
                 .HasOne(b => b.Supplier)
@@ -36,6 +38,10 @@ namespace Billy.Infrastructure
                 .HasOne(b => b.Category)
                 .WithMany(c => c.Bills)
                 .HasForeignKey(b => b.CategoryId);
+
+            builder.Entity<Bill>()
+                .HasOne(b => b.Amount)
+                .WithOne(a => a.Bill);
 
             builder.Entity<Supplier>()
                 .HasMany(s => s.Bills)

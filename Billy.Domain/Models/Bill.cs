@@ -9,7 +9,6 @@ namespace Billy.Domain.Models
     public class Bill : BaseEntity, AggregateRoot
     {
         public string Name { get; private set; }
-        public Amount Amount { get; private set; }
         public DateTime PaymentDate { get; private set; }
         public PaymentStatus PaymentStatus { get; private set; }
 
@@ -18,6 +17,9 @@ namespace Billy.Domain.Models
 
         public Category Category { get; set; }
         public long CategoryId { get; set; }
+
+        public Amount Amount { get; set; }
+        public long AmountId { get; set; }
 
         protected Bill()
         {

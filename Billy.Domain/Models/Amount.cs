@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Billy.SharedKernel.Domain;
 using Billy.SharedKernel.Domain.Enums;
 
-namespace Billy.SharedKernel.Domain
+namespace Billy.Domain.Models
 {
     public class Amount : BaseEntity
     {
         public decimal Value { get; private set; }
         public Currency Currency { get; private set; }
+        public Bill Bill { get; set; }
 
         protected Amount()
         { }
