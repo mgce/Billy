@@ -19,5 +19,28 @@ namespace Billy.Infrastructure
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Amount> Amounts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<BaseEntity>()
+                .HasKey(be => be.Id);
+
+            builder.Entity<Bill>()
+                .HasOne(b => b.Supplier)
+                .WithMany(s => s.Bills)
+                .HasForeignKey(b => b.SupplierId);
+
+            builder.Entity<Bill>()
+                .HasOne(b => b.Category)
+                .WithMany(c => c.Bills)
+                .HasForeignKey(b => b.CategoryId);
+
+            builder.Entity<Supplier>()
+                .HasMany(s => s.Bills)
+                .WithOne(b => b.Supplier)
+                .HasForeignKey(b => b.SupplierId);
+        }
     }
 }

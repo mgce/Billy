@@ -16,20 +16,21 @@ namespace Billy.Domain.Models
         public Supplier Supplier { get; private set; }
         public long SupplierId { get; private set; }
 
-        public List<Category> Categories { get; set; }
+        public Category Category { get; set; }
+        public long CategoryId { get; set; }
 
         protected Bill()
         {
-            Categories = new List<Category>();
         }
 
-        public Bill(string name, Amount amount , DateTime paymentDate, Supplier supplier)
+        public Bill(string name, Amount amount , DateTime paymentDate, Supplier supplier, Category category)
         {
             SetName(name);
             SetAmount(amount);
             SetPaymentDate(paymentDate);
             SetPaymentStatus(PaymentStatus.NotPaid);
             AddSuplier(supplier);
+            SetCategory(category);
         }
 
         public void SetName(string name)
@@ -62,9 +63,9 @@ namespace Billy.Domain.Models
             SupplierId = supplier.Id;
         }
 
-        public void AddCategory(Category category)
+        public void SetCategory(Category category)
         {
-            Categories.Add(category);
+            Category = category;
         }
     }
 }

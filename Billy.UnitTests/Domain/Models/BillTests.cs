@@ -22,8 +22,9 @@ namespace Billy.UnitTests.Domain.Models
             var amount = _fixture.Create<Amount>();
             var paymentDate = _fixture.Create<DateTime>();
             var supplier = _fixture.Create<Supplier>();
+            var category = _fixture.Create<Category>();
 
-            var bill = new Bill(name, amount, paymentDate, supplier);
+            var bill = new Bill(name, amount, paymentDate, supplier, category);
 
             Assert.NotNull(bill);
         }

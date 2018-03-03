@@ -9,11 +9,12 @@ namespace Billy.Domain.Models
    public  class Category : BaseEntity
     {
         public string Name { get; private set; }
-        public long BillId { get; protected set; }
-        public virtual Bill Bill { get; protected set; }
+        public virtual IList<Bill> Bills { get; protected set; }
 
         protected Category()
-        {}
+        {
+            Bills = new List<Bill>();
+        }
 
         public Category(string name)
         {

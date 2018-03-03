@@ -34,7 +34,7 @@ namespace Billy.Web
         {
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration["DefaultConnection"]);
             });
 
             services.AddIdentity<User, IdentityRole>()
@@ -77,7 +77,8 @@ namespace Billy.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
