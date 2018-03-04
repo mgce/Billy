@@ -2,12 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoFixture" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
@@ -15,9 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Billy.Application\Billy.Application.csproj" />
     <ProjectReference Include="..\Billy.Domain\Billy.Domain.csproj" />
     <ProjectReference Include="..\Billy.Infrastructure\Billy.Infrastructure.csproj" />
     <ProjectReference Include="..\Billy.SharedKernel\Billy.SharedKernel.csproj" />
+    <ProjectReference Include="..\Billy.Web\Billy.Web.csproj" />
   </ItemGroup>
 
 </Project>

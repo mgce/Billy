@@ -12,9 +12,11 @@ using Billy.Infrastructure;
 using Billy.Infrastructure.Identity.Models;
 using Billy.Web.Exceptions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -38,10 +40,7 @@ namespace Billy.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlServer(Configuration["SecondConnection"]);
-            });
+            ConfigureDatabase(services);
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DataContext>()
@@ -58,6 +57,11 @@ namespace Billy.Web
             {
                 cfg.RequireHttpsMetadata = false;
                 cfg.SaveToken = true;
+                var ValidIssuer = Configuration["JwtConfiguration:JwtIssuer"];
+                var ValidAudience = Configuration["JwtConfiguration:JwtIssuer"];
+                var IssuerSigningKey =
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtConfiguration:JwtIssuer"]));
+                var ClockSkew = TimeSpan.Zero;
                 cfg.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidIssuer = Configuration["JwtConfiguration:JwtIssuer"],
@@ -70,15 +74,15 @@ namespace Billy.Web
 
             services.AddMvc(config =>
             {
+                //Only Authorizes filter
+                //var policy = new AuthorizationPolicyBuilder()
+                //.RequireAuthenticatedUser()
+                //.Build();
+                //config.Filters.Add(new AuthorizeFilter(policy));
                 config.Filters.Add(typeof(CustomExceptionFilter));
             });
 
-            var builder = new ContainerBuilder();
-            builder.Populate(services);
-            builder.RegisterModule<RepositoryModule>();
-            builder.RegisterModule<IdentityModule>();
-            ApplicationContainer = builder.Build();
-            return new AutofacServiceProvider(ApplicationContainer);
+            return ConfigureContainer(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +95,24 @@ namespace Billy.Web
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();
+        }
+
+        public virtual void ConfigureDatabase(IServiceCollection services)
+        {
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(Configuration["SecondConnection"]);
+            });
+        }
+
+        private AutofacServiceProvider ConfigureContainer(IServiceCollection services)
+        {
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+            builder.RegisterModule<RepositoryModule>();
+            builder.RegisterModule<IdentityModule>();
+            ApplicationContainer = builder.Build();
+            return new AutofacServiceProvider(ApplicationContainer);
         }
 
     }

@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Web", "Billy.Web\Billy.Web.csproj", "{18794161-B8C1-4734-B76F-A02F5DEF79E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Web", "Billy.Web\Billy.Web.csproj", "{18794161-B8C1-4734-B76F-A02F5DEF79E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Domain", "Billy.Domain\Billy.Domain.csproj", "{AE82F2F6-DEFD-43A1-B429-002816BE1328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Domain", "Billy.Domain\Billy.Domain.csproj", "{AE82F2F6-DEFD-43A1-B429-002816BE1328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Infrastructure", "Billy.Infrastructure\Billy.Infrastructure.csproj", "{8AB314EF-7313-402D-80A8-2B6363F4CB3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Infrastructure", "Billy.Infrastructure\Billy.Infrastructure.csproj", "{8AB314EF-7313-402D-80A8-2B6363F4CB3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.Application", "Billy.Application\Billy.Application.csproj", "{E4E5DE7A-2096-498A-9DE7-0CE49939A352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.Application", "Billy.Application\Billy.Application.csproj", "{E4E5DE7A-2096-498A-9DE7-0CE49939A352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.SharedKernel", "Billy.SharedKernel\Billy.SharedKernel.csproj", "{6FA00576-4F46-4D76-9149-97BA47CFEF4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.SharedKernel", "Billy.SharedKernel\Billy.SharedKernel.csproj", "{6FA00576-4F46-4D76-9149-97BA47CFEF4F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3B613B93-B0DB-483F-9EE4-DFEFE5240560}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.UnitTests", "Billy.UnitTests\Billy.UnitTests.csproj", "{4004487C-9C13-4243-837B-999D35CAC37F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billy.UnitTests", "Billy.UnitTests\Billy.UnitTests.csproj", "{4004487C-9C13-4243-837B-999D35CAC37F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billy.IntegrationTests", "Billy.IntegrationTests\Billy.IntegrationTests.csproj", "{115355CC-3842-4458-AC60-23E1A0D6237E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,12 +49,17 @@ Global
 		{4004487C-9C13-4243-837B-999D35CAC37F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4004487C-9C13-4243-837B-999D35CAC37F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4004487C-9C13-4243-837B-999D35CAC37F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{115355CC-3842-4458-AC60-23E1A0D6237E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{115355CC-3842-4458-AC60-23E1A0D6237E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{115355CC-3842-4458-AC60-23E1A0D6237E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{115355CC-3842-4458-AC60-23E1A0D6237E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4004487C-9C13-4243-837B-999D35CAC37F} = {3B613B93-B0DB-483F-9EE4-DFEFE5240560}
+		{115355CC-3842-4458-AC60-23E1A0D6237E} = {3B613B93-B0DB-483F-9EE4-DFEFE5240560}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6FAE0987-7623-45EA-821C-4390F8D10C60}

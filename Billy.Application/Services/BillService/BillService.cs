@@ -2,6 +2,7 @@
 using Billy.Application.Services.BillService.Dtos;
 using Billy.Application.Services.BillService.Exceptions;
 using Billy.Application.Services.BillService.IoC;
+using Billy.Domain.Factories;
 using Billy.Domain.Models;
 using Billy.Domain.Repositories;
 
@@ -12,14 +13,17 @@ namespace Billy.Application.Services.BillService
         private readonly IBillRepository _billRepository;
         private readonly ISupplierRepository _supplierRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IBillFactory _billFactory;
 
         public BillService(IBillRepository billRepository,
             ISupplierRepository supplierRepository,
-            ICategoryRepository categoryRepository)
+            ICategoryRepository categoryRepository,
+            IBillFactory billFactory)
         {
             _billRepository = billRepository;
             _supplierRepository = supplierRepository;
             _categoryRepository = categoryRepository;
+            _billFactory = billFactory;
         }
 
         public async Task<GetBillDto> GetBill(GetBillDto dto)
@@ -43,7 +47,7 @@ namespace Billy.Application.Services.BillService
             var supplier = await GetSupplier(dto.SupplierId);
             var category = await GetCategory(dto.CategoryId);
 
-            var bill = new Bill(dto.Name, amount, dto.PaymentDate, supplier, category);
+            var bill = _billFactory.Create(dto.Name, amount, dto.PaymentDate, supplier, category);
 
             await _billRepository.Add(bill);
         }
