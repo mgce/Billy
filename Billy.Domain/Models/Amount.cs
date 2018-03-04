@@ -1,6 +1,7 @@
 ﻿using System;
 using Billy.SharedKernel.Domain;
 using Billy.SharedKernel.Domain.Enums;
+using Billy.SharedKernel.Exceptions;
 
 namespace Billy.Domain.Models
 {
@@ -23,8 +24,7 @@ namespace Billy.Domain.Models
         {
             if (value <= 0)
             {
-                new Exception("Value cannot be lower ot equal to zero");
-                return;
+                throw new ValueCannotBeLowerOrEqualToZeroException();
             }
             Value = value;
         }

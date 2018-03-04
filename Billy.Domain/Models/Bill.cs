@@ -32,7 +32,7 @@ namespace Billy.Domain.Models
             SetAmount(amount);
             SetPaymentDate(paymentDate);
             SetPaymentStatus(PaymentStatus.NotPaid);
-            AddSuplier(supplier);
+            SetSupplier(supplier);
             SetCategory(category);
         }
 
@@ -52,6 +52,10 @@ namespace Billy.Domain.Models
 
         public void SetPaymentDate(DateTime paymentDate)
         {
+            if (paymentDate < DateTime.Now)
+            {
+                throw new PaymentDateCannotBeInPastException();
+            }
             PaymentDate = paymentDate;
         }
 
@@ -60,7 +64,7 @@ namespace Billy.Domain.Models
             PaymentStatus = paymentStatus;
         }
 
-        public void AddSuplier(Supplier supplier)
+        public void SetSupplier(Supplier supplier)
         {
             Supplier = supplier;
             SupplierId = supplier.Id;
@@ -77,7 +81,7 @@ namespace Billy.Domain.Models
             SetAmount(amount);
             SetPaymentDate(paymentDate);
             SetPaymentStatus(PaymentStatus.NotPaid);
-            AddSuplier(supplier);
+            SetSupplier(supplier);
             SetCategory(category);
         }
     }

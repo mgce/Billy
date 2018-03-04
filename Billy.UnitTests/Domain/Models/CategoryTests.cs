@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoFixture;
 using Billy.Domain.Models;
+using Billy.UnitTests.Extensions;
 using Xunit;
 
 namespace Billy.UnitTests.Domain.Models
@@ -12,7 +13,8 @@ namespace Billy.UnitTests.Domain.Models
         private readonly IFixture _fixture;
         public CategoryTests()
         {
-            _fixture = new Fixture();
+            _fixture = new Fixture()
+                .CustomConfiguration();
         }
 
         [Fact]
