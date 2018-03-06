@@ -60,6 +60,15 @@ namespace Billy.UnitTests.Domain.Models
         }
 
         [Fact]
+        public void Bill_ShouldThrowException_WhileAmountIsNull()
+        {
+            var bill = CreateBill();
+            Amount amount = null;
+
+            Assert.Throws<AmountCannotBeEmptyException>(() => bill.SetAmount(amount));
+        }
+
+        [Fact]
         public void Bill_ShouldChangePaymentDate()
         {
             var bill = CreateBill();

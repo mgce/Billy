@@ -14,10 +14,10 @@ namespace Billy.Domain.Models
         public PaymentStatus PaymentStatus { get; private set; }
 
         public virtual Supplier Supplier { get; private set; }
-        public long SupplierId { get; private set; }
+        public long? SupplierId { get; private set; }
 
         public virtual Category Category { get; set; }
-        public long CategoryId { get; set; }
+        public long? CategoryId { get; set; }
 
         public virtual Amount Amount { get; set; }
         public long AmountId { get; set; }
@@ -47,7 +47,10 @@ namespace Billy.Domain.Models
 
         public void SetAmount(Amount amount)
         {
-            Amount = amount;
+            if (amount == null)
+                throw new AmountCannotBeEmptyException();
+            if (Amount != amount)
+                Amount = amount;
         }
 
         public void SetPaymentDate(DateTime paymentDate)
@@ -66,21 +69,25 @@ namespace Billy.Domain.Models
 
         public void SetSupplier(Supplier supplier)
         {
-            Supplier = supplier;
-            SupplierId = supplier.Id;
+            if (Supplier != supplier)
+            {
+                Supplier = supplier;
+                SupplierId = supplier.Id;
+            }
         }
 
         public void SetCategory(Category category)
         {
-            Category = category;
+            if(Category != category)
+                Category = category;
         }
 
-        public void Update(string name, Amount amount, DateTime paymentDate, Supplier supplier, Category category)
+        public void Update(string name, Amount amount, DateTime? paymentDate,PaymentStatus? paymentStatus, Supplier supplier, Category category)
         {
             SetName(name);
             SetAmount(amount);
-            SetPaymentDate(paymentDate);
-            SetPaymentStatus(PaymentStatus.NotPaid);
+            SetPaymentDate(paymentDate.Value);
+            SetPaymentStatus(paymentStatus.Value);
             SetSupplier(supplier);
             SetCategory(category);
         }

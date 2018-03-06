@@ -22,6 +22,8 @@ namespace Billy.IntegrationTests.Data
         public void Seed()
         {
             _context.Bills.AddRange(PredefiniedData.Bills);
+            _context.Suppliers.AddRange(PredefiniedData.Suppliers);
+            _context.Categories.AddRange(PredefiniedData.Categories);
             _context.SaveChanges();
         }
     }

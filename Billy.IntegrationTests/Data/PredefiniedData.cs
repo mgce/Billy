@@ -19,5 +19,17 @@ namespace Billy.IntegrationTests.Data
             new Bill("Bill4", new Amount(42, Currency.PLN), DateTime.Now.AddDays(6), new Supplier("supplier4"),
                 new Category("category4")),
         };
+
+        public static List<Supplier> Suppliers = new List<Supplier>
+        {
+            new Supplier("Supplier1"),
+            new Supplier("Supplier2")
+        };
+
+        public static List<Category> Categories = new List<Category>
+        {
+            new Category("Category1"),
+            new Category("Category2")
+        };
     }
 }

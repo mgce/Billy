@@ -57,11 +57,6 @@ namespace Billy.Web
             {
                 cfg.RequireHttpsMetadata = false;
                 cfg.SaveToken = true;
-                var ValidIssuer = Configuration["JwtConfiguration:JwtIssuer"];
-                var ValidAudience = Configuration["JwtConfiguration:JwtIssuer"];
-                var IssuerSigningKey =
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtConfiguration:JwtIssuer"]));
-                var ClockSkew = TimeSpan.Zero;
                 cfg.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidIssuer = Configuration["JwtConfiguration:JwtIssuer"],
@@ -101,7 +96,7 @@ namespace Billy.Web
         {
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlServer(Configuration["SecondConnection"]);
+                options.UseSqlServer(Configuration["DefaultConnection"]);
             });
         }
 

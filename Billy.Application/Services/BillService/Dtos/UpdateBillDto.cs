@@ -14,5 +14,6 @@ namespace Billy.Application.Services.BillService.Dtos
         public long CategoryId { get; set; }
         public decimal AmountValue { get; set; }
         public Currency Currency { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
     }
 }

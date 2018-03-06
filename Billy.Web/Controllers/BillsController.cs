@@ -33,13 +33,13 @@ namespace Billy.Web.Controllers
         }
 
         [HttpPost]
-        public async Task Post([FromBody] AddBillDto dto)
+        public async Task Post([FromBody]AddBillDto dto)
         {
             await _billService.AddBill(dto);
         }
 
         [HttpPut]
-        public async Task Update([FromBody] UpdateBillDto dto)
+        public async Task Put([FromBody] UpdateBillDto dto)
         {
             await _billService.UpdateBill(dto);
         }

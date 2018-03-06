@@ -70,7 +70,7 @@ namespace Billy.Application.Services.BillService
             var supplier = await GetSupplier(dto.SupplierId);
             var category = await GetCategory(dto.CategoryId);
 
-            bill.Update(dto.Name, amount, dto.PaymentDate, supplier, category);
+            bill.Update(dto.Name, amount, dto.PaymentDate, dto.PaymentStatus, supplier, category);
 
             await _billRepository.Update(bill);
         }
