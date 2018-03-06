@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Autofac;
+using Billy.Domain.Factories;
 
 namespace Billy.Application.Container.Modules
 {
@@ -10,8 +11,10 @@ namespace Billy.Application.Container.Modules
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
-                .Where(t => t.Name.EndsWith("Factory")).AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterType<BillFactory>().As<IBillFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<SupplierFactory>().As<ISupplierFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<CategoryFactory>().As<ICategoryFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<AmountFactory>().As<IAmountFactory>().InstancePerLifetimeScope();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Billy.Domain.Models
     {
         public decimal Value { get; private set; }
         public Currency Currency { get; private set; }
-        public Bill Bill { get; set; }
+        public virtual Bill Bill { get; set; }
 
         protected Amount()
         { }

@@ -10,19 +10,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Billy.Web.Controllers
 {
-    public class BillController : Controller
+    [Route("api/[controller]")]
+    public class BillsController : Controller
     {
         private readonly IBillService _billService;
 
-        public BillController(IBillService billService)
+        public BillsController(IBillService billService)
         {
             _billService = billService;
         }
 
         [HttpGet]
-        public async Task<GetBillDto> Get([FromBody] GetBillDto dto)
+        public async Task<IEnumerable<GetBillDto>> Get()
         {
-            return await _billService.GetBill(dto);
+            return await _billService.GetAllBills();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<GetBillDto> Get(long id)
+        {
+            return await _billService.GetBill(id);
         }
 
         [HttpPost]

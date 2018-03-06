@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Billy.Domain.Repositories;
@@ -20,12 +21,12 @@ namespace Billy.Infrastructure.Repositories
 
         public async Task<T> Get(long id)
         {
-            return await _context.Set<T>().SingleOrDefaultAsync(x => x.Id == id);
+            return await GetAllAsQuery().SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await GetAllAsQuery().ToListAsync();
         }
 
         public async Task Add(T entity)
@@ -40,12 +41,9 @@ namespace Billy.Infrastructure.Repositories
             {
                 return;
             }
-            var existing = GetById(entity.Id);
-            if (existing != null)
-            {
-                _context.Entry(existing).CurrentValues.SetValues(entity);
-                await _context.SaveChangesAsync();
-            }
+            var existing = Get(entity.Id);
+            _context.Entry(existing).CurrentValues.SetValues(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(T entity)
@@ -54,9 +52,15 @@ namespace Billy.Infrastructure.Repositories
             await Update(entity);
         }
 
-        private async Task<T> GetById(long id)
+        private IQueryable<T> GetAllAsQuery()
         {
-            return await _context.Set<T>().SingleOrDefaultAsync(x => x.Id == id);
+            var query = _context.Set<T>().AsQueryable();
+            //loading all related entities
+            foreach (var property in _context.Model.FindEntityType(typeof(T)).GetNavigations())
+            {
+                query = query.Include(property.Name);
+            }
+            return query;
         }
     }
 }

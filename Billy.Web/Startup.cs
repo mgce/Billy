@@ -86,7 +86,7 @@ namespace Billy.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -111,6 +111,8 @@ namespace Billy.Web
             builder.Populate(services);
             builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<IdentityModule>();
+            builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule<FactoryModule>();
             ApplicationContainer = builder.Build();
             return new AutofacServiceProvider(ApplicationContainer);
         }

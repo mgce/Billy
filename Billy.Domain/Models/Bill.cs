@@ -13,13 +13,13 @@ namespace Billy.Domain.Models
         public DateTime PaymentDate { get; private set; }
         public PaymentStatus PaymentStatus { get; private set; }
 
-        public Supplier Supplier { get; private set; }
+        public virtual Supplier Supplier { get; private set; }
         public long SupplierId { get; private set; }
 
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
         public long CategoryId { get; set; }
 
-        public Amount Amount { get; set; }
+        public virtual Amount Amount { get; set; }
         public long AmountId { get; set; }
 
         protected Bill()

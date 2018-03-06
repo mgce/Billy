@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Billy.Web;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -12,14 +9,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using Xunit;
 
-namespace Billy.IntegrationTests.Services
+namespace Billy.IntegrationTests.Controllers
 {
-    public class BillServiceTests : IDisposable
+    public class BillsControllerTests : IDisposable
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
-        public BillServiceTests()
+        public BillsControllerTests()
         {
             var integrationTestsPath = PlatformServices.Default.Application.ApplicationBasePath;
             var applicationPath = Path.GetFullPath(Path.Combine(integrationTestsPath, "../../../../Billy.Web"));
@@ -38,12 +35,20 @@ namespace Billy.IntegrationTests.Services
             _client = _server.CreateClient();
         }
         [Fact]
-        public async Task BillService_ShouldAddBillToDatabase()
+        public async Task BillService_ShouldGetAllBills()
         {
-            var response = await _client.GetAsync("api/values");
+            var response = await _client.GetAsync("api/bills");
 
             var responseString = await response.Content.ReadAsStringAsync();
-            Assert.Contains("value", responseString);
+            Assert.Contains("Bill1", responseString);
+        }
+        [Fact]
+        public async Task BillService_ShouldGetFirstBill()
+        {
+            var response = await _client.GetAsync("api/bills/1");
+
+            var responseString = await response.Content.ReadAsStringAsync();
+            Assert.Contains("Bill1", responseString);
         }
 
         public void Dispose()

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Billy.Application.Services.BillService.Dtos;
 using Billy.Application.Services.BillService.Exceptions;
 using Billy.Application.Services.BillService.IoC;
@@ -26,19 +28,28 @@ namespace Billy.Application.Services.BillService
             _billFactory = billFactory;
         }
 
-        public async Task<GetBillDto> GetBill(GetBillDto dto)
+        public async Task<GetBillDto> GetBill(long id)
         {
-            var bill = await GetBill(dto.BillId);
+            var bill = await GetBillById(id);
             return new GetBillDto
             {
                 BillId = bill.Id,
                 Name = bill.Name,
-                AmountValue = bill.Amount.Value,
-                Currency = bill.Amount.Currency,
+                AmountValue = bill.Amount?.Value ?? 0,
+                Currency = bill.Amount?.Currency ?? 0,
                 Supplier = bill.Supplier,
                 Category = bill.Category,
                 PaymentDate = bill.PaymentDate
             };
+        }
+
+        public async Task<IEnumerable<GetBillDto>> GetAllBills()
+        {
+            var bills = await _billRepository.GetAll();
+            return bills.Select(x => new GetBillDto
+            {
+                Name = x.Name
+            }).ToList();
         }
 
         public async Task AddBill(AddBillDto dto)
@@ -66,7 +77,7 @@ namespace Billy.Application.Services.BillService
 
         public async Task DeleteBill(DeleteBillDto dto)
         {
-            var bill = await GetBill(dto.BillId);
+            var bill = await GetBillById(dto.BillId);
             await _billRepository.Delete(bill);
         }
 
@@ -93,9 +104,9 @@ namespace Billy.Application.Services.BillService
             return category;
         }
 
-        private async Task<Bill> GetBill(long billId)
+        private async Task<Bill> GetBillById(long id)
         {
-            var bill = await _billRepository.Get(billId);
+            var bill = await _billRepository.Get(id);
             if (bill == null)
             {
                 throw new BillDoesntExistException();
