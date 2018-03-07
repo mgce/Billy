@@ -16,19 +16,22 @@ namespace Billy.Application.Services.BillService
         private readonly ISupplierRepository _supplierRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IBillFactory _billFactory;
+        private readonly IAmountFactory _amountFactory;
 
         public BillService(IBillRepository billRepository,
             ISupplierRepository supplierRepository,
             ICategoryRepository categoryRepository,
-            IBillFactory billFactory)
+            IBillFactory billFactory,
+            IAmountFactory amountFactory)
         {
             _billRepository = billRepository;
             _supplierRepository = supplierRepository;
             _categoryRepository = categoryRepository;
             _billFactory = billFactory;
+            _amountFactory = amountFactory;
         }
 
-        public async Task<GetBillDto> GetBill(long id)
+        public async Task<GetBillDto> GetById(long id)
         {
             var bill = await GetBillById(id);
             return new GetBillDto
@@ -43,7 +46,7 @@ namespace Billy.Application.Services.BillService
             };
         }
 
-        public async Task<IEnumerable<GetBillDto>> GetAllBills()
+        public async Task<IEnumerable<GetBillDto>> GetAll()
         {
             var bills = await _billRepository.GetAll();
             return bills.Select(x => new GetBillDto
@@ -52,9 +55,9 @@ namespace Billy.Application.Services.BillService
             }).ToList();
         }
 
-        public async Task AddBill(AddBillDto dto)
+        public async Task Add(AddBillDto dto)
         {
-            var amount = new Amount(dto.AmountValue, dto.Currency);
+            var amount = _amountFactory.Create(dto.AmountValue, dto.Currency);
             var supplier = await GetSupplier(dto.SupplierId);
             var category = await GetCategory(dto.CategoryId);
 
@@ -63,10 +66,10 @@ namespace Billy.Application.Services.BillService
             await _billRepository.Add(bill);
         }
 
-        public async Task UpdateBill(UpdateBillDto dto)
+        public async Task Update(UpdateBillDto dto)
         {
             var bill = await _billRepository.Get(dto.BillId);
-            var amount = new Amount(dto.AmountValue, dto.Currency);
+            var amount = _amountFactory.Create(dto.AmountValue, dto.Currency);
             var supplier = await GetSupplier(dto.SupplierId);
             var category = await GetCategory(dto.CategoryId);
 
@@ -75,9 +78,9 @@ namespace Billy.Application.Services.BillService
             await _billRepository.Update(bill);
         }
 
-        public async Task DeleteBill(DeleteBillDto dto)
+        public async Task Delete(long id)
         {
-            var bill = await GetBillById(dto.BillId);
+            var bill = await GetBillById(id);
             await _billRepository.Delete(bill);
         }
 

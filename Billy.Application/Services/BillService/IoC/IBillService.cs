@@ -7,10 +7,10 @@ namespace Billy.Application.Services.BillService.IoC
 {
     public interface IBillService
     {
-        Task<IEnumerable<GetBillDto>> GetAllBills();
-        Task AddBill(AddBillDto dto);
-        Task DeleteBill(DeleteBillDto dto);
-        Task<GetBillDto> GetBill(long id);
-        Task UpdateBill(UpdateBillDto dto);
+        Task<IEnumerable<GetBillDto>> GetAll();
+        Task Add(AddBillDto dto);
+        Task Delete(long id);
+        Task<GetBillDto> GetById(long id);
+        Task Update(UpdateBillDto dto);
     }
 }

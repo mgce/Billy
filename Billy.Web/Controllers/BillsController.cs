@@ -23,31 +23,31 @@ namespace Billy.Web.Controllers
         [HttpGet]
         public async Task<IEnumerable<GetBillDto>> Get()
         {
-            return await _billService.GetAllBills();
+            return await _billService.GetAll();
         }
 
         [HttpGet("{id}")]
         public async Task<GetBillDto> Get(long id)
         {
-            return await _billService.GetBill(id);
+            return await _billService.GetById(id);
         }
 
         [HttpPost]
         public async Task Post([FromBody]AddBillDto dto)
         {
-            await _billService.AddBill(dto);
+            await _billService.Add(dto);
         }
 
         [HttpPut]
         public async Task Put([FromBody] UpdateBillDto dto)
         {
-            await _billService.UpdateBill(dto);
+            await _billService.Update(dto);
         }
 
-        [HttpDelete]
-        public async Task Delete([FromBody] DeleteBillDto dto)
+        [HttpDelete("{id}")]
+        public async Task Delete(long id)
         {
-            await _billService.DeleteBill(dto);
+            await _billService.Delete(id);
         }
 
     }

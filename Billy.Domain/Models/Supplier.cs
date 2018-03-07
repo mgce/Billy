@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Billy.SharedKernel.Domain;
 using Billy.SharedKernel.Exceptions;
 
@@ -30,6 +31,11 @@ namespace Billy.Domain.Models
         public void AddBill(Bill bill)
         {
             Bills.Add(bill);
+        }
+
+        public void Update(string name)
+        {
+            SetName(name);
         }
     }
 }
