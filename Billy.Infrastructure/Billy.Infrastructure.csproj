@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Billy.SharedKernel\Billy.SharedKernel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Identity\Models\" />
+  </ItemGroup>
+
 </Project>

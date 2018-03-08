@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Billy.Infrastructure.Identity.Models;
+using Billy.Domain.Models;
 
 namespace Billy.Application.Identity
 {

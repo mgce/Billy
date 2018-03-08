@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Billy.Domain.Models;
 using Billy.Infrastructure;
-using Billy.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Billy.IntegrationTests.Data
