@@ -41,8 +41,8 @@ namespace Billy.Infrastructure.Repositories
             {
                 return;
             }
-            var existing = Get(entity.Id);
-            _context.Entry(existing).CurrentValues.SetValues(entity);
+            entity.SetModifiedDate();
+            _context.Update(entity);
             await _context.SaveChangesAsync();
         }
 

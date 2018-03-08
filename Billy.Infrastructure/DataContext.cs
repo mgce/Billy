@@ -42,6 +42,11 @@ namespace Billy.Infrastructure
                 .HasOne(b => b.Amount)
                 .WithOne(a => a.Bill);
 
+            builder.Entity<Bill>()
+                .HasOne(b => b.User)
+                .WithMany(u => u.Bills)
+                .HasForeignKey(b => b.UserId);
+
             builder.Entity<Supplier>()
                 .HasMany(s => s.Bills)
                 .WithOne(b => b.Supplier)

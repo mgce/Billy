@@ -25,7 +25,7 @@ namespace Billy.SharedKernel.Domain
             State = state;
         }
 
-        public void SetModifiedAt()
+        public void SetModifiedDate()
         {
             ModifiedAt = DateTime.Now;
         }

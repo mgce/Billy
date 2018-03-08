@@ -22,7 +22,8 @@ namespace Billy.Domain.Models
         public virtual Amount Amount { get; set; }
         public long AmountId { get; set; }
 
-        public User Type { get; set; }
+        public User User { get; set; }
+        public string UserId { get; set; }
 
         protected Bill()
         {
