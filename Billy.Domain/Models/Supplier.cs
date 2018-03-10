@@ -9,7 +9,7 @@ namespace Billy.Domain.Models
     public class Supplier : BaseEntity
     {
         public string Name { get; set; }
-        public virtual ICollection<Bill> Bills { get; set; }
+        public virtual List<Bill> Bills { get; set; }
 
         protected Supplier()
         {

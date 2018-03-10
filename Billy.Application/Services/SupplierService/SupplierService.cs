@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Billy.Application.Services.BillService.Dtos;
 using Billy.Application.Services.SupplierService.Dtos;
 using Billy.Application.Services.SupplierService.Exceptions;
 using Billy.Application.Services.SupplierService.IoC;
@@ -59,6 +60,19 @@ namespace Billy.Application.Services.SupplierService
         {
             var supplier = await GetSupplier(id);
             await _supplierRepository.Delete(supplier);
+        }
+
+        public async Task<List<GetBillDto>> GetAllBillsRelatedToSupplier(long id)
+        {
+            var bills = await _supplierRepository.GetAlRelatedBills(id);
+            return bills.Select(x=>new GetBillDto
+            {
+                Name = x.Name,
+                AmountValue = x.Amount.Value,
+                Category = x.Category,
+                Currency = x.Amount.Currency,
+                PaymentDate = x.PaymentDate
+            }).ToList();
         }
 
         private async Task<Supplier> GetSupplier(long id)
