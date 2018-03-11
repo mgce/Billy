@@ -16,12 +16,10 @@ module.exports = {
  module: {
    rules: [
     {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: "babel-loader"
-      }
-    },
+      test: /\.(js|jsx)$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/
+  },
      {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -30,16 +28,16 @@ module.exports = {
         })
      },
        {
-           test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
-           use: [
-               {
-                   loader: 'url-loader',
-                   options: {
-                       limit: 50000,
-                       name: 'assets/[name]_[hash].[ext]'
-                   }
-               }
-           ]
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
+        use: [
+            {
+                loader: 'url-loader',
+                options: {
+                    limit: 50000,
+                    name: 'assets/[name]_[hash].[ext]'
+                }
+            }
+        ]
      },
      {
       test: /\.scss$/,

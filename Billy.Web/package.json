@@ -6,12 +6,6 @@
   "scripts": {
     "build": "webpack"
   },
-  "babel": {
-    "presets": [
-      "env",
-      "react"
-    ]
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
