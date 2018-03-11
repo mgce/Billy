@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './Shared/styles/styles.scss';
 
+import SignIn from './Sign/Shared/Components/Sign'
 
 class App extends React.Component{
     constructor(props){
@@ -11,7 +12,9 @@ class App extends React.Component{
         }
     }
     render(){
-        
+        <div>
+            <SignIn />
+        </div>
     }
 }
 

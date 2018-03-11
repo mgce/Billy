@@ -1,3 +1,4 @@
+
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -9,10 +10,18 @@ module.exports = {
     path: path.join(__dirname, "wwwroot", "js"),
     filename: "index-bundle.js"
  },
+ devServer: {
+  contentBase: "./dist"
+ },
  module: {
    rules: [
-
-     { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+    {
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: {
+        loader: "babel-loader"
+      }
+    },
      {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
