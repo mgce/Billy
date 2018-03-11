@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'ClientApp/Shared/styles/style.scss';
+import './Shared/styles/styles.scss';
 
 
 class App extends React.Component{

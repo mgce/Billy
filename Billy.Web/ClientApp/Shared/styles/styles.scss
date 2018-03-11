@@ -1,4 +1,4 @@
-@import '././Sign/Styles/signInStyles';
+@import 'Views/signIn';
 
 $top-gradient: #e0f5ff;
 $bottom-gradient: #f9f9f9;
@@ -20,12 +20,4 @@ body{
 .sign-container{
     display: grid;
     grid-template-areas: repeat(2, 1fr);
-}
-
-.signIn-left-container{
-    grid-column: 1
-}
-
-.signIn-right-container{
-    grid-column: 1
 }

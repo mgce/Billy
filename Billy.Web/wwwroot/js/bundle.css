@@ -1,0 +1,17 @@
+.signIn-left-container {
+  grid-column: 1; }
+
+.signIn-right-container {
+  grid-column: 1; }
+
+body {
+  background-color: #fff; }
+
+.gradient-background {
+  background-image: linear-gradient(#e0f5ff, #f9f9f9); }
+
+.sign-container {
+  display: grid;
+  grid-template-areas: repeat(2, 1fr); }
+
+/*# sourceMappingURL=bundle.css.map*/
