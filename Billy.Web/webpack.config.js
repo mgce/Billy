@@ -31,10 +31,17 @@ module.exports = {
                    }
                }
            ]
-     }
+     },
+     {
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'url-loader', 'sass-loader']
+      })
+    }
    ]
  },
  plugins: [
-    new ExtractTextPlugin( "bundle.css" )
+    new ExtractTextPlugin("bundle.css")
   ]
 }

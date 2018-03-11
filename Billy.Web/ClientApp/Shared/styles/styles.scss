@@ -1,0 +1,31 @@
+@import '././Sign/Styles/signInStyles';
+
+$top-gradient: #e0f5ff;
+$bottom-gradient: #f9f9f9;
+$logotype-color: #4e79ff;
+$font-color: #cccccc;
+$background-color: #fff;
+
+body{
+    background-color: $background-color;
+}
+
+.gradient-background{
+    background-image:
+    linear-gradient(
+        #e0f5ff, #f9f9f9
+    );
+}
+
+.sign-container{
+    display: grid;
+    grid-template-areas: repeat(2, 1fr);
+}
+
+.signIn-left-container{
+    grid-column: 1
+}
+
+.signIn-right-container{
+    grid-column: 1
+}
