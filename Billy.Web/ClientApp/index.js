@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Shared/styles/styles.scss';
+import './styles.scss';
 
-import SignIn from './Sign/Shared/Components/Sign'
+import SignIn from './scenes/Sign/scenes/Login/index'
 
 class App extends React.Component{
     constructor(props){

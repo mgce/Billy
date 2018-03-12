@@ -1,4 +1,4 @@
-@import 'Views/signIn';
+@import 'scenes/Sign/scenes/Login/styles';
 
 $top-gradient: #e0f5ff;
 $bottom-gradient: #f9f9f9;
@@ -9,6 +9,7 @@ $background-color: #fff;
 body{
     background-color: $background-color;
     height: 100%;
+    margin: 0;
 }
 
 .gradient-background{
