@@ -1,14 +1,23 @@
-@import 'scenes/Sign/scenes/Login/styles';
+
 
 $top-gradient: #e0f5ff;
 $bottom-gradient: #f9f9f9;
-$logotype-color: #4e79ff;
-$font-color: #cccccc;
-$background-color: #fff;
+$first-font-color: #4e79ff;
+$second-font-color: #cccccc;
+$first-background-color: #fff;
+$underline-input-color: #cccccc;
+
+//components
+@import 'components/Forms/styles';
+//scenes
+@import 'scenes/Sign/scenes/Login/styles';
+
+body, html, #App{
+    height:100%;
+}
 
 body{
-    background-color: $background-color;
-    height: 100%;
+    background-color: $first-background-color;
     margin: 0;
 }
 
@@ -19,7 +28,3 @@ body{
     );
 }
 
-.sign-container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}

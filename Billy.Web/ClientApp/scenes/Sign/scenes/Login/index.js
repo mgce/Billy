@@ -1,23 +1,49 @@
 import React from 'react';
 
+import Form from '../../../../components/Forms/index'
+
+const Login = props => {
+    return(
+        <div className="login-container">
+            <div className="login-box">
+            <Form 
+            items={[
+                {name:"Login", type:"text"},
+                {name:"Password", type:"password"}
+            ]}/>
+            </div>
+        </div>
+    )
+}
+
+class LoginContainer extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {}
+    }
+    render(){
+        return(
+            <Login />
+        )
+    }
+}
+
 const SignInLeft = props => {
     return(
-        <div>
-            <b>test</b>
+        <div className="logo">
+            <b>Logo</b>
         </div>
     )
 }
 
 const SignInRight = props => {
     return(
-        <div>
-            <b>test2</b>
-        </div>
+            <LoginContainer test="lol"/>
     )
 }
 
 class SignContainer extends React.Component{
-    constructor(){
+    constructor(props){
         super(props);
         this.state = {}
     }

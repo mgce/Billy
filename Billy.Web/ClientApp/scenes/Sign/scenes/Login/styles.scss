@@ -1,7 +1,38 @@
+.sign-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100%
+}
+
 .signIn-left-container{
-    grid-column: 1
+    @extend .gradient-background;
+    grid-column: 1;
+    position: relative;
+}
+
+.logo{
+    position:absolute; 
+    top:0; 
+    left:0;
 }
 
 .signIn-right-container{
     grid-column: 2
+}
+
+.login-container{
+    display: grid;
+    height: 80%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-template-areas: 
+        ". a ."
+        ". a .";
+}
+
+.login-box{
+    grid-area: a;
+    align-self: center;
+    justify-self: center;
+    width: 30em;
 }

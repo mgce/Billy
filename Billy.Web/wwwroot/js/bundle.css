@@ -1,19 +1,57 @@
+.form-group {
+  margin-bottom: 1em; }
+
+.form-label {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0.5em;
+  color: #4e79ff; }
+
+.form-input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid #cccccc;
+  width: 100%; }
+
+.sign-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 100%; }
+
 .signIn-left-container {
-  grid-column: 1; }
+  grid-column: 1;
+  position: relative; }
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0; }
 
 .signIn-right-container {
   grid-column: 2; }
 
+.login-container {
+  display: grid;
+  height: 80%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-template-areas: ". a ." ". a ."; }
+
+.login-box {
+  grid-area: a;
+  align-self: center;
+  justify-self: center;
+  width: 30em; }
+
+body, html, #App {
+  height: 100%; }
+
 body {
   background-color: #fff;
-  height: 100%;
   margin: 0; }
 
-.gradient-background {
+.gradient-background, .signIn-left-container {
   background-image: linear-gradient(#e0f5ff, #f9f9f9); }
-
-.sign-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); }
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2J1bmRsZS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
