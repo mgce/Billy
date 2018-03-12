@@ -86,6 +86,7 @@ namespace Billy.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             app.UseStaticFiles();
             app.UseAuthentication();

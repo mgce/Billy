@@ -12,9 +12,11 @@ class App extends React.Component{
         }
     }
     render(){
-        <div>
-            <SignIn />
-        </div>
+        return(
+            <div>
+                <SignIn />
+            </div>
+        )
     }
 }
 

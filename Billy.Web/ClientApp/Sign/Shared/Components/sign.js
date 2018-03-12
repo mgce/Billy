@@ -1,14 +1,17 @@
 import React from 'react';
 
-import signInLeft from './signInLeft';
+import SignInLeft from './signInLeft';
+import SignInRight from './signInRight';
 
 const SignIn = props => {
     return(
         <div className="sign-container">
             <div className="signIn-left-container">
-                <signInLeft/>
+                <SignInLeft/>
             </div>
-            <div className="signIn-right-container"></div>
+            <div className="signIn-right-container">
+                <SignInRight/>
+            </div>
         </div>
     )
 }

@@ -8,6 +8,7 @@ $background-color: #fff;
 
 body{
     background-color: $background-color;
+    height: 100%;
 }
 
 .gradient-background{
@@ -19,5 +20,5 @@ body{
 
 .sign-container{
     display: grid;
-    grid-template-areas: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
