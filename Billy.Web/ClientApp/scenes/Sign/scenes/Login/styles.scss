@@ -14,20 +14,26 @@
     position:absolute; 
     top:0; 
     left:0;
+    color: $first-font-color;
+    margin-left: 2em;
+    margin-top: 0.5em;
+    font-size: 20pt;
 }
 
 .signIn-right-container{
-    grid-column: 2
+    grid-column: 2;
+    box-shadow: 0 2px 20px 0px $shadow-color;
+    z-index: 10;
 }
 
 .login-container{
     display: grid;
     height: 80%;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
     grid-template-areas: 
-        ". a ."
-        ". a .";
+        ". a . ."
+        ". a . .";
 }
 
 .login-box{
@@ -35,4 +41,16 @@
     align-self: center;
     justify-self: center;
     width: 30em;
+}
+
+.login-type-container{
+    font-size: 24pt;
+    color: $second-font-color;
+    margin-bottom: 1.5em;
+    font-weight: 800;
+
+    .active{
+        color: $first-font-color;
+        text-decoration: underline;
+    }
 }

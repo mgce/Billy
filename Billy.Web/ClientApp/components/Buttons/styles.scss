@@ -1,0 +1,33 @@
+$apply-button-color: #4e79ff;
+$button-font-color: #fff;
+
+.base-button{
+    padding: 7pt 15pt 7pt 15pt;
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+
+    &:hover{
+        outline:none;
+    }
+}
+
+.apply-btn{
+    @extend .base-button;
+    background-color: $apply-button-color;
+    color: $button-font-color;
+
+    span{
+        cursor: pointer;
+    }
+}
+
+.span-between-btns{
+    margin-right: 1em;
+}
+
+.invisible-btn{
+    @extend .base-button;
+    background-color: $button-font-color;
+    color: $second-font-color;
+}

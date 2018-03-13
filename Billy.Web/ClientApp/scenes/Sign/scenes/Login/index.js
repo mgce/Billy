@@ -1,12 +1,23 @@
 import React from 'react';
 
-import Form from '../../../../components/Forms/index'
+import LoginForm from '../../components/Forms/loginForm'
+
+const SignType = props => {
+    return(
+        <div className="login-type-container">
+            <span className="active">Login</span>
+             <span> or </span>
+             <span>Register</span>
+        </div>
+    )
+}
 
 const Login = props => {
     return(
         <div className="login-container">
             <div className="login-box">
-            <Form 
+            <SignType/>
+            <LoginForm 
             items={[
                 {name:"Login", type:"text"},
                 {name:"Password", type:"password"}
@@ -19,7 +30,10 @@ const Login = props => {
 class LoginContainer extends React.Component{
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = {
+            login: '',
+            password: ''
+        }
     }
     render(){
         return(
@@ -31,14 +45,14 @@ class LoginContainer extends React.Component{
 const SignInLeft = props => {
     return(
         <div className="logo">
-            <b>Logo</b>
+            My<b>Billy</b>
         </div>
     )
 }
 
 const SignInRight = props => {
     return(
-            <LoginContainer test="lol"/>
+        <LoginContainer/>
     )
 }
 
