@@ -1,4 +1,5 @@
 import React from 'react';
+import Link, {LinkedComponent} from 'valuelink'
 
 const FormInputElement = props => {
     return(
@@ -7,6 +8,7 @@ const FormInputElement = props => {
                 {props.name}
             </label>
             <input
+            {...props.link.props}
             className = "form-input"
             type={props.type} 
             name={props.name}/>

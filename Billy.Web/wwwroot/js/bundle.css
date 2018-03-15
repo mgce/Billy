@@ -1,18 +1,78 @@
-.form-group {
-  margin-bottom: 1em; }
+@import url(https://fonts.googleapis.com/css?family=Quicksand);.form-group {
+  margin-bottom: 1.5em; }
 
 .form-label {
   display: inline-block;
   width: 100%;
-  margin-bottom: 0.5em;
-  color: #4e79ff; }
+  margin-bottom: 0.8em;
+  color: #4e79ff;
+  font-weight: 600; }
 
 .form-input {
   border: 0;
   outline: 0;
   background: transparent;
   border-bottom: 1px solid #cccccc;
-  width: 100%; }
+  width: 100%;
+  color: #565656; }
+  .form-input:hover {
+    border-bottom: 1px solid #565656;
+    box-shadow: 0;
+    transition: 0.3s; }
+  .form-input:focus {
+    border-bottom: 1px solid #565656;
+    transition: 0.3s; }
+
+.form-btn-line {
+  margin-top: 3em; }
+
+.regular-checkbox {
+  background-color: #fff;
+  border: 1px solid #4e79ff;
+  -webkit-appearance: none;
+  padding: 8px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  outline: none;
+  vertical-align: middle;
+  margin-right: 0.5em; }
+  .regular-checkbox:hover {
+    border: 1px solid #0040ff; }
+  .regular-checkbox:checked {
+    background-color: #fff; }
+  .regular-checkbox:checked:after {
+    content: '\2714';
+    font-size: 10px;
+    position: absolute;
+    top: 0px;
+    left: 4px;
+    color: #4e79ff; }
+
+.checkbox-label {
+  font-size: 10pt;
+  color: #cccccc; }
+
+.base-btn, .apply-btn, .invisible-btn {
+  padding: 7pt 15pt 7pt 15pt;
+  border: 0;
+  border-radius: 20px;
+  cursor: pointer; }
+  .base-btn:hover, .apply-btn:hover, .invisible-btn:hover {
+    outline: none; }
+
+.apply-btn {
+  background-color: #4e79ff;
+  color: #fff; }
+  .apply-btn span {
+    cursor: pointer; }
+
+.span-between-btns {
+  margin-right: 1em; }
+
+.invisible-btn {
+  background-color: #fff;
+  color: #cccccc; }
 
 .sign-container {
   display: grid;
@@ -26,17 +86,23 @@
 .logo {
   position: absolute;
   top: 0;
-  left: 0; }
+  left: 0;
+  color: #4e79ff;
+  margin-left: 2em;
+  margin-top: 0.5em;
+  font-size: 20pt; }
 
 .signIn-right-container {
-  grid-column: 2; }
+  grid-column: 2;
+  box-shadow: 0 2px 20px 0px #cccccc;
+  z-index: 10; }
 
 .login-container {
   display: grid;
   height: 80%;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
-  grid-template-areas: ". a ." ". a ."; }
+  grid-template-areas: ". a . ." ". a . ."; }
 
 .login-box {
   grid-area: a;
@@ -44,12 +110,22 @@
   justify-self: center;
   width: 30em; }
 
+.login-type-container {
+  font-size: 24pt;
+  color: #cccccc;
+  margin-bottom: 1.5em;
+  font-weight: 800; }
+  .login-type-container .active {
+    color: #4e79ff;
+    text-decoration: underline; }
+
 body, html, #App {
   height: 100%; }
 
 body {
   background-color: #fff;
-  margin: 0; }
+  margin: 0;
+  font-family: Quicksand; }
 
 .gradient-background, .signIn-left-container {
   background-image: linear-gradient(#e0f5ff, #f9f9f9); }

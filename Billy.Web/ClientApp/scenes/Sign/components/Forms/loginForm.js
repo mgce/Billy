@@ -12,11 +12,13 @@ const LoginForm = props => {
                 <FormInputElement 
                     key = {key}
                     type={item.type} 
-                    name={item.name}/>
+                    name={item.name}
+                    link={item.link}/>
                 )}
                 <Checkbox 
                 name="isRemembered"
-                text="Remember me"/>
+                text="Remember me"
+                link={props.checkboxLink}/>
                 <div className="form-btn-line">
                     <ApplyButton name="Log In" type="submit"/>
                     <InvisibleButton name="I lost my account" type="submit"/>

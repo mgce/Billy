@@ -1,7 +1,7 @@
 $apply-button-color: #4e79ff;
 $button-font-color: #fff;
 
-.base-button{
+.base-btn{
     padding: 7pt 15pt 7pt 15pt;
     border: 0;
     border-radius: 20px;
@@ -13,7 +13,7 @@ $button-font-color: #fff;
 }
 
 .apply-btn{
-    @extend .base-button;
+    @extend .base-btn;
     background-color: $apply-button-color;
     color: $button-font-color;
 
@@ -27,7 +27,7 @@ $button-font-color: #fff;
 }
 
 .invisible-btn{
-    @extend .base-button;
+    @extend .base-btn;
     background-color: $button-font-color;
     color: $second-font-color;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-
+import Link, {LinkedComponent} from 'valuelink'
 import LoginForm from '../../components/Forms/loginForm'
+import PropTypes from 'prop-types'
 
 const SignType = props => {
     return(
@@ -12,32 +13,23 @@ const SignType = props => {
     )
 }
 
-const Login = props => {
-    return(
-        <div className="login-container">
-            <div className="login-box">
-            <SignType/>
-            <LoginForm 
-            items={[
-                {name:"Login", type:"text"},
-                {name:"Password", type:"password"}
-            ]}/>
-            </div>
-        </div>
-    )
-}
-
-class LoginContainer extends React.Component{
+class LoginContainer extends LinkedComponent {
     constructor(props){
         super(props);
         this.state = {
             login: '',
-            password: ''
+            password: '',
+            rememberMe: false
         }
     }
     render(){
         return(
-            <Login />
+            <LoginForm 
+            checkboxLink = {this.linkAt('rememberMe')}
+            items={[
+                {name:"Login", type:"text", link:this.linkAt('login')},
+                {name:"Password", type:"password", link:this.linkAt('password')}
+            ]}/>
         )
     }
 }
@@ -52,7 +44,12 @@ const SignInLeft = props => {
 
 const SignInRight = props => {
     return(
-        <LoginContainer/>
+        <div className="login-container">
+            <div className="login-box">
+                <SignType/>
+                <LoginContainer/>
+            </div>
+        </div>
     )
 }
 
