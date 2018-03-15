@@ -2,6 +2,7 @@ import React from 'react';
 import Link, {LinkedComponent} from 'valuelink'
 import LoginForm from '../../components/Forms/loginForm'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 
 const SignType = props => {
     return(
@@ -22,9 +23,24 @@ class LoginContainer extends LinkedComponent {
             rememberMe: false
         }
     }
+    onSubmit = (e) =>{
+        e.preventDefault();
+
+        const user = {
+            Username : this.state.login,
+            Password : this.state.password
+        };
+
+        axios.post('/account',{
+            Username : this.state.login,
+            Password : this.state.password
+        })
+        .then(res => console.log(res));
+    }
     render(){
         return(
             <LoginForm 
+            onSubmit = {this.onSubmit.bind(this)}
             checkboxLink = {this.linkAt('rememberMe')}
             items={[
                 {name:"Login", type:"text", link:this.linkAt('login')},

@@ -7,7 +7,7 @@ import Checkbox from '../../../../components/Forms/Checkbox'
 
 const LoginForm = props => {
     return(
-        <form>
+        <form onSubmit={props.onSubmit}>
             {props.items.map((item, key) => 
                 <FormInputElement 
                     key = {key}
