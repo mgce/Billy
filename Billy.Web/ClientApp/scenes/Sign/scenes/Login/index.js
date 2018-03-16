@@ -1,53 +1,32 @@
 import React from 'react';
 import Link, {LinkedComponent} from 'valuelink'
-import LoginForm from '../../components/Forms/loginForm'
+import LoginContainer from '../../components/Forms/loginForm'
+import RegisterContainer from '../../components/Forms/registerForm'
 import PropTypes from 'prop-types'
-import axios from 'axios'
+
 
 const SignType = props => {
     return(
         <div className="login-type-container">
-            <span className="active">Login</span>
-             <span> or </span>
-             <span>Register</span>
+            {props.loginVisible ? (
+                <div>
+                    <span className="active">Login</span>
+                    <span> or </span>
+                    <span 
+                    className="inactive" 
+                    onClick = {props.changeView}>Register</span>
+                </div>
+            ) : (
+                <div>
+                    <span 
+                    className="inactive" 
+                    onClick = {props.changeView}>Login</span>
+                    <span> or </span>
+                    <span className="active">Register</span>
+                </div>
+            )}
         </div>
     )
-}
-
-class LoginContainer extends LinkedComponent {
-    constructor(props){
-        super(props);
-        this.state = {
-            login: '',
-            password: '',
-            rememberMe: false
-        }
-    }
-    onSubmit = (e) =>{
-        e.preventDefault();
-
-        const user = {
-            Username : this.state.login,
-            Password : this.state.password
-        };
-
-        axios.post('/account',{
-            Username : this.state.login,
-            Password : this.state.password
-        })
-        .then(res => console.log(res));
-    }
-    render(){
-        return(
-            <LoginForm 
-            onSubmit = {this.onSubmit.bind(this)}
-            checkboxLink = {this.linkAt('rememberMe')}
-            items={[
-                {name:"Login", type:"text", link:this.linkAt('login')},
-                {name:"Password", type:"password", link:this.linkAt('password')}
-            ]}/>
-        )
-    }
 }
 
 const SignInLeft = props => {
@@ -61,21 +40,39 @@ const SignInLeft = props => {
 const SignInRight = props => {
     return(
         <div className="login-container">
-            <div className="login-box">
-                <SignType/>
-                <LoginContainer/>
+            <div className="sign-type-box">
+            <SignType 
+                    changeView = {props.changeView} 
+                    loginVisible ={props.loginVisible }/>
             </div>
+                <div className="login-box">
+                    
+                    {props.loginVisible ? (
+                        <LoginContainer/>
+                    ) : (
+                        <RegisterContainer />
+                    )}
+                </div>
         </div>
     )
 }
 
-class SignContainer extends React.Component{
+class SignContainer extends LinkedComponent{
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = {
+            loginVisible: true
+        }
+    }
+    changeView = (e) =>{
+        this.setState((prevState) => {
+            return {loginVisible: !this.state.loginVisible}
+        })
     }
     render(){
-        <Sign />
+        return(
+            <SignIn changeView = {this.changeView.bind(this)} loginVisible={this.state.loginVisible}/>
+        )
     }
 }
 
@@ -86,11 +83,11 @@ const SignIn = props => {
                 <SignInLeft/>
             </div>
             <div className="signIn-right-container">
-                <SignInRight/>
+                <SignInRight changeView={props.changeView} loginVisible={props.loginVisible}/>
             </div>
         </div>
     )
 }
 
-export default SignIn;
+export default SignContainer;
 

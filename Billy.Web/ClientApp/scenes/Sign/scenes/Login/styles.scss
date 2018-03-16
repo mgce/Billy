@@ -28,16 +28,25 @@
 
 .login-container{
     display: grid;
-    height: 80%;
+    height: 100%;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
     grid-template-areas: 
+        ". b . ."
         ". a . ."
-        ". a . .";
+        ". . . ."
+        ". . . .";
 }
 
 .login-box{
     grid-area: a;
+    align-self: center;
+    justify-self: center;
+    width: 30em;
+}
+
+.sign-type-box{
+    grid-area: b;
     align-self: center;
     justify-self: center;
     width: 30em;
@@ -48,9 +57,18 @@
     color: $second-font-color;
     margin-bottom: 1.5em;
     font-weight: 800;
+    transition: 0.5s;
+
 
     .active{
         color: $first-font-color;
         text-decoration: underline;
+    }
+    .inactive{
+        cursor: pointer;
+    }
+    .inactive:hover{
+        color: $first-font-color;
+        transition: color 0.5s;
     }
 }

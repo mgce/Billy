@@ -6,38 +6,44 @@ import InvisibleButton from '../../../../components/Buttons/InvisibleButton'
 import Checkbox from '../../../../components/Forms/Checkbox'
 import axios from 'axios'
 
-class LoginContainer extends LinkedComponent {
+class RegisterContainer extends LinkedComponent{
     constructor(props){
         super(props);
         this.state = {
-            login: '',
-            password: '',
-            rememberMe: false
+            userName :'',
+            password : '',
+            confirmPassword :'',
+            email :'',
+            privacyPolicyAccepted :false
         }
     }
     onSubmit = (e) =>{
         e.preventDefault();
 
-        axios.post('/account',{
-            Username : this.state.login,
-            Password : this.state.password
+        axios.post('/account/register',{
+            UserName : this.state.userName,
+            Password: this.state.password,
+            ConfirmPassword: this.state.confirmPassword,
+            Email: this.state.email,
         })
         .then(res => console.log(res));
     }
     render(){
         return(
-            <LoginForm 
+            <Register 
             onSubmit = {this.onSubmit.bind(this)}
-            checkboxLink = {this.linkAt('rememberMe')}
+            privacyPolicyLink = {this.linkAt('privacyPolicyAccepted')}
             items={[
-                {name:"Login", type:"text", link:this.linkAt('login')},
-                {name:"Password", type:"password", link:this.linkAt('password')}
+                {name:"Email", type:"text", link:this.linkAt('email')},
+                {name:"Username", type:"text", link:this.linkAt('userName')},
+                {name:"Password", type:"password", link:this.linkAt('password')},
+                {name:"Confirm Password", type:"password", link:this.linkAt('confirmPassword')},
             ]}/>
         )
     }
 }
 
-const LoginForm = props => {
+const Register = props => {
     return(
         <form onSubmit={props.onSubmit}>
             {props.items.map((item, key) => 
@@ -48,15 +54,14 @@ const LoginForm = props => {
                     link={item.link}/>
                 )}
                 <Checkbox 
-                name="isRemembered"
-                text="Remember me"
-                link={props.checkboxLink}/>
+                name="privacyPolicyAccepted"
+                text="Accept privacy policy"
+                link={props.privacyPolicyLink}/>
                 <div className="form-btn-line">
-                    <ApplyButton name="Log In" type="submit"/>
-                    <InvisibleButton name="I lost my account" type="submit"/>
+                    <ApplyButton name="Register" type="submit"/>
                 </div>
         </form>
     )
 }
 
-export default LoginContainer;
+export default RegisterContainer;

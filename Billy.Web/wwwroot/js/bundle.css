@@ -99,13 +99,19 @@
 
 .login-container {
   display: grid;
-  height: 80%;
+  height: 100%;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
-  grid-template-areas: ". a . ." ". a . ."; }
+  grid-template-areas: ". b . ." ". a . ." ". . . ." ". . . ."; }
 
 .login-box {
   grid-area: a;
+  align-self: center;
+  justify-self: center;
+  width: 30em; }
+
+.sign-type-box {
+  grid-area: b;
   align-self: center;
   justify-self: center;
   width: 30em; }
@@ -114,10 +120,16 @@
   font-size: 24pt;
   color: #cccccc;
   margin-bottom: 1.5em;
-  font-weight: 800; }
+  font-weight: 800;
+  transition: 0.5s; }
   .login-type-container .active {
     color: #4e79ff;
     text-decoration: underline; }
+  .login-type-container .inactive {
+    cursor: pointer; }
+  .login-type-container .inactive:hover {
+    color: #4e79ff;
+    transition: color 0.5s; }
 
 body, html, #App {
   height: 100%; }
