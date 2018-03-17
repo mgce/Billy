@@ -31,12 +31,22 @@ $hover-checkbox: #0040ff;
     &:focus{
         border-bottom: 1px solid $input-text-color;
         transition: 0.3s;
-    }
+    }   
+}
+.error-form-input{
+    @extend .form-input;
+    border-bottom: 1px solid red;
+}
+
+.error-placeholder{
+    color: red;
+    margin-top: 0.5em;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .form-btn-line{
     margin-top: 3em;
-    
 }
 
 .regular-checkbox{

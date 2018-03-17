@@ -9,9 +9,12 @@ const FormInputElement = props => {
             </label>
             <input
             {...props.link.props}
-            className = "form-input"
+            className = {props.link.error ? "error-form-input" : "form-input"}
             type={props.type} 
             name={props.name}/>
+            <div className="error-placeholder">
+                {props.link.error || ''}
+            </div>
         </div>
     )
 }

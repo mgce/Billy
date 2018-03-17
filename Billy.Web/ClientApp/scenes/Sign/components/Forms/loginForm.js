@@ -25,13 +25,23 @@ class LoginContainer extends LinkedComponent {
         .then(res => console.log(res));
     }
     render(){
+        const loginLink = Link.state(this, 'login')
+        .check(x => x, 'Login is required')
+        .check(x => x.indexOf(' ') < 0, "Login shouldn't contain spaces")
+
+        const passwordLink = Link.state(this, 'password')
+        .check(x => x, 'Password is required')
+        .check(x => x.indexOf(' ') < 0, "Password shouldn't contain spaces")
+        .check(x => x.matches(".*\\d+.*"), "Password should contain numbers")
+
         return(
             <LoginForm 
             onSubmit = {this.onSubmit.bind(this)}
             checkboxLink = {this.linkAt('rememberMe')}
+            isFormValid = {loginLink.error || passwordLink.error}
             items={[
-                {name:"Login", type:"text", link:this.linkAt('login')},
-                {name:"Password", type:"password", link:this.linkAt('password')}
+                {name:"Login", type:"text", link:{loginLink}},
+                {name:"Password", type:"password", link:{passwordLink}}
             ]}/>
         )
     }
@@ -52,8 +62,7 @@ const LoginForm = props => {
                 text="Remember me"
                 link={props.checkboxLink}/>
                 <div className="form-btn-line">
-                    <ApplyButton name="Log In" type="submit"/>
-                    <InvisibleButton name="I lost my account" type="submit"/>
+                    <ApplyButton name="Log In" type="submit" isDisabled={!props.isFormValid}/>
                 </div>
         </form>
     )

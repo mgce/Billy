@@ -26,16 +26,21 @@
     z-index: 10;
 }
 
+.sign-container2{
+    display: grid;
+}
+
+.sign-type-box{
+    margin: auto;   
+}
+
 .login-container{
     display: grid;
     height: 100%;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
     grid-template-areas: 
-        ". b . ."
-        ". a . ."
-        ". . . ."
-        ". . . .";
+        ". a . .";
 }
 
 .login-box{
@@ -45,12 +50,7 @@
     width: 30em;
 }
 
-.sign-type-box{
-    grid-area: b;
-    align-self: center;
-    justify-self: center;
-    width: 30em;
-}
+
 
 .login-type-container{
     font-size: 24pt;

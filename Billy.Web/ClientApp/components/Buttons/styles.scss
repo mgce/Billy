@@ -1,4 +1,5 @@
 $apply-button-color: #4e79ff;
+$disabled-button-color: #b7c9ff;
 $button-font-color: #fff;
 
 .base-btn{
@@ -19,6 +20,10 @@ $button-font-color: #fff;
 
     span{
         cursor: pointer;
+    }
+
+    &:disabled,[disabled]{
+        background-color: $disabled-button-color;
     }
 }
 
