@@ -14,8 +14,20 @@ class RegisterContainer extends LinkedComponent{
             password : '',
             confirmPassword :'',
             email :'',
-            privacyPolicyAccepted :false
+            privacyPolicyAccepted :false,
+            touched:{
+                userName: false,
+                password: false,
+                confirmPassword: false,
+                email: false,
+            }
+            
         }
+    }
+    handleBlur = field => {
+        this.setState({
+            touched : {...this.state.touched, [field]: true}
+        })
     }
     onSubmit = (e) =>{
         e.preventDefault();
@@ -34,10 +46,10 @@ class RegisterContainer extends LinkedComponent{
             onSubmit = {this.onSubmit.bind(this)}
             privacyPolicyLink = {this.linkAt('privacyPolicyAccepted')}
             items={[
-                {name:"Email", type:"text", link:this.linkAt('email')},
-                {name:"Username", type:"text", link:this.linkAt('userName')},
-                {name:"Password", type:"password", link:this.linkAt('password')},
-                {name:"Confirm Password", type:"password", link:this.linkAt('confirmPassword')},
+                {name:"email", label:"Email", type:"text", link:this.linkAt('email')},
+                {name:"username", label:"Username", type:"text", link:this.linkAt('userName')},
+                {name:"password", label:"Password", type:"password", link:this.linkAt('password')},
+                {name:"confirmPassword", label:"Confirm Password", type:"password", link:this.linkAt('confirmPassword')},
             ]}/>
         )
     }
@@ -51,7 +63,9 @@ const Register = props => {
                     key = {key}
                     type={item.type} 
                     name={item.name}
-                    link={item.link}/>
+                    label={item.label}
+                    link={item.link}
+                    onBlur={props.handleBlur}/>
                 )}
                 <Checkbox 
                 name="privacyPolicyAccepted"
