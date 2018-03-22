@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './styles.scss';
 
 import SignInContainer from './scenes/Sign/scenes/Login/index'
+import Home from './scenes/Home/index'
 
 class App extends React.Component{
     constructor(props){
@@ -13,7 +14,8 @@ class App extends React.Component{
     }
     render(){
         return(
-                <SignInContainer />
+                //<SignInContainer />
+                <Home />
         )
     }
 }

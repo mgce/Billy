@@ -1,0 +1,19 @@
+.home-container{
+    display: grid;
+    grid-template-areas: 
+    'sidebar navbar  navbar  navbar   '
+    'sidebar content content content  '
+    'sidebar content content content  ';
+}
+
+.sidebar{
+    grid-area: sidebar;
+}
+
+.navbar{
+    grid-area: navbar;
+}
+
+.content{
+    grid-area: content;
+}

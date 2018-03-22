@@ -1,10 +1,26 @@
 import React from 'react';
 import Link, {LinkedComponent} from 'valuelink'
-import FormInputElement from '../../../../components/Forms/formInputElement'
+import InputGroup from '../../../../components/Forms/InputGroup'
 import ApplyButton from '../../../../components/Buttons/ApplyButton'
-import InvisibleButton from '../../../../components/Buttons/InvisibleButton'
 import Checkbox from '../../../../components/Forms/Checkbox'
+import Helpers from '../../../../components/helpers'
 import axios from 'axios'
+
+var isRegisterFormValid = (email, userName, password, confirmPassword) =>{
+    if(Helpers.isEmptyOrUndefined(email) || 
+        Helpers.isEmptyOrUndefined(userName) || 
+        Helpers.isEmptyOrUndefined(password) || 
+        Helpers.isEmptyOrUndefined(confirmPassword)){
+            return false;
+        }
+    if(password !== confirmPassword){
+        return false;
+    }
+    if(!email.match(Helpers.emailRegex)){
+        return false;
+    }
+    return true;
+}
 
 class RegisterContainer extends LinkedComponent{
     constructor(props){
@@ -14,14 +30,10 @@ class RegisterContainer extends LinkedComponent{
             password : '',
             confirmPassword :'',
             email :'',
-            privacyPolicyAccepted :false,
+            privacyPolicy:false,
             touched:{
-                userName: false,
-                password: false,
-                confirmPassword: false,
-                email: false,
+                submit: false,
             }
-            
         }
     }
     handleBlur = field => {
@@ -29,8 +41,29 @@ class RegisterContainer extends LinkedComponent{
             touched : {...this.state.touched, [field]: true}
         })
     }
+    validateForm = (linked) => {
+        if(this.state.touched.submit){
+            linked.email.check(x=>x, 'Email is required')
+            .check(x=>x.match(Helpers.emailRegex), 'Email is invalid');
+            linked.userName.check(x=>x, 'Username is required');
+            linked.password.check(x=>x, 'Password is required')
+            .check(x=>x.length > 8, 'Password should be longer than 8 characters');
+            linked.confirmPassword.check(x=> x, 'Confirm password is required')
+                .check(x=> x === this.state.password, 'Confirm password is not equal to password');
+        }
+        return linked;
+    }
     onSubmit = (e) =>{
         e.preventDefault();
+
+        if(!isRegisterFormValid(
+            this.state.email, 
+            this.state.userName, 
+            this.state.password, 
+            this.state.confirmPassword)){
+            this.setState({touched: {...this.state.touched, 'submit': true}})
+            return;
+        }
 
         axios.post('/account/register',{
             UserName : this.state.userName,
@@ -41,36 +74,46 @@ class RegisterContainer extends LinkedComponent{
         .then(res => console.log(res));
     }
     render(){
+        let linked = this.linkAll();
+        linked = this.validateForm(linked);
+
         return(
-            <Register 
+            <RegisterForm 
             onSubmit = {this.onSubmit.bind(this)}
-            privacyPolicyLink = {this.linkAt('privacyPolicyAccepted')}
-            items={[
-                {name:"email", label:"Email", type:"text", link:this.linkAt('email')},
-                {name:"username", label:"Username", type:"text", link:this.linkAt('userName')},
-                {name:"password", label:"Password", type:"password", link:this.linkAt('password')},
-                {name:"confirmPassword", label:"Confirm Password", type:"password", link:this.linkAt('confirmPassword')},
-            ]}/>
+            links = {linked}/>
         )
     }
 }
 
-const Register = props => {
+const RegisterForm = props => {
     return(
         <form onSubmit={props.onSubmit}>
-            {props.items.map((item, key) => 
-                <FormInputElement 
-                    key = {key}
-                    type={item.type} 
-                    name={item.name}
-                    label={item.label}
-                    link={item.link}
-                    onBlur={props.handleBlur}/>
-                )}
+                <InputGroup 
+                    labelName="Email"
+                    name="email"
+                    link={props.links.email}
+                    onBlur={props.onBlur}/>
+                <InputGroup 
+                    labelName="Username"
+                    name="username"
+                    link={props.links.userName}
+                    onBlur={props.onBlur}/>
+                <InputGroup 
+                    labelName="Password"
+                    name="password"
+                    type="password"
+                    link={props.links.password}
+                    onBlur={props.onBlur}/>
+                <InputGroup 
+                    labelName="Confirm Password"
+                    name="confirmPassword"
+                    type="password"
+                    link={props.links.confirmPassword}
+                    onBlur={props.onBlur}/>
                 <Checkbox 
-                name="privacyPolicyAccepted"
-                text="Accept privacy policy"
-                link={props.privacyPolicyLink}/>
+                    name="privacyPolicyAccepted"
+                    text="Accept privacy policy"
+                    link={props.links.privacyPolicy}/>
                 <div className="form-btn-line">
                     <ApplyButton name="Register" type="submit"/>
                 </div>
