@@ -4,13 +4,10 @@ $first-font-color: #4e79ff;
 $second-font-color: #cccccc;
 $first-background-color: #fff;
 $shadow-color: #cccccc;
-//components
-@import 'components/Forms/styles';
-@import 'components/Buttons/styles';
-//scenes
-@import 'scenes/Sign/scenes/Login/styles';
-//fonts
-@import url(https://fonts.googleapis.com/css?family=Quicksand);
+
+$navbar-height: 7%;
+
+
 body, html, #App{
     height:100%;
 }
@@ -21,10 +18,26 @@ body{
     font-family: Quicksand;
 }
 
+.shadow-primary-element{
+    box-shadow: 0 2px 20px 0px $shadow-color;
+    z-index: 10;
+}
+
 .gradient-background{
     background-image:
     linear-gradient(
         #e0f5ff, #f9f9f9
     );
 }
+//fonts
+@import 'components/fonts';
+//components
+@import 'components/Forms/styles';
+@import 'components/Buttons/styles';
+//scenes
+@import 'scenes/Sign/styles';
+@import 'scenes/Home/styles';
+@import 'scenes/Home/scenes/sidebar/styles.scss';
+//fonts
+@import url(https://fonts.googleapis.com/css?family=Quicksand);
 

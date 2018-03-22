@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.scss';
 
-import SignInContainer from './scenes/Sign/scenes/Login/index'
+import SignInContainer from './scenes/Sign/index'
 import Home from './scenes/Home/index'
 
 class App extends React.Component{
@@ -14,8 +14,8 @@ class App extends React.Component{
     }
     render(){
         return(
-                //<SignInContainer />
-                <Home />
+                <SignInContainer />
+                //<Home />
         )
     }
 }

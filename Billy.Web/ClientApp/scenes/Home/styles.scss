@@ -1,13 +1,13 @@
+
+
 .home-container{
     display: grid;
     grid-template-areas: 
-    'sidebar navbar  navbar  navbar   '
-    'sidebar content content content  '
-    'sidebar content content content  ';
-}
-
-.sidebar{
-    grid-area: sidebar;
+    'sidebar navbar '
+    'sidebar content';
+    grid-template-columns: [sidebar] 15% [navbar] 85% [content]85%;
+    grid-template-rows:[navbar]$navbar-height;
+    height: 100%;
 }
 
 .navbar{
@@ -15,5 +15,6 @@
 }
 
 .content{
+    @extend .gradient-background;
     grid-area: content;
 }

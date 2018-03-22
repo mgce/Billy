@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../../components/General/logo'
 
 class HomeContainer extends React.Component{
     constructor(props){
@@ -24,10 +25,14 @@ const Home = props =>{
     )
 }
 
-const Sidebar = props =>{
+
+
+
+
+const SearchInput = props =>{
     return(
-        <div className="sidebar">
-        test
+        <div>
+
         </div>
     )
 }
@@ -35,7 +40,7 @@ const Sidebar = props =>{
 const Navbar = props => {
     return(
         <div className="navbar">
-
+        <SearchInput />
         </div>
     )
 }
@@ -43,7 +48,7 @@ const Navbar = props => {
 const Content = props => {
     return(
         <div className="content">
-
+            test
         </div>
     )
 }

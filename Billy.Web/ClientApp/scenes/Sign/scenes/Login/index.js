@@ -1,95 +1,61 @@
 import React from 'react';
 import Link, {LinkedComponent} from 'valuelink'
-import LoginContainer from '../../components/Forms/loginForm'
-import RegisterContainer from '../../components/Forms/registerForm'
 import PropTypes from 'prop-types'
+import LoginForm from '../../components/Forms/loginForm'
+import Helpers from '../../../../components/helpers'
 
-
-const SignType = props => {
-    return(
-        <div className="login-type-container">
-            {props.loginVisible ? (
-                <div>
-                    <span className="active">Login</span>
-                    <span> or </span>
-                    <span 
-                    className="inactive" 
-                    onClick = {props.changeView}>Register</span>
-                </div>
-            ) : (
-                <div>
-                    <span 
-                    className="inactive" 
-                    onClick = {props.changeView}>Login</span>
-                    <span> or </span>
-                    <span className="active">Register</span>
-                </div>
-            )}
-        </div>
-    )
-}
-
-const SignInLeft = props => {
-    return(
-        <div className="logo">
-            My<b>Billy</b>
-        </div>
-    )
-}
-
-const SignInRight = props => {
-    return(
-        <div className="sign-container2">
-            <div className="sign-type-box">
-                <SignType 
-                changeView = {props.changeView} 
-                loginVisible ={props.loginVisible }/>
-            </div>
-            <div className="login-container">
-                <div className="login-box">
-                    {props.loginVisible ? (
-                        <LoginContainer/>
-                    ) : (
-                        <RegisterContainer />
-                    )}
-                </div>
-            </div>
-        </div>
-           
-    )
-}
-
-class SignContainer extends LinkedComponent{
+class LoginContainer extends LinkedComponent {
     constructor(props){
         super(props);
         this.state = {
-            loginVisible: true
+            login: '',
+            password: '',
+            rememberMe: false,
+            touched:{
+                submit: false
+            }
         }
     }
-    changeView = (e) =>{
-        this.setState((prevState) => {
-            return {loginVisible: !this.state.loginVisible}
+    handleBlur = field => {
+        this.setState({
+            touched : {...this.state.touched, [field]: true}
         })
     }
+    onSubmit = (e) =>{
+        e.preventDefault();
+        
+        if(Helpers.isEmptyOrUndefined(this.state.login) 
+            || Helpers.isEmptyOrUndefined(this.state.password)){
+            this.setState({touched: {...this.state.touched, 'submit': true}})
+            return;
+        }
+
+        axios.post('/account',{
+            Username : this.state.login,
+            Password : this.state.password
+        })
+        .then(res => console.log(res));
+    }
     render(){
+        let linked = this.linkAll();
+        
+        if(this.state.touched.submit){
+            linked.login = linked.login.check(x => x, 'Login is required');
+            linked.password = linked.password.check(x => x, 'Password is required');
+        }
+
+        const isFormValid = !Helpers.isEmptyOrUndefined(linked.login.error) 
+            && !Helpers.isEmptyOrUndefined(linked.password.error);
+
         return(
-            <SignIn changeView = {this.changeView.bind(this)} loginVisible={this.state.loginVisible}/>
+            <LoginForm 
+            onSubmit = {this.onSubmit.bind(this)}
+            links = {linked}
+            isFormValid = {isFormValid}
+            onBlur = {this.handleBlur.bind(this)}/>
         )
     }
 }
 
-const SignIn = props => {
-    return(
-        <div className="sign-container">
-            <div className="signIn-left-container">
-                <SignInLeft/>
-            </div>
-            <div className="signIn-right-container">
-                <SignInRight changeView={props.changeView} loginVisible={props.loginVisible}/>
-            </div>
-        </div>
-    )
-}
-
-export default SignContainer;
+export default LoginContainer;
 
