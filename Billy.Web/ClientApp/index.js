@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.scss';
-
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+  } from 'react-router-dom';
 import SignInContainer from './scenes/Sign/Sign'
 import Home from './scenes/Home/Home'
 
@@ -14,8 +18,12 @@ class App extends React.Component{
     }
     render(){
         return(
-                //<SignInContainer />
-                <Home />
+            <Router>
+                <div>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/login" component={SignInContainer}/>
+                </div>
+            </Router>
         )
     }
 }
