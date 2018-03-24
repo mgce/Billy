@@ -1,0 +1,5 @@
+.invisible-btn{
+    @extend .base-btn;
+    background-color: $button-font-color;
+    color: $second-font-color;
+}

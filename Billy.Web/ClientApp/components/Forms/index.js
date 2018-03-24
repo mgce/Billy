@@ -1,0 +1,6 @@
+export {default as Checkbox} from './Checkbox/Checkbox'
+export {default as ErrorPlaceholder} from './ErrorPlaceholder/ErrorPlaceholder'
+export {default as FormLabel} from './FormLabel/FormLabel'
+export {default as Input} from './Input/Input'
+export {default as InputGroup} from './InputGroup/InputGroup'
+export {default as PasswordInput} from './PasswordInput/PasswordInput'

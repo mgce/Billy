@@ -1,0 +1,34 @@
+.regular-checkbox{
+    background-color: $first-background-color;
+    border: 1px solid $first-font-color;
+    -webkit-appearance: none;
+    padding: 8px;
+    border-radius: 3px;
+	display: inline-block;
+    position: relative;
+    outline: none;
+    vertical-align: middle;
+    margin-right: 0.5em;
+
+    &:hover{
+        border: 1px solid $hover-checkbox;
+    }
+
+    &:checked{
+        background-color: #fff;
+    }
+
+    &:checked:after{
+    content: '\2714';
+	font-size: 10px;
+	position: absolute;
+	top: 0px;
+	left: 4px;
+    color: $first-font-color;
+    }
+}
+
+.checkbox-label{
+    font-size: 10pt;
+    color: $second-font-color;
+}

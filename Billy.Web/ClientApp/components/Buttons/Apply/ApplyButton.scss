@@ -1,0 +1,13 @@
+.apply-btn{
+    @extend .base-btn;
+    background-color: $apply-button-color;
+    color: $button-font-color;
+
+    span{
+        cursor: pointer;
+    }
+
+    &:disabled,[disabled]{
+        background-color: $disabled-button-color;
+    }
+}

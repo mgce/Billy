@@ -1,0 +1,23 @@
+.form-input{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid $underline-input-color;
+    width: 100%;
+    color: $input-text-color;
+
+    &:hover{
+        border-bottom: 1px solid $input-text-color;
+        box-shadow: 0;
+        transition: 0.3s;
+    }
+
+    &:focus{
+        border-bottom: 1px solid $input-text-color;
+        transition: 0.3s;
+    }   
+}
+.error-form-input{
+    @extend .form-input;
+    border-bottom: 1px solid red;
+}

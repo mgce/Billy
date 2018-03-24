@@ -1,0 +1,15 @@
+.search-bill{
+    grid-area: searchBox;
+    width: auto;
+    margin: auto;
+    input{
+        width: auto;
+        
+        @include placeholder(){
+            padding-left: 0.5em;
+            color: $second-font-color;
+            font-size: 9pt;
+        }
+    }
+    
+}

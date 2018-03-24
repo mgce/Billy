@@ -1,0 +1,13 @@
+@import './components/Content/styles';
+@import './components/Navbar/styles';
+@import './components/Sidebar/styles';
+
+.home-container{
+    display: grid;
+    grid-template-areas: 
+    'sidebar navbar '
+    'sidebar content';
+    grid-template-columns: [sidebar] 15% [navbar] 85% [content]85%;
+    grid-template-rows:[navbar]$navbar-height;
+    height: 100%;
+}

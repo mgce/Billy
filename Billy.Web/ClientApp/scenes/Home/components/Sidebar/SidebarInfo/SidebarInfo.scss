@@ -1,0 +1,15 @@
+.sidebar-info{
+    text-align: center;
+    .header{
+        color: $first-font-color;
+        font-size: 18pt;
+        font-weight: 600;
+    }
+    .info{
+        
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        @extend %signature-secondary-font;
+    }
+}

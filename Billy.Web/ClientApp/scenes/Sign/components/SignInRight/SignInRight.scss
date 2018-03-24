@@ -1,0 +1,23 @@
+.sign-container2{
+    display: grid;
+}
+
+.sign-type-box{
+    margin: auto;   
+}
+
+.login-container{
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-template-areas: 
+        ". a . .";
+}
+
+.login-box{
+    grid-area: a;
+    align-self: center;
+    justify-self: center;
+    width: 30em;
+}

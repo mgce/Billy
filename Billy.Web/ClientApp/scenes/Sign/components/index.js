@@ -1,0 +1,7 @@
+export {default as SignInLeft} from './SignInLeft/SignInLeft'
+export {default as SignInRight} from './SignInRight/SignInRight'
+export {default as SignType} from './SignType/SignType'
+export {default as Login} from './Login/Login'
+export {default as Register} from './Register/Register'
+export {default as LoginForm} from './Forms/LoginForm/LoginForm'
+export {default as RegisterForm} from './Forms/RegisterForm/RegisterForm'

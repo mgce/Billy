@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.scss';
 
-import SignInContainer from './scenes/Sign/index'
-import Home from './scenes/Home/index'
+import SignInContainer from './scenes/Sign/Sign'
+import Home from './scenes/Home/Home'
 
 class App extends React.Component{
     constructor(props){

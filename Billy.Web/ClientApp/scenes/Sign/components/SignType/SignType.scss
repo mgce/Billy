@@ -1,0 +1,23 @@
+.login-type-container{
+    font-size: 24pt;
+    color: $second-font-color;
+    margin-bottom: 1.5em;
+    font-weight: 800;
+    transition: 0.5s;
+
+
+    .active{
+        color: $first-font-color;
+        text-decoration: underline;
+    }
+
+    .inactive{
+        cursor: pointer;
+    }
+
+    .inactive:hover{
+        color: $first-font-color;
+        transition: color 0.5s;
+    }
+    
+}

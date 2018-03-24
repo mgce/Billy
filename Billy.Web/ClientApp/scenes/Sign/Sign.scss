@@ -1,0 +1,28 @@
+@import 'components/styles';
+
+.sign-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100%
+}
+
+.signIn-left-container{
+    @extend .gradient-background;
+    grid-column: 1;
+    position: relative;
+
+    .logo{
+        position:absolute; 
+        top:0; 
+        left:0;
+        color: $first-font-color;
+        margin-left: 2em;
+        margin-top: 0.5em;
+        font-size: 20pt;
+    }
+}
+
+.signIn-right-container{
+    @extend .shadow-primary-element;
+    grid-column: 2;
+}

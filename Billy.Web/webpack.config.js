@@ -48,6 +48,22 @@ module.exports = {
     }
    ]
  },
+ resolve: {
+   modules:[
+     "node_modules",
+     path.resolve(__dirname, "ClientApp"),     
+   ],
+   alias:{
+     'Buttons': path.resolve(__dirname, "ClientApp/components/Buttons"),
+     'Forms': path.resolve(__dirname, "ClientApp/components/Forms"),
+     'General': path.resolve(__dirname, "ClientApp/components/General"),
+     'Tables': path.resolve(__dirname, "ClientApp/components/Tables"),
+     'HomeNavbar': path.resolve(__dirname, "ClientApp/scenes/Home/components/Navbar"),
+     'HomeContent': path.resolve(__dirname, "ClientApp/scenes/Home/components/Content"),
+     'HomeSidebar': path.resolve(__dirname, "ClientApp/scenes/Home/components/Sidebar"),
+     'Sign': path.resolve(__dirname, "ClientApp/scenes/Sign"),
+   }
+ },
  plugins: [
     new ExtractTextPlugin("./bundle.css")
   ]

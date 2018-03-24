@@ -2,84 +2,15 @@ $input-text-color: #565656;
 $underline-input-color: #cccccc;
 $hover-checkbox: #0040ff;
 
-.form-group{
-    margin-bottom: 1.5em;
-}
-
-.form-label{
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 0.8em;
-    color: $first-font-color;
-    font-weight: 600;
-}
-
-.form-input{
-    border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 1px solid $underline-input-color;
-    width: 100%;
-    color: $input-text-color;
-
-    &:hover{
-        border-bottom: 1px solid $input-text-color;
-        box-shadow: 0;
-        transition: 0.3s;
-    }
-
-    &:focus{
-        border-bottom: 1px solid $input-text-color;
-        transition: 0.3s;
-    }   
-}
-.error-form-input{
-    @extend .form-input;
-    border-bottom: 1px solid red;
-}
-
-.error-placeholder{
-    color: red;
-    margin-top: 0.5em;
-    font-size: 12px;
-    font-weight: 600;
-}
+@import 'Checkbox/Checkbox';
+@import 'ErrorPlaceholder/ErrorPlaceholder';
+@import 'FormLabel/FormLabel';
+@import 'Input/Input';
+@import 'InputGroup/InputGroup';
 
 .form-btn-line{
     margin-top: 3em;
 }
 
-.regular-checkbox{
-    background-color: $first-background-color;
-    border: 1px solid $first-font-color;
-    -webkit-appearance: none;
-    padding: 8px;
-    border-radius: 3px;
-	display: inline-block;
-    position: relative;
-    outline: none;
-    vertical-align: middle;
-    margin-right: 0.5em;
 
-    &:hover{
-        border: 1px solid $hover-checkbox;
-    }
 
-    &:checked{
-        background-color: #fff;
-    }
-
-    &:checked:after{
-    content: '\2714';
-	font-size: 10px;
-	position: absolute;
-	top: 0px;
-	left: 4px;
-    color: $first-font-color;
-    }
-}
-
-.checkbox-label{
-    font-size: 10pt;
-    color: $second-font-color;
-}

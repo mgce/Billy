@@ -1,0 +1,7 @@
+.content{
+    @extend .gradient-background;
+    display: grid;
+    grid-area: content;
+    grid-template-columns: 2em auto 2em;
+    grid-template-rows: 1.5em auto;
+}

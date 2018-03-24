@@ -35,13 +35,9 @@ body{
 @import url(https://fonts.googleapis.com/css?family=Quicksand);
 @import 'components/fonts';
 //components
-@import 'components/Forms/styles';
-@import 'components/Buttons/styles';
-@import 'components/Table/styles';
+@import 'components/styles';
 //scenes
-@import 'scenes/Sign/styles';
-@import 'scenes/Home/styles';
-@import 'scenes/Home/scenes/sidebar/styles';
-@import 'scenes/Home/scenes/navbar/styles';
+@import 'scenes/Sign/Sign';
+@import 'scenes/Home/Home';
 
 

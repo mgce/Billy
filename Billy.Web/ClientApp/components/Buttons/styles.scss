@@ -2,6 +2,9 @@ $apply-button-color: #4e79ff;
 $disabled-button-color: #b7c9ff;
 $button-font-color: #fff;
 
+@import 'Apply/ApplyButton';
+@import 'Invisible/InvisibleButton';
+
 .base-btn{
     padding: 7pt 15pt 7pt 15pt;
     border: 0;
@@ -13,26 +16,7 @@ $button-font-color: #fff;
     }
 }
 
-.apply-btn{
-    @extend .base-btn;
-    background-color: $apply-button-color;
-    color: $button-font-color;
-
-    span{
-        cursor: pointer;
-    }
-
-    &:disabled,[disabled]{
-        background-color: $disabled-button-color;
-    }
-}
-
 .span-between-btns{
     margin-right: 1em;
 }
 
-.invisible-btn{
-    @extend .base-btn;
-    background-color: $button-font-color;
-    color: $second-font-color;
-}

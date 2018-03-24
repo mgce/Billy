@@ -1,0 +1,22 @@
+.sidebar{
+    @extend .shadow-primary-element;
+    display:grid; 
+    grid-area: sidebar;
+    grid-template-rows:[logo]$navbar-height;
+    grid-template-areas:
+    'logo'
+    'picture'
+    'info';
+
+    ul{
+        grid-area:info;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li{
+            margin-bottom: 2em;
+        }
+    }
+    
+}
