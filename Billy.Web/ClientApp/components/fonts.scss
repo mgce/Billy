@@ -5,18 +5,18 @@
     font-weight: 600;
 }
 
-.medium-primary-font{
+%medium-primary-font{
     color: $first-font-color;
     font-size: 18pt;
     font-weight: 600;
 }
 
-.normal-primary-font{
+%normal-primary-font{
     color: $first-font-color;
     font-size: 16pt;
 }
 
-.small-primary-font{
+%small-primary-font{
     color: $first-font-color;
     font-size: 12pt;
 }
@@ -32,23 +32,23 @@
     font-weight: 600;
 }
 
-.medium-secondary-font{
+%medium-secondary-font{
     color: $second-font-color;
     font-size: 18pt;
     font-weight: 600;
 }
 
-.normal-secondary-font{
+%normal-secondary-font{
     color: $second-font-color;
     font-size: 16pt;
 }
 
-.small-secondary-font{
+%small-secondary-font{
     color: $second-font-color;
     font-size: 12pt;
 }
 
-.signature-secondary-font{
+%signature-secondary-font{
     color: $second-font-color;
     font-size: 10pt;
 }

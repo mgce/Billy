@@ -14,8 +14,8 @@ class App extends React.Component{
     }
     render(){
         return(
-                <SignInContainer />
-                //<Home />
+                //<SignInContainer />
+                <Home />
         )
     }
 }

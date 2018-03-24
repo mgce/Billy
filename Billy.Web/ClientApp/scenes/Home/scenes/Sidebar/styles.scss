@@ -36,9 +36,10 @@
         font-weight: 600;
     }
     .info{
-        @extend .signature-secondary-font;
-        width: 50%;
+        
+        width: 60%;
         margin-left: auto;
         margin-right: auto;
+        @extend %signature-secondary-font;
     }
 }

@@ -1,5 +1,5 @@
 import React from 'React';
-import Logo from '../../components/General/logo'
+import Logo from '../../../../components/General/logo'
 import SidebarInfo from '../Sidebar/components/sidebarInfo'
 import SidebarPhoto from '../Sidebar/components/sidebarPhoto'
 
@@ -28,3 +28,5 @@ const Sidebar = props =>{
         </div>
     )
 }
+
+export default Sidebar;
