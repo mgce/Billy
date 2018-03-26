@@ -68,5 +68,13 @@ namespace Billy.Web.Controllers
 
             return BadRequest(user);
         }
+
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[Route("account/register")]
+        //public IActionResult Authenticate()
+        //{
+            
+        //}
     }
 }

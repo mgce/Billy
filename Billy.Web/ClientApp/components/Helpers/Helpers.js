@@ -19,6 +19,15 @@ const Helpers = {
             return true;
         }
         return false;
+    },
+    authHeader: function(value){
+      let token = localStorage.getItem('user');
+     // let user = JSON.parse(token);
+      if (token) {
+          return 'Bearer ' + token ;
+      } else {
+          return {};
+      }
     }
 }
 

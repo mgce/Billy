@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Billy.Application.Services.BillService.Dtos;
 using Billy.Application.Services.BillService.IoC;
 using Billy.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Billy.Web.Controllers
@@ -21,6 +22,7 @@ namespace Billy.Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<GetBillDto>> Get()
         {
             return await _billService.GetAll();

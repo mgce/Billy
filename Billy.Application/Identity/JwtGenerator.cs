@@ -29,10 +29,13 @@ namespace Billy.Application.Identity
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfiguration:JwtKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtConfiguration:JwtExpireDays"]));
-            var tets = _configuration["JwtConfiguration:JwtKey"];
-            var token = new JwtSecurityToken(_configuration["JwtConfiguration:JwtIssuer"],
-                _configuration["JwtConfiguration:JwtIssuer"], claims, expires: expires, signingCredentials: creds);
+            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtConfiguration:JwtExpiresMinutes"]));
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JwtConfiguration:JwtIssuer"],
+                audience: _configuration["JwtConfiguration:JwtIssuer"],
+                claims: claims, 
+                expires: expires, 
+                signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

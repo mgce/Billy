@@ -1,13 +1,13 @@
 import React from 'react';
 import Link, {LinkedComponent} from 'valuelink'
-import Helpers from '../../../../components/helpers'
+import Helpers from 'Helpers/Helpers'
 import axios from 'axios'
 import RegisterForm from '../Forms/RegisterForm/RegisterForm'
 
 var isRegisterFormValid = (email, userName, password, confirmPassword) =>{
-    if(Helpers.isEmptyOrUndefined(email) || 
-        Helpers.isEmptyOrUndefined(userName) || 
-        Helpers.isEmptyOrUndefined(password) || 
+    if(Helpers.isEmptyOrUndefined(email) ||
+        Helpers.isEmptyOrUndefined(userName) ||
+        Helpers.isEmptyOrUndefined(password) ||
         Helpers.isEmptyOrUndefined(confirmPassword)){
             return false;
         }
@@ -55,9 +55,9 @@ class RegisterContainer extends LinkedComponent{
         e.preventDefault();
 
         if(!isRegisterFormValid(
-            this.state.email, 
-            this.state.userName, 
-            this.state.password, 
+            this.state.email,
+            this.state.userName,
+            this.state.password,
             this.state.confirmPassword)){
             this.setState({touched: {...this.state.touched, 'submit': true}})
             return;
@@ -76,7 +76,7 @@ class RegisterContainer extends LinkedComponent{
         linked = this.validateForm(linked);
 
         return(
-            <RegisterForm 
+            <RegisterForm
             onSubmit = {this.onSubmit.bind(this)}
             links = {linked}/>
         )

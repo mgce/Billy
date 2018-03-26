@@ -4,6 +4,8 @@ import {Sidebar} from 'HomeSidebar';
 import {Navbar} from 'HomeNavbar';
 import {Content} from 'HomeContent';
 import {Table} from 'Tables';
+import axios from 'axios';
+import helpers from 'Helpers/Helpers';
 
 class HomeContainer extends React.Component{
     constructor(props){
@@ -11,6 +13,14 @@ class HomeContainer extends React.Component{
         this.state={
 
         }
+    }
+    componentWillMount = () =>{
+
+      const header = helpers.authHeader();
+
+      axios.get('api/bills',{},{
+        headers: {'Authorization':header}
+      });
     }
     render(){
         return(
@@ -31,6 +41,4 @@ const Home = props =>{
 
 
 
-export default Home;
-
-
+export default HomeContainer;

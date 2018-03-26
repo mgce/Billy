@@ -7,7 +7,7 @@ import {
     Link
   } from 'react-router-dom';
 import SignInContainer from './scenes/Sign/Sign'
-import Home from './scenes/Home/Home'
+import HomeContainer from './scenes/Home/Home'
 
 class App extends React.Component{
     constructor(props){
@@ -19,9 +19,15 @@ class App extends React.Component{
     render(){
         return(
             <Router>
-                <div>
-                    <Route exact path="/" component={Home}/>
-                    <Route path="/login" component={SignInContainer}/>
+                <div className="app-container">
+                    {/* <Route exact path="/" component={Home}/>
+                    <Route path="/login" component={SignInContainer}/> */}
+
+                    <Route exact path="/" component={()=>(
+                        localStorage.getItem('user')
+                        ? <HomeContainer />
+                        : <SignInContainer />
+                    )}/>
                 </div>
             </Router>
         )

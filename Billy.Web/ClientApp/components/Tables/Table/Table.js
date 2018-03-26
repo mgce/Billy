@@ -5,18 +5,18 @@ const Table = ({header, content}) => {
         <table className="table">
             <thead>
                 <tr className = "table-head">
-                    {header.map((item) => 
-                        <th>
+                    {header.map((item, key) => 
+                        <th key={key}>
                             {item}
                         </th>
                     )}
                 </tr>
             </thead>
         <tbody>
-            {content.map((row)=>
-            <tr>
-                {row.map((item)=>
-                <td>
+            {content.map((row, key)=>
+            <tr key={key}>
+                {row.map((item, key)=>
+                <td key={key}>
                     {item}
                 </td>
                 )}

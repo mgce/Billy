@@ -13,6 +13,9 @@ body {
 .gradient-background, .signIn-left-container, .content {
   background-image: linear-gradient(#e0f5ff, #f9f9f9); }
 
+.app-container {
+  height: 100%; }
+
 .big-primary-font {
   color: #4e79ff;
   font-size: 20pt;

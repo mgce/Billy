@@ -7,7 +7,7 @@ const Navbar = props => {
     return(
         <div className="navbar">
             <SearchInput />
-            <ApplyButton name="Add new" />
+            <ApplyButton name="+ Add new" />
         </div>
     )
 }

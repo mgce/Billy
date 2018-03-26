@@ -51,7 +51,7 @@ module.exports = {
  resolve: {
    modules:[
      "node_modules",
-     path.resolve(__dirname, "ClientApp"),     
+     path.resolve(__dirname, "ClientApp"),
    ],
    alias:{
      'Buttons': path.resolve(__dirname, "ClientApp/components/Buttons"),
@@ -62,6 +62,7 @@ module.exports = {
      'HomeContent': path.resolve(__dirname, "ClientApp/scenes/Home/components/Content"),
      'HomeSidebar': path.resolve(__dirname, "ClientApp/scenes/Home/components/Sidebar"),
      'Sign': path.resolve(__dirname, "ClientApp/scenes/Sign"),
+     'Helpers': path.resolve(__dirname, "ClientApp/components/Helpers"),
    }
  },
  plugins: [

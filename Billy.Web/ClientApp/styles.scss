@@ -29,6 +29,10 @@ body{
         #e0f5ff, #f9f9f9
     );
 }
+
+.app-container{
+    height:100%;
+}
 //mixins
 @import 'components/mixins';
 //fonts
