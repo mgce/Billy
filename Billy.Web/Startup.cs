@@ -74,16 +74,6 @@ namespace Billy.Web
                     .RequireAuthenticatedUser().Build());
             });
 
-            services.AddCors(config =>
-            {
-                var policy = new CorsPolicy();
-                policy.Headers.Add("*");
-                policy.Methods.Add("*");
-                policy.Origins.Add("*");
-                policy.SupportsCredentials = true;
-                config.AddPolicy("policy", policy);
-            });
-
             services.AddMvc(config =>
             {
                 //Only Authorizes filter

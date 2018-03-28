@@ -8,13 +8,19 @@ import {
   } from 'react-router-dom';
 import SignInContainer from './scenes/Sign/Sign'
 import HomeContainer from './scenes/Home/Home'
+import BillyHttpClient from './components/Helpers/BillyHttpClient'
 
 class App extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-
+            isUserLogged:false
         }
+    }
+    componentWillMount(){
+        this.setState((prevState)=>{
+            isUserLogged: BillyHttpClient.isAuthenticated()
+        })
     }
     render(){
         return(
@@ -24,7 +30,7 @@ class App extends React.Component{
                     <Route path="/login" component={SignInContainer}/> */}
 
                     <Route exact path="/" component={()=>(
-                        localStorage.getItem('user')
+                        this.state.isUserLogged
                         ? <HomeContainer />
                         : <SignInContainer />
                     )}/>
