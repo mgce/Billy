@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Billy.Application.Identity
+﻿namespace Billy.Application.Services.AccountService.Dtos
 {
     public class RegisterDto
     {

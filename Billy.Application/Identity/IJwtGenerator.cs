@@ -5,6 +5,6 @@ namespace Billy.Application.Identity
 {
     public interface IJwtGenerator
     {
-        Task<object> Create(User user);
+        Task<string> Create(User user);
     }
 }

@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Billy.Application.Identity;
 using Billy.Application.Services.AccountService.Dtos;
+using Billy.Application.Services.AccountService.Dtos.Response;
 using Billy.Domain.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 
-namespace Billy.Web.Controllers
+namespace Billy.Application.Services.AccountService
 {
-    public class AccountController : Controller
+    public class AccountService
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IJwtGenerator _jwtGenerator;
 
-        public AccountController(UserManager<User> userManager,
+        public AccountService(UserManager<User> userManager,
             SignInManager<User> signInManager,
             IJwtGenerator jwtGenerator)
         {
@@ -27,16 +26,8 @@ namespace Billy.Web.Controllers
             _jwtGenerator = jwtGenerator;
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [Route("account")]
-        public async Task<object> Login([FromBody] LoginDto dto)
+        public async Task<LoginResponseDto> Login(LoginDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(dto);
-            }
-
             var result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, true);
             if (!result.Succeeded)
             {
@@ -44,38 +35,33 @@ namespace Billy.Web.Controllers
             }
             var user = _userManager.Users.SingleOrDefault(u => u.UserName == dto.Username);
 
-            return Ok(_jwtGenerator.Create(user));
+            var token = await _jwtGenerator.Create(user);
+
+            return new LoginResponseDto
+            {
+                Token = token,
+                RedirectTo = "/"
+            };
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [Route("account/register")]
-        public async Task<IActionResult> Register([FromBody]RegisterDto dto)
+        public async Task<object> Register(RegisterDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(dto);
-            }
-
-            var user = new User {UserName = dto.UserName, Email = dto.Email};
+            var user = new User { UserName = dto.UserName, Email = dto.Email };
 
             var result = await _userManager.CreateAsync(user, dto.Password);
 
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return Ok(_jwtGenerator.Create(user));
+                return _jwtGenerator.Create(user);
             }
 
-            return BadRequest(user);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("account/authenticated")]
-        public bool IsAuthenticated()
-        {
-            return User.Identity.IsAuthenticated;
+            return null;
         }
     }
 }
+
+/* Dodac RegisterResponseDtos, dodac interfejs
+ *
+ *
+ */

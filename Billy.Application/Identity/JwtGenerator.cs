@@ -18,7 +18,7 @@ namespace Billy.Application.Identity
         {
             _configuration = configuration;
         }
-        public async Task<object> Create(User user)
+        public async Task<string> Create(User user)
         {
             var claims = new List<Claim>
             {
