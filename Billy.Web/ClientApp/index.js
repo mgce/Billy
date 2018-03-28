@@ -9,31 +9,40 @@ import {
 import SignInContainer from './scenes/Sign/Sign'
 import HomeContainer from './scenes/Home/Home'
 import BillyHttpClient from './components/Helpers/BillyHttpClient'
+import Helpers from 'Helpers/Helpers'
+import Loading from './scenes/Loading/Loading';
 
 class App extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            isUserLogged:false
+            isUserLogged: null
         }
     }
-    componentWillMount(){
-        this.setState((prevState)=>{
-            isUserLogged: BillyHttpClient.isAuthenticated()
-        })
+    componentDidMount(){
+         BillyHttpClient.isAuthenticated()
+        .then(response =>{
+            this.setState({
+                isUserLogged: response.data
+            })
+        }) 
     }
     render(){
+        const isUserLoggedDefine = 
+            Helpers.isUndefinedOrNull(this.state.isUserLogged);
+        const isUserLogged = this.state.isUserLogged;
         return(
             <Router>
                 <div className="app-container">
-                    {/* <Route exact path="/" component={Home}/>
-                    <Route path="/login" component={SignInContainer}/> */}
-
-                    <Route exact path="/" component={()=>(
-                        this.state.isUserLogged
+                { isUserLoggedDefine
+                ? <Loading/>
+                : <Route exact path="/" component={()=>(
+                        isUserLogged
                         ? <HomeContainer />
                         : <SignInContainer />
                     )}/>
+                }
+                    
                 </div>
             </Router>
         )

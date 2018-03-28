@@ -7,14 +7,14 @@ const BillyHttpClient = {
         return axios.create({
             baseUrl: config.BASIC_URL,
             timeout: 1000,
-            headers: {'Authentication': Helpers.authHeader}
+            headers: {'Authentication': Helpers.authHeader()}
         })
     },
     isAuthenticated(){
         let isAuthenticated = false;
-
-        return axios.get('account/authenticated',{},{
-            headers: {'Authorization':Helpers.authHeader()}
+        const jwt = Helpers.authHeader();
+        return axios.get('account/authenticated',{
+            headers: {'Authorization':jwt}
           });
     }
 }
