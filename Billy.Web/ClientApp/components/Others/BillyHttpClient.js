@@ -1,6 +1,6 @@
 import axios from 'axios';
 import config from './config';
-import Helpers from './Helpers';
+import {Helpers} from 'Others';
 
 const BillyHttpClient = {
     getInstance: function(){
@@ -10,12 +10,22 @@ const BillyHttpClient = {
             headers: {'Authentication': Helpers.authHeader()}
         })
     },
-    isAuthenticated(){
+    authenticate(){
         let isAuthenticated = false;
         const jwt = Helpers.authHeader();
-        return axios.get('account/authenticated',{
+        return axios.get('account/validate',{
             headers: {'Authorization':jwt}
           });
+    },
+    login(username, password, signIn){
+        axios.post('/account',{
+            Username : username,
+            Password : password
+        })
+        .then(res => localStorage.setItem('user', res.data.token)
+        ).catch(error => console.log(error));
+
+        return this.authenticate();
     }
 }
 

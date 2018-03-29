@@ -14,9 +14,9 @@ const SignInRight = props => {
             <div className="login-container">
                 <div className="login-box">
                     {props.loginVisible ? (
-                        <LoginContainer/>
+                        <LoginContainer signInUser = {props.signInUser}/>
                     ) : (
-                        <RegisterContainer />
+                        <RegisterContainer signInUser = {props.signInUser}/>
                     )}
                 </div>
             </div>

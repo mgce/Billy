@@ -9,7 +9,10 @@ const SignIn = props => {
                 <SignInLeft/>
             </div>
             <div className="signIn-right-container">
-                <SignInRight changeView={props.changeView} loginVisible={props.loginVisible}/>
+                <SignInRight 
+                    signInUser = {props.signInUser}
+                    changeView={props.changeView} 
+                    loginVisible={props.loginVisible}/>
             </div>
         </div>
     )
@@ -29,7 +32,10 @@ class SignContainer extends LinkedComponent{
     }
     render(){
         return(
-            <SignIn changeView = {this.changeView.bind(this)} loginVisible={this.state.loginVisible}/>
+            <SignIn 
+            changeView = {this.changeView.bind(this)} 
+            loginVisible={this.state.loginVisible}
+            signInUser = {this.props.signInUser}/>
         )
     }
 }

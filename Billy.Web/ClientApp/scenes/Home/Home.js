@@ -5,7 +5,7 @@ import {Navbar} from 'HomeNavbar';
 import {Content} from 'HomeContent';
 import {Table} from 'Tables';
 import axios from 'axios';
-import helpers from 'Helpers/Helpers';
+import {Helpers} from 'Others';
 
 class HomeContainer extends React.Component{
     constructor(props){
@@ -15,12 +15,6 @@ class HomeContainer extends React.Component{
         }
     }
     componentWillMount = () =>{
-
-      const header = helpers.authHeader();
-
-      axios.get('api/bills',{},{
-        headers: {'Authorization':header}
-      });
     }
     render(){
         return(

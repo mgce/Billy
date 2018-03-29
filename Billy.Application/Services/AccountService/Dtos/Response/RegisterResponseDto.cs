@@ -8,6 +8,6 @@ namespace Billy.Application.Services.AccountService.Dtos.Response
     {
         public string Token { get; set; }
         public DateTime ExpiredAt { get; set; }
-        public string RedirectTo { get; set; }
+        public bool IsSuccesfull { get; set; }
     }
 }

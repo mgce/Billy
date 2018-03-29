@@ -1,6 +1,6 @@
 import React from 'react';
 import Link, {LinkedComponent} from 'valuelink'
-import Helpers from 'Helpers/Helpers'
+import Helpers from 'Others'
 import axios from 'axios'
 import RegisterForm from '../Forms/RegisterForm/RegisterForm'
 

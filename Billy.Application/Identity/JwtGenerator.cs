@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Billy.Domain.Models;
+using Billy.Infrastructure.Identity.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -18,7 +19,7 @@ namespace Billy.Application.Identity
         {
             _configuration = configuration;
         }
-        public async Task<string> Create(User user)
+        public async Task<JsonWebToken> Create(User user)
         {
             var claims = new List<Claim>
             {
@@ -37,7 +38,7 @@ namespace Billy.Application.Identity
                 expires: expires, 
                 signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new JsonWebToken(new JwtSecurityTokenHandler().WriteToken(token), expires);
         }
     }
 }

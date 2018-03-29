@@ -62,7 +62,7 @@ module.exports = {
      'HomeContent': path.resolve(__dirname, "ClientApp/scenes/Home/components/Content"),
      'HomeSidebar': path.resolve(__dirname, "ClientApp/scenes/Home/components/Sidebar"),
      'Sign': path.resolve(__dirname, "ClientApp/scenes/Sign"),
-     'Helpers': path.resolve(__dirname, "ClientApp/components/Helpers"),
+     'Others': path.resolve(__dirname, "ClientApp/components/Others"),
    }
  },
  plugins: [

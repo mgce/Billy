@@ -8,8 +8,7 @@ import {
   } from 'react-router-dom';
 import SignInContainer from './scenes/Sign/Sign'
 import HomeContainer from './scenes/Home/Home'
-import BillyHttpClient from './components/Helpers/BillyHttpClient'
-import Helpers from 'Helpers/Helpers'
+import {BillyHttpClient, Helpers} from 'Others'
 import Loading from './scenes/Loading/Loading';
 
 class App extends React.Component{
@@ -20,12 +19,15 @@ class App extends React.Component{
         }
     }
     componentDidMount(){
-         BillyHttpClient.isAuthenticated()
+         BillyHttpClient.authenticate()
         .then(response =>{
             this.setState({
                 isUserLogged: response.data
             })
         }) 
+    }
+    signInUser(){
+        this.setState({isUserLogged : true})
     }
     render(){
         const isUserLoggedDefine = 
@@ -38,8 +40,8 @@ class App extends React.Component{
                 ? <Loading/>
                 : <Route exact path="/" component={()=>(
                         isUserLogged
-                        ? <HomeContainer />
-                        : <SignInContainer />
+                        ? <HomeContainer signInUser={this.signInUser.bind(this)}/>
+                        : <SignInContainer signInUser={this.signInUser.bind(this)} />
                     )}/>
                 }
                     

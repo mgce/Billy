@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using Billy.Application.Identity;
 using Billy.Application.Services.AccountService.Dtos;
 using Billy.Application.Services.AccountService.Dtos.Response;
+using Billy.Application.Services.AccountService.IoC;
 using Billy.Domain.Models;
+using Billy.Infrastructure.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Billy.Application.Services.AccountService
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
@@ -35,16 +37,16 @@ namespace Billy.Application.Services.AccountService
             }
             var user = _userManager.Users.SingleOrDefault(u => u.UserName == dto.Username);
 
-            var token = await _jwtGenerator.Create(user);
+            var jwt = await _jwtGenerator.Create(user);
 
             return new LoginResponseDto
             {
-                Token = token,
-                RedirectTo = "/"
+                Token = jwt.Token,
+                ExpiredAt = jwt.ExpiredAt
             };
         }
 
-        public async Task<object> Register(RegisterDto dto)
+        public async Task<RegisterResponseDto> Register(RegisterDto dto)
         {
             var user = new User { UserName = dto.UserName, Email = dto.Email };
 
@@ -53,15 +55,20 @@ namespace Billy.Application.Services.AccountService
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return _jwtGenerator.Create(user);
+                var jwt = await _jwtGenerator.Create(user);
+                return new RegisterResponseDto
+                {
+                    Token = jwt.Token,
+                    ExpiredAt = jwt.ExpiredAt,
+                    IsSuccesfull = true
+                };
+
             }
 
-            return null;
+            return new RegisterResponseDto
+            {
+                IsSuccesfull = false
+            };
         }
     }
 }
-
-/* Dodac RegisterResponseDtos, dodac interfejs
- *
- *
- */

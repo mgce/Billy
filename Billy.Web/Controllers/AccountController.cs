@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Billy.Application.Identity;
 using Billy.Application.Services.AccountService.Dtos;
+using Billy.Application.Services.AccountService.Dtos.Response;
+using Billy.Application.Services.AccountService.IoC;
 using Billy.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,66 +16,33 @@ namespace Billy.Web.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
-        private readonly IJwtGenerator _jwtGenerator;
+        private readonly IAccountService _accountService;
 
-        public AccountController(UserManager<User> userManager,
-            SignInManager<User> signInManager,
-            IJwtGenerator jwtGenerator)
+        public AccountController(IAccountService accountService )
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _jwtGenerator = jwtGenerator;
+            _accountService = accountService;
         }
 
         [HttpPost]
         [AllowAnonymous]
         [Route("account")]
-        public async Task<object> Login([FromBody] LoginDto dto)
+        public async Task<LoginResponseDto> Login([FromBody] LoginDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(dto);
-            }
-
-            var result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, true);
-            if (!result.Succeeded)
-            {
-                throw new Exception("Invalid login or password");
-            }
-            var user = _userManager.Users.SingleOrDefault(u => u.UserName == dto.Username);
-
-            return Ok(_jwtGenerator.Create(user));
+            return await _accountService.Login(dto);
         }
 
         [HttpPost]
         [AllowAnonymous]
         [Route("account/register")]
-        public async Task<IActionResult> Register([FromBody]RegisterDto dto)
+        public async Task<RegisterResponseDto> Register([FromBody]RegisterDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(dto);
-            }
-
-            var user = new User {UserName = dto.UserName, Email = dto.Email};
-
-            var result = await _userManager.CreateAsync(user, dto.Password);
-
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                return Ok(_jwtGenerator.Create(user));
-            }
-
-            return BadRequest(user);
+            return await _accountService.Register(dto);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("account/authenticated")]
-        public bool IsAuthenticated()
+        [Route("account/validate")]
+        public bool ValidToken()
         {
             return User.Identity.IsAuthenticated;
         }

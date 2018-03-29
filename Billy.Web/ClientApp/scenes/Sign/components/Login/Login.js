@@ -2,7 +2,7 @@ import React from 'react';
 import Link, {LinkedComponent} from 'valuelink'
 import PropTypes from 'prop-types'
 import LoginForm from '../Forms/LoginForm/LoginForm'
-import Helpers from 'Helpers/Helpers'
+import {Helpers, BillyHttpClient} from 'Others'
 import axios from 'axios'
 
 class LoginContainer extends LinkedComponent {
@@ -31,13 +31,14 @@ class LoginContainer extends LinkedComponent {
             return;
         }
 
-        axios.post('/account',{
-            Username : this.state.login,
-            Password : this.state.password
-        })
-        .then(res => (
-          localStorage.setItem('user', res.data.result)
-        ));
+        var test = BillyHttpClient.login(
+            this.state.login, 
+            this.state.password).then(res => {
+                if(res.data){
+                    this.props.signInUser();
+                }
+            })
+            
     }
     render(){
         let linked = this.linkAll();
