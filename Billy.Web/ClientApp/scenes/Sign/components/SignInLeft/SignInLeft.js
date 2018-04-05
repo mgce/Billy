@@ -4,7 +4,9 @@ import {Logo} from 'General'
 
 const SignInLeft = props => {
     return(
-        <Logo />
+        <div className="signIn-left-container">
+            <Logo />
+        </div>
     )
 }
 
