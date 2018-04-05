@@ -23,6 +23,7 @@
 }
 
 .signIn-right-container{
+    display: grid;
     @extend .shadow-primary-element;
     grid-column: 2;
 }

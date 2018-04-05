@@ -156,9 +156,6 @@ body {
     padding-bottom: 0.5em;
     border: 1px solid #eaeaea; }
 
-.sign-container2 {
-  display: grid; }
-
 .sign-type-box {
   margin: auto; }
 
@@ -208,6 +205,7 @@ body {
     font-size: 20pt; }
 
 .signIn-right-container {
+  display: grid;
   grid-column: 2; }
 
 .bill-list {
@@ -524,3 +522,5 @@ body {
   100% {
     transform: rotateZ(-324deg);
     opacity: 1; } }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2J1bmRsZS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/

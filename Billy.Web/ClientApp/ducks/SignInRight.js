@@ -8,11 +8,13 @@ export const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type){
-        case CHANGE_SIGN_TYPE:
-            return {...state, loginVisible = !loginVisible}
+        case types.CHANGE_SIGN_TYPE:
+            return {...state, loginVisible: !state.loginVisible}
+        default:
+            return state;
     }
 }
 
 export const actions = {
-    changeSignType: () => ({type:CHANGE_SIGN_TYPE})
+    changeSignType: () => ({type: types.CHANGE_SIGN_TYPE})
 }

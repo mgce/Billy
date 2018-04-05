@@ -5,12 +5,11 @@ import Link, {LinkedComponent} from 'valuelink';
 const SignIn = props => {
     return(
         <div className="sign-container">
-                <SignInLeft/>
-                <SignInRight 
-                    signInUser = {props.signInUser}
-                    changeView={props.changeView} 
-                    loginVisible={props.loginVisible}/>
-            </div>
+        <SignInLeft/>
+         <div className="signIn-right-container">
+            <SignInRight/>
+         </div>
+        </div>
         
     )
 }

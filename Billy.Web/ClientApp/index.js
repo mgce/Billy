@@ -11,7 +11,7 @@ import HomeContainer from './scenes/Home/Home'
 import {BillyHttpClient, Helpers} from 'Others'
 import Loading from './scenes/Loading/Loading';
 import { Provider } from 'react-redux'
-import { store } from './store'
+import store from './store'
 
 class App extends React.Component{
     constructor(props){

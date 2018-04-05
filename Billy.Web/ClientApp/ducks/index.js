@@ -1,1 +1,1 @@
-export {default as Sign} from './Sign'
+export {default as SignInRight} from './SignInRight'
