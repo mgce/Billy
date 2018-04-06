@@ -2,8 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Input, ErrorPlaceholder, FormLabel} from 'Forms'
 
-const InputGroup = props =>{
-    const {labelName, name, link, type, onBlur} = props;
+const InputGroup = ({
+    labelName, 
+    name, 
+    link, 
+    type, 
+    onBlur
+    }) =>{
     return(
         <div className="form-group">
             <FormLabel labelName={labelName}/>

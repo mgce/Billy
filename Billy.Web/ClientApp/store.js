@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux'
-import {SignInRight} from './ducks'
+import {SignIn} from './ducks'
+import { reducer as formReducer } from 'redux-form'
 
 var reducers = combineReducers({
-    signInRight: SignInRight
+    signIn: SignIn,
+    form: formReducer
 })
 
 const store = createStore(

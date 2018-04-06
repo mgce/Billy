@@ -6,7 +6,7 @@ import {
     Route,
     Link
   } from 'react-router-dom';
-import SignInContainer from './scenes/Sign/Sign'
+import SignIn from './scenes/Sign/Sign'
 import HomeContainer from './scenes/Home/Home'
 import {BillyHttpClient, Helpers} from 'Others'
 import Loading from './scenes/Loading/Loading';
@@ -43,7 +43,7 @@ class App extends React.Component{
                 : <Route exact path="/" component={()=>(
                         isUserLogged
                         ? <HomeContainer signInUser={this.signInUser.bind(this)}/>
-                        : <SignInContainer signInUser={this.signInUser.bind(this)} />
+                        : <SignIn signInUser={this.signInUser.bind(this)} />
                     )}/>
                 }
                     

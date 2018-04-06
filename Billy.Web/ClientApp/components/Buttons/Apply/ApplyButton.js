@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ApplyButton = props =>{
-    const {disabled, type, name, onClick} = props;
+const ApplyButton = ({
+    disabled, 
+    type, 
+    name, 
+    onClick
+    }) => {
     return(
         <button 
             onClick = {e => onClick(e.target.value)}
@@ -18,11 +22,12 @@ const ApplyButton = props =>{
 
 ApplyButton.propTypes = {
     onClick: PropTypes.func,
-    isDisabled: PropTypes.bool,
+    disabled: PropTypes.bool,
     name: PropTypes.string.isRequired
 }
 ApplyButton.defaultProps = {
-    type: "submit"
+    type: "submit",
+    disabled: false
 }
 
 export default ApplyButton;

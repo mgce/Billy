@@ -61,4 +61,21 @@ class LoginContainer extends LinkedComponent {
     }
 }
 
-export default LoginContainer;
+
+const Login = () => {
+    const isButtonEnabled = Helpers.isEmptyOrUndefined(this.state.login)
+    || Helpers.isEmptyOrUndefined(this.state.password)
+    return(
+        <LoginForm
+            onSubmit = {this.onSubmit.bind(this)}
+            links = {linked}
+            isFormValid = {isFormValid}
+            onBlur = {this.handleBlur.bind(this)}/>
+    )
+}
+
+
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps)(LoginForm)

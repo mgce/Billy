@@ -14,26 +14,4 @@ const SignIn = props => {
     )
 }
 
-class SignContainer extends LinkedComponent{
-    constructor(props){
-        super(props);
-        this.state = {
-            loginVisible: true
-        }
-    }
-    changeView = (e) =>{
-        this.setState((prevState) => {
-            return {loginVisible: !this.state.loginVisible}
-        })
-    }
-    render(){
-        return(
-            <SignIn 
-            changeView = {this.changeView.bind(this)} 
-            loginVisible={this.state.loginVisible}
-            signInUser = {this.props.signInUser}/>
-        )
-    }
-}
-
-export default SignContainer;
+export default Sign;

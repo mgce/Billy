@@ -2,7 +2,7 @@ import React from 'react';
 import SignType from '../SignType/SignType'
 import LoginContainer from '../Login/Login'
 import RegisterContainer from '../Register/Register'
-import {actions} from 'Ducks/SignInRight'
+import {actions} from 'Ducks/SignIn'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
 import { bindActionCreators } from '../../../../../../../../../AppData/Local/Microsoft/TypeScript/2.7/node_modules/redux';
@@ -38,7 +38,7 @@ SignInRight.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        loginVisible: state.signInRight.loginVisible
+        loginVisible: state.signIn.loginVisible
     }
 }
 

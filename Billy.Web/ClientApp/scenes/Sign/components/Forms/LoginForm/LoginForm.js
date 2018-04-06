@@ -2,9 +2,11 @@ import React from 'react';
 import {InputGroup,Checkbox} from 'Forms';
 import {ApplyButton} from 'Buttons';
 
-const LoginForm = props => {
+const LoginForm = ({
+    handleSubmit,
+}) => {
     return(
-        <form onSubmit={props.onSubmit}>
+        <form onSubmit={onSubmit}>
             <InputGroup 
                 labelName="Login"
                 name="login"
