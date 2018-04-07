@@ -14,4 +14,4 @@ const SignIn = props => {
     )
 }
 
-export default Sign;
+export default SignIn;

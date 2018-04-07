@@ -1,20 +1,31 @@
 export const types = {
-    SUBMIT_LOGIN: "SIGN/SUBMIT_LOGIN",
-    HANDLE_LOGIN_ON_BLUR: "SIGN/HANDLE_LOGIN_ON_BLUR"
+    LOGIN_REQUEST: "LOGIN/LOGIN_REQUEST",
+    LOGIN_SUCCESS: "LOGIN/LOGIN_SUCCESS",
+    LOGIN_ERROR: "LOGIN/LOGIN_ERROR",
 };
 
 export const initialState = {
     username: '',
     password: '',
-    touched: false
 }
+
+let user = JSON.parse(localStorage.getItem('user'));
+const initialState = user ? {loggedIn: true, user} : {};
 
 export default (state = initialState, action) => {
     switch(action.type){
-        case types.SUBMIT_LOGIN:
-            return;
-        case types.HANDLE_LOGIN_ON_BLUR:
-            return {...state, touched: true}
+        case types.LOGIN_REQUEST:
+            return {
+                loggingIn: true,
+                user: action.user
+            };
+        case types.LOGIN_SUCCESS:
+        return {
+            loggedIn: true,
+            user: action.user
+        };
+        case types.LOGIN_ERROR:
+            return {}
         default:
             return state;
     }

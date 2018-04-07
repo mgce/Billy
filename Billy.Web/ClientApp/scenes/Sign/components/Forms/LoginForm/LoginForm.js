@@ -1,8 +1,10 @@
 import React from 'react';
 import {InputGroup,Checkbox} from 'Forms';
 import {ApplyButton} from 'Buttons';
-
-const LoginForm = ({
+import {Input, ErrorPlaceholder, FormLabel} from 'Forms'
+import {Field} from 'redux-form'
+import {reduxForm} from 'redux-form';
+/* const LoginForm = ({
     handleSubmit,
 }) => {
     return(
@@ -10,18 +12,15 @@ const LoginForm = ({
             <InputGroup 
                 labelName="Login"
                 name="login"
-                link={props.links.login}
                 onBlur={props.onBlur}/>
             <InputGroup 
                 labelName="Password"
                 name="password"
-                link={props.links.password}
                 type="password"
                 onBlur={props.onBlur}/>
             <Checkbox 
                 name="isRemembered"
-                text="Remember me"
-                link={props.links.rememberMe}/>
+                text="Remember me"/>
             <div className="form-btn-line">
                 <ApplyButton 
                 name="Log In" 
@@ -29,6 +28,58 @@ const LoginForm = ({
             </div>
         </form>
     )
+} */
+
+//export default LoginForm;
+
+function submit(value){
+    return console.log(value);
 }
 
-export default LoginForm;
+function isRequired(value){
+    const errors = {};
+    if(!value || value.trim() === ''){
+        return 'This field is required'
+    }
+}
+
+const LoginForm = ({
+    handleSubmit
+}) => {
+    return(
+        <form onSubmit={handleSubmit(submit)}>
+            <div className="form-group">
+            <FormLabel name="Login"/>
+            <Field 
+                name="login"
+                type="text"
+                component={Input}
+                validate={isRequired}/>
+            </div>
+            <div className="form-group">
+            <FormLabel name="Password"/>
+            <Field 
+                name="password"
+                type="password"
+                component={Input}
+                validate={isRequired}/>
+            </div>
+            <div className="form-group">
+            <Field 
+                name="rememberMe"
+                text="Remember me"
+                type="checkbox"
+                component={Checkbox}/>
+            </div>
+            <div className="form-btn-line">
+                <ApplyButton 
+                name="Log In"/>
+            </div>
+        </form>
+    )
+}
+
+export default reduxForm({
+    form: 'loginForm',
+    touchOnChange: true
+})(LoginForm)

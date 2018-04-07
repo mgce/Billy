@@ -1,24 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = props =>{
-    const {name, link, type, onBlur, placeholder} = props;
+const Input = ({
+    input, 
+    type,
+    meta
+}) =>{
+    const error = meta && meta.error && meta.touched ? 
+        (meta.error) : 
+        ('');
+    const inputClass = error ? 
+    ("error-form-input") : 
+    ("form-input");
     return(
-        <input
-            {...link.props}
-            className = {link.validationError ? "error-form-input" : "form-input"}
-            name={name}
-            type={type}
-            placeholder={placeholder}
-            onBlur = {e => onBlur(name)}/>
+        <div>
+            <input
+                {...input}
+                className = {inputClass}
+                type={type}/>
+            <div className="error-placeholder">
+                {error}
+            </div>
+        </div>
     )
 }
 
 Input.propTypes = {
-    link: PropTypes.object.isRequired,
-    name: PropTypes.string.isRequired,
-    placeholder: PropTypes.string,
-    onBlur: PropTypes.func
+    name: PropTypes.string,
 }
 
 Input.defaultProps = {

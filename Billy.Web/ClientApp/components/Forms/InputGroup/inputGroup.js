@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Input, ErrorPlaceholder, FormLabel} from 'Forms'
+import {Field} from 'redux-form'
 
 const InputGroup = ({
     labelName, 
@@ -11,12 +12,13 @@ const InputGroup = ({
     }) =>{
     return(
         <div className="form-group">
-            <FormLabel labelName={labelName}/>
-            <Input 
+            <FormLabel name={labelName}/>
+            <Field 
                 name={name}
                 type={type} 
                 link={link} 
-                onBlur={onBlur}/>
+                onBlur={onBlur}
+                component={Input}/>
             <ErrorPlaceholder errorMessage = {link.validationError || "" }/>
         </div>
     )

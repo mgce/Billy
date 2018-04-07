@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import LoginForm from '../Forms/LoginForm/LoginForm'
 import {Helpers, BillyHttpClient} from 'Others'
 import axios from 'axios'
+import {connect} from 'react-redux';
+import {reduxForm} from 'redux-form';
 
 class LoginContainer extends LinkedComponent {
     constructor(props){
@@ -76,6 +78,6 @@ const Login = () => {
 
 
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps)(LoginForm)
+export default reduxForm({
+    form: 'loginForm',
+})(LoginForm)

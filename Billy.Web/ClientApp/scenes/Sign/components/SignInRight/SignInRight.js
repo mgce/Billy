@@ -5,8 +5,8 @@ import RegisterContainer from '../Register/Register'
 import {actions} from 'Ducks/SignIn'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
-import { bindActionCreators } from '../../../../../../../../../AppData/Local/Microsoft/TypeScript/2.7/node_modules/redux';
-
+import { bindActionCreators } from 'redux';
+import LoginForm from '../Forms/LoginForm/LoginForm'
 
 let SignInRight = ({
     state,
@@ -14,7 +14,7 @@ let SignInRight = ({
     changeSignType
 }) => {
     var signContainer = loginVisible ? 
-          (<LoginContainer/>) : 
+          (<LoginForm/>) : 
           (<RegisterContainer/>)
 
     return(

@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FormLabel = ({labelName}) => {
+const FormLabel = ({name}) => {
     return(
         <label className="form-label">
-            {labelName}
+            {name}
         </label>
     )
 }
 
 FormLabel.propTypes = {
-    labelName: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired
 }
 
 export default FormLabel;
