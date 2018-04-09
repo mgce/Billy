@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
             loggedIn: true,
             user: action.user
         };
-        case types.LOGIN_ERROR:
+        case types.LOGIN_FAILURE:
             return {}
         default:
             return state;

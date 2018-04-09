@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 function login (username, password){
-    axios.post('/account',{
+    return axios.post('/account',{
         Username: username,
-        Passwor: password
+        Password: password
     }).then(response => {
         if(!response.ok){
             return Promise.reject(response.statusText)

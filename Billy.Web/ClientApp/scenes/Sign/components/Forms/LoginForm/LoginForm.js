@@ -2,35 +2,10 @@ import React from 'react';
 import {InputGroup,Checkbox} from 'Forms';
 import {ApplyButton} from 'Buttons';
 import {Input, ErrorPlaceholder, FormLabel} from 'Forms'
-import {Field} from 'redux-form'
-import {reduxForm} from 'redux-form';
-/* const LoginForm = ({
-    handleSubmit,
-}) => {
-    return(
-        <form onSubmit={onSubmit}>
-            <InputGroup 
-                labelName="Login"
-                name="login"
-                onBlur={props.onBlur}/>
-            <InputGroup 
-                labelName="Password"
-                name="password"
-                type="password"
-                onBlur={props.onBlur}/>
-            <Checkbox 
-                name="isRemembered"
-                text="Remember me"/>
-            <div className="form-btn-line">
-                <ApplyButton 
-                name="Log In" 
-                disabled={props.isFormValid}/>
-            </div>
-        </form>
-    )
-} */
-
-//export default LoginForm;
+import {Field, reduxForm} from 'redux-form'
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {actions} from 'Ducks/Login'
 
 function submit(value){
     return console.log(value);
@@ -48,7 +23,7 @@ const LoginForm = ({
     login
 }) => {
     return(
-        <form onSubmit={handleSubmit(login)}>
+        <form onSubmit={handleSubmit}>
             <div className="form-group">
             <FormLabel name="Login"/>
             <Field 
@@ -80,6 +55,10 @@ const LoginForm = ({
     )
 }
 
+const onSubmit = (values, dispatch) => {
+    dispatch(actions.login(values.login, values.password))
+}
+
 const mapStateToProps = (state) => ({
     login: state.login
 })
@@ -90,7 +69,10 @@ const mapDispatchToProps = dispatch => ({
     }, dispatch)
 })
 
+connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+
 export default reduxForm({
     form: 'loginForm',
-    touchOnChange: true
+    onSubmit: onSubmit,
+    touchOnChange: true,
 })(LoginForm)

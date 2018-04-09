@@ -9,7 +9,6 @@ const ApplyButton = ({
     }) => {
     return(
         <button 
-            onClick = {e => onClick(e.target.value)}
             disabled={disabled} 
             type={type} 
             className="apply-btn span-between-btns">
@@ -21,7 +20,6 @@ const ApplyButton = ({
 }
 
 ApplyButton.propTypes = {
-    onClick: PropTypes.func,
     disabled: PropTypes.bool,
     name: PropTypes.string.isRequired
 }

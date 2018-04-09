@@ -106,8 +106,8 @@ namespace Billy.Web
         {
             services.AddDbContext<DataContext>(options =>
             {
-                //options.UseSqlServer(Configuration["SecondConnection"]);
-                options.UseSqlServer(Configuration["DefaultConnection"]);
+                options.UseSqlServer(Configuration["SecondConnection"]);
+                //options.UseSqlServer(Configuration["DefaultConnection"]);
             });
         }
 
