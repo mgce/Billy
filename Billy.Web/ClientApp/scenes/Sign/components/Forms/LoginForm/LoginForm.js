@@ -44,10 +44,11 @@ function isRequired(value){
 }
 
 const LoginForm = ({
-    handleSubmit
+    handleSubmit,
+    login
 }) => {
     return(
-        <form onSubmit={handleSubmit(submit)}>
+        <form onSubmit={handleSubmit(login)}>
             <div className="form-group">
             <FormLabel name="Login"/>
             <Field 
@@ -78,6 +79,16 @@ const LoginForm = ({
         </form>
     )
 }
+
+const mapStateToProps = (state) => ({
+    login: state.login
+})
+
+const mapDispatchToProps = dispatch => ({
+    ...bindActionCreators({
+        ...actions
+    }, dispatch)
+})
 
 export default reduxForm({
     form: 'loginForm',

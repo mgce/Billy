@@ -64,6 +64,7 @@ module.exports = {
      'Sign': path.resolve(__dirname, "ClientApp/scenes/Sign"),
      'Others': path.resolve(__dirname, "ClientApp/components/Others"),
      'Ducks': path.resolve(__dirname, "ClientApp/ducks"),
+     'Services': path.resolve(__dirname, "ClientApp/services"),
    }
  },
  plugins: [
