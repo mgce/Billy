@@ -16,6 +16,20 @@ function login (username, password){
     })
 }
 
+function register(user){
+    return axios.post('/account/register', {
+        Email: user.email,
+        UserName: user.username,
+        Password: user.password
+    }).then(response=>{
+        if(!response.ok){
+            Promise.reject(response.statusText)
+        }
+        return response.data
+    })
+}
+
 export const userService = {
-    login
+    login,
+    register
 };

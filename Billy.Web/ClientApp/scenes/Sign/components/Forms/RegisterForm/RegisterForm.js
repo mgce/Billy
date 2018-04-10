@@ -1,41 +1,74 @@
 import React from 'react';
-import {InputGroup,Checkbox} from 'Forms';
-import {ApplyButton} from 'Buttons'
+import {ApplyButton} from 'Buttons';
+import {Input, ErrorPlaceholder, FormLabel, Checkbox} from 'Forms'
+import {Field, reduxForm} from 'redux-form'
+import {actions} from 'Ducks/Register'
+import {isRequired, isPasswordsEqual} from 'Others'
 
-const RegisterForm = props => {
+
+const RegisterForm = ({
+    handleSubmit
+}) => {
     return(
-        <form onSubmit={props.onSubmit}>
-                <InputGroup 
-                    labelName="Email"
+        <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <FormLabel name="Email"/>
+                <Field 
                     name="email"
-                    link={props.links.email}
-                    onBlur={props.onBlur}/>
-                <InputGroup 
-                    labelName="Username"
+                    type="text"
+                    component={Input}
+                    validate={isRequired}/>
+            </div>
+            <div className="form-group">
+                <FormLabel name="Username"/>
+                <Field 
                     name="username"
-                    link={props.links.userName}
-                    onBlur={props.onBlur}/>
-                <InputGroup 
-                    labelName="Password"
+                    type="text"
+                    component={Input}
+                    validate={isRequired}/>
+            </div>
+            <div className="form-group">
+                <FormLabel name="Password"/>
+                <Field 
                     name="password"
                     type="password"
-                    link={props.links.password}
-                    onBlur={props.onBlur}/>
-                <InputGroup 
-                    labelName="Confirm Password"
+                    component={Input}
+                    validate={isRequired}/>
+            </div>
+            <div className="form-group">
+                <FormLabel name="Confirm Password"/>
+                <Field 
                     name="confirmPassword"
                     type="password"
-                    link={props.links.confirmPassword}
-                    onBlur={props.onBlur}/>
-                <Checkbox 
-                    name="privacyPolicyAccepted"
-                    text="Accept privacy policy"
-                    link={props.links.privacyPolicy}/>
-                <div className="form-btn-line">
-                    <ApplyButton name="Register" type="submit"/>
-                </div>
+                    component={Input}
+                    validate={[isRequired, isPasswordsEqual]}/>
+            </div>
+            <div className="form-group">
+            <Field 
+                name="privacyPolicyAccepted"
+                text="Accept privacy policy"
+                type="checkbox"
+                component={Checkbox}/>
+            </div>
+            <div className="form-btn-line">
+                <ApplyButton 
+                name="Log In"/>
+            </div>
         </form>
     )
 }
 
-export default RegisterForm;
+const onSubmit = (values, dispatch) => {
+    const user = {
+        email: values.email,
+        username: values.username,
+        password: values.password,
+    }
+    dispatch(actions.register(user))
+}
+
+export default reduxForm({
+    form: 'registerForm',
+    onSubmit: onSubmit,
+    touchOnBlur: true
+})(RegisterForm);

@@ -50,3 +50,9 @@ function login (username, password){
     function success(user) { return { type: types.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: types.LOGIN_FAILURE, error } }
 }
+
+function register (email, username, password){
+    return dispatch => {
+        
+    }
+}

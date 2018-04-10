@@ -1,11 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import {SignIn, Login} from './ducks'
+import {SignIn, Login, Register} from './ducks'
 import { reducer as formReducer } from 'redux-form'
 import thunk from 'redux-thunk';
 
 var reducers = combineReducers({
     signIn: SignIn,
     login: Login,
+    register: Register,
     form: formReducer
 })
 
