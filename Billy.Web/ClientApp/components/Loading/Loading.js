@@ -2,12 +2,15 @@ import React from 'react';
 
 const Loading = props => {
     return(
-        <div className="holder">
-            <div className="preloader">
+        <div className="loading-wrapper">
+            <div className="holder-loading">
+            <div className="preloader-loading">
             <div></div><div></div><div></div><div>
             </div><div></div><div></div><div></div>
             <div></div><div></div><div></div></div>
         </div>
+        </div>
+        
     )
 }
 

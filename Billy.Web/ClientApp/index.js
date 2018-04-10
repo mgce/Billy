@@ -9,7 +9,7 @@ import {
 import SignIn from './scenes/Sign/Sign'
 import HomeContainer from './scenes/Home/Home'
 import {BillyHttpClient, Helpers} from 'Others'
-import Loading from './scenes/Loading/Loading';
+import LoadingPage from './scenes/LoadingPage/LoadingPage';
 import { Provider } from 'react-redux'
 import store from './store'
 
@@ -39,7 +39,7 @@ class App extends React.Component{
             <Router>
                 <div className="app-container">
                 { isUserLoggedDefine
-                ? <Loading/>
+                ? <LoadingPage/>
                 : <Route exact path="/" component={()=>(
                         isUserLogged
                         ? <HomeContainer signInUser={this.signInUser.bind(this)}/>

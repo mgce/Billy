@@ -4,13 +4,17 @@ import {Input, ErrorPlaceholder, FormLabel, Checkbox} from 'Forms'
 import {Field, reduxForm} from 'redux-form'
 import {actions} from 'Ducks/Register'
 import {isRequired, isPasswordsEqual} from 'Others'
-
+import {Loading} from 'Components/Loading'
 
 const RegisterForm = ({
-    handleSubmit
-}) => {
+    handleSubmit,
+    props
+    }) => {
+    var loading = props.registering ? (<Loading />) : ('');
     return(
-        <form onSubmit={handleSubmit}>
+        <React.Fragment>
+            <form onSubmit={handleSubmit}>
+            {loading}
             <div className="form-group">
                 <FormLabel name="Email"/>
                 <Field 
@@ -55,6 +59,7 @@ const RegisterForm = ({
                 name="Log In"/>
             </div>
         </form>
+        </React.Fragment>
     )
 }
 

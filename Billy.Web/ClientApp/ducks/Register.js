@@ -12,12 +12,12 @@ export default (state = initialState, action) => {
     switch(action.type){
         case types.REGISTER_REQUEST:
             return {
-                loggingIn: true,
+                registering: true,
                 user: action.user
             };
         case types.REGISTER_SUCCESS:
         return {
-            loggedIn: true,
+            registered: true,
             user: action.user
         };
         case types.REGISTER_ERROR:

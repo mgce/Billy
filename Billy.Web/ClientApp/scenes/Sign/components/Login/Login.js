@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {actions} from 'Ducks/Login'
 
 const mapStateToProps = (state) => ({
-    login: state.login
+    props: state.login
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -14,4 +14,6 @@ const mapDispatchToProps = dispatch => ({
     }, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps)(LoginForm)

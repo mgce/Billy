@@ -54,6 +54,7 @@ module.exports = {
      path.resolve(__dirname, "ClientApp"),
    ],
    alias:{
+     'Components': path.resolve(__dirname, "ClientApp/components"),
      'Buttons': path.resolve(__dirname, "ClientApp/components/Buttons"),
      'Forms': path.resolve(__dirname, "ClientApp/components/Forms"),
      'General': path.resolve(__dirname, "ClientApp/components/General"),

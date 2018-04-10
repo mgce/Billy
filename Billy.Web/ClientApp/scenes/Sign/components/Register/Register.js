@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators } from 'redux';
 
 const mapStateToProps = (state) => ({
-    login: state.register
+    props: state.register
 })
 
 const mapDispatchToProps = dispatch => ({

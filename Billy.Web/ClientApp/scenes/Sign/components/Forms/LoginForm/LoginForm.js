@@ -4,12 +4,16 @@ import {Input, ErrorPlaceholder, FormLabel,Checkbox} from 'Forms'
 import {Field, reduxForm} from 'redux-form'
 import {isRequired} from 'Others'
 import {actions} from 'Ducks/Login'
+import {Loading} from 'Components/Loading'
 
 const LoginForm = ({
     handleSubmit,
-    login
+    props
     }) => {
+    var loading = props.loggingIn ? (<Loading />) : ('');
     return(
+        <div>
+        {loading}
         <form onSubmit={handleSubmit}>
             <div className="form-group">
             <FormLabel name="Login"/>
@@ -39,6 +43,8 @@ const LoginForm = ({
                 name="Log In"/>
             </div>
         </form>
+        </div>
+        
     )
 }
 
