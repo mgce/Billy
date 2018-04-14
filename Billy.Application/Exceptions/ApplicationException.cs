@@ -5,12 +5,9 @@ namespace Billy.Application.Exceptions
 {
     public class BillyException : Exception
     {
-        public ExceptionType Type { get; set; }
-
-        public BillyException(string message, ExceptionType type)
+        public BillyException(string message)
             : base(message)
         {
-            Type = type;
         }
     }
 }

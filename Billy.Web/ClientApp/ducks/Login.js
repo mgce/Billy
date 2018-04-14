@@ -1,4 +1,5 @@
 import {userService} from 'Services';
+import {push} from 'react-router-redux';
 
 export const types = {
     LOGIN_REQUEST: "LOGIN/LOGIN_REQUEST",
@@ -39,20 +40,15 @@ function login (username, password){
         userService.login(username, password)
         .then(user => {
             dispatch(success(user));
+            dispatch(push('/'));
         },
         error => {
-        dispatch(failure(error));
-    })
+            dispatch(failure(user));
+        })
 
     }
 
-    function request(user){return{type:types.LOGIN_REQUEST, user}}
+    function request(user){ return { type: types.LOGIN_REQUEST, user}}
     function success(user) { return { type: types.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: types.LOGIN_FAILURE, error } }
-}
-
-function register (email, username, password){
-    return dispatch => {
-        
-    }
 }

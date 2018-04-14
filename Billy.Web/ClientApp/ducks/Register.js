@@ -1,4 +1,5 @@
 import {userService} from 'Services';
+import {push} from 'react-router-redux';
 
 export const types = {
     REGISTER_REQUEST: "REGISTER_REQUEST/REGISTER_REQUEST",
@@ -38,7 +39,7 @@ function register (user){
         userService.register(user)
         .then(user =>{
             dispatch(success(user));
-
+            dispatch(push('/'));
         },error =>{
             dispatch(failure(error));
         })

@@ -9,7 +9,7 @@ namespace Billy.Application.Services.BillService.Exceptions
     public class SupplierDoesntExistException : BillyException
     {
         private const string message = "Supplier doesn't exist";
-        public SupplierDoesntExistException() : base(message, ExceptionType.Error)
+        public SupplierDoesntExistException() : base(message)
         {
         }
     }

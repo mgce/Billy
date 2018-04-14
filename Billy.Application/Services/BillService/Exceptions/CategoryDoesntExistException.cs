@@ -9,7 +9,7 @@ namespace Billy.Application.Services.BillService.Exceptions
     public class CategoryDoesntExistException : BillyException
     {
         private const string message = "Category doesn't exist";
-        public CategoryDoesntExistException() : base(message, ExceptionType.Error)
+        public CategoryDoesntExistException() : base(message)
         {
         }
     }

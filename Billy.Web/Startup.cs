@@ -81,7 +81,7 @@ namespace Billy.Web
                 //.RequireAuthenticatedUser()
                 //.Build();
                 //config.Filters.Add(new AuthorizeFilter(policy));
-                config.Filters.Add(typeof(CustomExceptionFilter));
+                //config.Filters.Add(typeof(CustomExceptionFilter));
             });
 
             return ConfigureContainer(services);
@@ -90,10 +90,17 @@ namespace Billy.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public virtual void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //Exception middleware must be here to catch exceptions before UseDeveloperExceptionPage
+                app.UseErrorHandlingMiddleware();
                 app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseErrorHandlingMiddleware();
             }
             app.UseStaticFiles();
             app.UseAuthentication();

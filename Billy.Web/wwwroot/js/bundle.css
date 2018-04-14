@@ -396,7 +396,12 @@ body {
     opacity: 1; } }
 
 .sign-type-box {
-  margin: auto; }
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  grid-template-areas: ". a . .";
+  margin-top: 5em; }
 
 .login-container {
   display: grid;
@@ -416,7 +421,9 @@ body {
   color: #cccccc;
   margin-bottom: 1.5em;
   font-weight: 800;
-  transition: 0.5s; }
+  transition: 0.5s;
+  grid-area: a;
+  width: 15em; }
   .login-type-container .active {
     color: #4e79ff;
     text-decoration: underline; }

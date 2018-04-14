@@ -59,6 +59,7 @@ module.exports = {
      'Forms': path.resolve(__dirname, "ClientApp/components/Forms"),
      'General': path.resolve(__dirname, "ClientApp/components/General"),
      'Tables': path.resolve(__dirname, "ClientApp/components/Tables"),
+     'Scenes': path.resolve(__dirname, "ClientApp/scenes"),
      'HomeNavbar': path.resolve(__dirname, "ClientApp/scenes/Home/components/Navbar"),
      'HomeContent': path.resolve(__dirname, "ClientApp/scenes/Home/components/Content"),
      'HomeSidebar': path.resolve(__dirname, "ClientApp/scenes/Home/components/Sidebar"),

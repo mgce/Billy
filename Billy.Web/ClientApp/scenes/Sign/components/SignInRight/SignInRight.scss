@@ -1,5 +1,11 @@
 .sign-type-box{
     margin: auto;   
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-template-areas: 
+        ". a . .";
+    margin-top: 5em;
 }
 
 .login-container{

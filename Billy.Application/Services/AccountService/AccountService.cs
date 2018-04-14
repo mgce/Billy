@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Billy.Application.Identity;
 using Billy.Application.Services.AccountService.Dtos;
 using Billy.Application.Services.AccountService.Dtos.Response;
+using Billy.Application.Services.AccountService.Exceptions;
 using Billy.Application.Services.AccountService.IoC;
 using Billy.Domain.Models;
 using Billy.Infrastructure.Identity.Models;
@@ -33,7 +34,7 @@ namespace Billy.Application.Services.AccountService
             var result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, true);
             if (!result.Succeeded)
             {
-                throw new Exception("Invalid login or password");
+                throw new InvalidLoginOrPasswordException();
             }
             var user = _userManager.Users.SingleOrDefault(u => u.UserName == dto.Username);
 
