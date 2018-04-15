@@ -36,7 +36,7 @@ namespace Billy.Web.Exceptions
             
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, InvalidLoginOrPasswordException exception)
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var code = HttpStatusCode.InternalServerError;
 

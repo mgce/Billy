@@ -2,11 +2,13 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import {SignIn, Login, Register} from './ducks';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
-import { routerReducer } from 'react-router-redux';
-import {routerMiddleware, push} from 'react-router-redux';
-import { browserHistory } from 'react-router'
-import {createBrowserHistory} from 'history';
+import { routerMiddleware, routerReducer  } from 'react-router-redux'
+import {history} from './history';
 
+const middleware = [
+    thunk,
+    routerMiddleware(history)
+]
 
 var reducers = combineReducers({
     routing: routerReducer,
@@ -18,8 +20,7 @@ var reducers = combineReducers({
 
 const store = createStore(
     reducers,
-    applyMiddleware(thunk),
-    applyMiddleware(routerMiddleware(createBrowserHistory()))
+    applyMiddleware(...middleware),
     //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

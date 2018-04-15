@@ -10,7 +10,7 @@ const LoginForm = ({
     handleSubmit,
     props
     }) => {
-    var loading = props.loggingIn ? (<Loading />) : ('');
+    var loading = props.loggingIn === true ? (<Loading />) : ('');
     return(
         <div>
         {loading}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import HomeContainer from 'Scenes/Home/Home'
 
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (

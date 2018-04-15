@@ -4,7 +4,7 @@ import {push} from 'react-router-redux';
 export const types = {
     LOGIN_REQUEST: "LOGIN/LOGIN_REQUEST",
     LOGIN_SUCCESS: "LOGIN/LOGIN_SUCCESS",
-    LOGIN_ERROR: "LOGIN/LOGIN_ERROR",
+    LOGIN_FAILURE: "LOGIN/LOGIN_FAILURE",
 };
 
 let user = JSON.parse(localStorage.getItem('user'));
@@ -43,7 +43,7 @@ function login (username, password){
             dispatch(push('/'));
         },
         error => {
-            dispatch(failure(user));
+            dispatch(failure(error));
         })
 
     }

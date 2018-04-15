@@ -1,19 +1,17 @@
 import { PrivateRoute } from 'Components/PrivateRoute/PrivateRoute';
 import { 
-    Router, 
+    //BrowserRouter as Router, 
+    Router,
+    Switch,
     Route, 
-    browserHistory 
-} from 'react-router'
-import HomeContainer from 'Scenes/Home/Home'
-import SignIn from 'Scenes/Sign/Sign'
-import {syncHistoryWithStore} from 'react-router-redux';
-import {createBrowserHistory} from 'history';
-import {push} from 'react-router-redux';
+} from 'react-router-dom';
+import HomeContainer from 'Scenes/Home/Home';
+import SignIn from 'Scenes/Sign/Sign';
 import LoadingPage from 'Scenes/LoadingPage/LoadingPage';
-import store from './../../store'
+import store from './../../store';
 import React from 'react';
-
-const history = syncHistoryWithStore(createBrowserHistory(), store)
+import { ConnectedRouter } from 'react-router-redux';
+import {history} from './../../history';
 
 export default class App extends React.Component{
     constructor(props){
@@ -23,8 +21,10 @@ export default class App extends React.Component{
         return(
             <Router history={history}>
                 <div className="app-container">
-                    <PrivateRoute exact path='/' component={HomeContainer}/>
-                    <Route path="/login" component={SignIn}/>
+                    <Switch>
+                        <PrivateRoute exact path='/' component={HomeContainer}/>
+                        <Route path="/login" component={SignIn}/>
+                    </Switch>
                 </div>
             </Router>
         )

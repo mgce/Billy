@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.scss';
-import { Provider } from 'react-redux'
+import { Provider, connect} from 'react-redux'
 import store from './store'
-import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import App from 'Scenes/App'
 import {push} from 'react-router-redux';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  push: push
+  push: () => push('/')
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(App);

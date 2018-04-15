@@ -5,7 +5,7 @@ function login (username, password){
         Username: username,
         Password: password
     }).then(response => {
-        if(!response.ok){
+        if(response.status !== 200){
             return Promise.reject(response.statusText)
         }
         return response.data;
@@ -22,10 +22,14 @@ function register(user){
         UserName: user.username,
         Password: user.password
     }).then(response=>{
-        if(!response.ok){
-            Promise.reject(response.statusText)
+        if(response.status !== 200){
+            return Promise.reject(response.statusText)
         }
         return response.data
+    }).then(user =>{
+        if(user && user.token){
+            localStorage.setItem("user", JSON.stringify(user))
+        }
     })
 }
 
