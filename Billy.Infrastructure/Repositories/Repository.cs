@@ -12,7 +12,7 @@ namespace Billy.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly DataContext _context;
+        public readonly DataContext _context;
 
         public Repository(DataContext dataContext)
         {
@@ -28,6 +28,7 @@ namespace Billy.Infrastructure.Repositories
         {
             return await GetAllAsQuery().ToListAsync();
         }
+
 
         public async Task Add(T entity)
         {

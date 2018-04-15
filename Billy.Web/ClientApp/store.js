@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import {SignIn, Login, Register} from './ducks';
+import {SignIn, Login, Register, Bills} from './ducks';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import { routerMiddleware, routerReducer  } from 'react-router-redux'
@@ -15,7 +15,8 @@ var reducers = combineReducers({
     signIn: SignIn,
     login: Login,
     register: Register,
-    form: formReducer
+    form: formReducer,
+    bills: Bills
 })
 
 const store = createStore(

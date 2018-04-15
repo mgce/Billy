@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Billy.Application.Services.BillService.Dtos;
 using Billy.Application.Services.BillService.IoC;
@@ -25,7 +26,8 @@ namespace Billy.Web.Controllers
         [Authorize]
         public async Task<IEnumerable<GetBillDto>> Get()
         {
-            return await _billService.GetAll();
+            var user = User.FindFirst(ClaimTypes.NameIdentifier)
+            return await _billService.GetAll(user);
         }
 
         [HttpGet("{id}")]

@@ -46,9 +46,9 @@ namespace Billy.Application.Services.BillService
             };
         }
 
-        public async Task<IEnumerable<GetBillDto>> GetAll()
+        public async Task<IEnumerable<GetBillDto>> GetAll(string userId)
         {
-            var bills = await _billRepository.GetAll();
+            var bills = await _billRepository.GetAllForUser(userId);
             return bills.Select(x => new GetBillDto
             {
                 Name = x.Name
