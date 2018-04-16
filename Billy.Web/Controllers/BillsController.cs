@@ -25,8 +25,8 @@ namespace Billy.Web.Controllers
         [HttpGet]
         [Authorize]
         public async Task<IEnumerable<GetBillDto>> Get()
-        {
-            var user = User.FindFirst(ClaimTypes.NameIdentifier)
+        {;
+            var user = User.Identity.Name;
             return await _billService.GetAll(user);
         }
 

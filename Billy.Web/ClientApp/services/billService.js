@@ -1,32 +1,40 @@
 import axios from 'axios';
 import {repository} from 'Services'
 
-const url = '/bills'
+const url = '/api/bills'
 
-getAll = () => {
+const getAll = () => {
     return repository.getAll(url).then(handleResponse)
 }
 
-getById = (id) => {
+const getById = (id) => {
     return repository.getById(url, id).then(handleResponse)
 }
 
-add = (bill) => {
+const add = (bill) => {
     return repository.add(url, bill).then(handleResponse)
 }
 
-update = (id) => {
+const update = (id) => {
     return repository.getAll(url, bill).then(handleResponse)
 }
 
-remove = (id) => {
+const remove = (id) => {
     return repository.getAll(url, id).then(handleResponse)
 }
 
 
-handleResponse = (response) => {
+const handleResponse = (response) => {
     if(response.status !== 200){
         return Promise.reject(response.statusText)
     }
     return response.data.json();
+}
+
+export const billService = {
+    getAll,
+    getById,
+    add,
+    update,
+    remove
 }

@@ -1,3 +1,10 @@
+.bill-list{
+    @extend .shadow-primary-element;
+    grid-row: 2;
+    grid-column: 2;
+    background-color: white;
+}
+
 .list-header{
     @extend %medium-primary-font;
     text-align: center;

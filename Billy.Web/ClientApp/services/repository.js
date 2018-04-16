@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-authHeader = () => {
+const authHeader = () => {
     let user = JSON.parse(localStorage.getItem('user'));
 
     if (user && user.token) {
@@ -10,44 +10,44 @@ authHeader = () => {
     }
 }
 
-getAll = ({url}) => {
+const getAll = (url) => {
     return axios({
         method: 'GET',
-        header: authHeader(),
+        headers: authHeader(),
         url: url
     });
 };
 
-getById = ({url, id}) => {
+const getById = (url, id) => {
     return axios({
         method: 'GET',
-        header: authHeader(),
+        headers: authHeader(),
         url: url + "/" + id
     });
 };
 
-add = ({url, object}) => {
+const add = (url, object) => {
     return axios({
         method: 'POST',
-        header: authHeader(),
+        headers: authHeader(),
         url: url,
         data: object
     });
 };
 
-update = ({url, object}) => {
+const update = (url, object) => {
     return axios({
         method: 'PUT',
-        header: authHeader(),
+        headers: authHeader(),
         url: url,
         data: object
     });
 };
 
-remove = ({url, id}) => {
+const remove = (url, id) => {
     return axios({
         method: 'DELETE',
-        header: authHeader(),
+        headers: authHeader(),
         url: url + "/" + id
     });
 };

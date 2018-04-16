@@ -12,9 +12,11 @@ namespace Billy.Application.Services.BillService.Dtos
         public long BillId { get; set; }
         public string Name { get; set; }
         public DateTime PaymentDate { get; set; }
+        public int DaysLeft { get; set; }
         public Supplier Supplier { get; set; }
-        public Category Category { get; set; }
-        public decimal AmountValue { get; set; }
-        public Currency Currency { get; set; }
+        public string Category { get; set; }
+        public decimal? AmountValue { get; set; }
+        public string Currency { get; set; }
+        public string Status { get; set; }
     }
 }

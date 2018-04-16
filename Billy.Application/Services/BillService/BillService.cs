@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Billy.Application.Services.BillService.Dtos;
@@ -39,9 +40,9 @@ namespace Billy.Application.Services.BillService
                 BillId = bill.Id,
                 Name = bill.Name,
                 AmountValue = bill.Amount?.Value ?? 0,
-                Currency = bill.Amount?.Currency ?? 0,
+                Currency = bill.Amount?.Currency.ToString() ?? "",
                 Supplier = bill.Supplier,
-                Category = bill.Category,
+                Category = bill.Category.Name,
                 PaymentDate = bill.PaymentDate
             };
         }
@@ -51,7 +52,14 @@ namespace Billy.Application.Services.BillService
             var bills = await _billRepository.GetAllForUser(userId);
             return bills.Select(x => new GetBillDto
             {
-                Name = x.Name
+                Name = x.Name,
+                PaymentDate = x.PaymentDate,
+                DaysLeft = x.PaymentDate.Subtract(DateTime.Now).Days,
+                AmountValue = x.Amount?.Value,
+                Currency = x.Amount?.Currency.ToString(),
+                Status = x.PaymentStatus.ToString(),
+                Category = x.Category.Name
+
             }).ToList();
         }
 

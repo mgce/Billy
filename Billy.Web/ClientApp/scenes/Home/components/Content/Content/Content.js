@@ -1,6 +1,5 @@
 import React from 'react';
-
-import BillList from '../BillList/BillList';
+import {BillList} from 'Scenes/BillList';
 
 const Content = props => {
     return(

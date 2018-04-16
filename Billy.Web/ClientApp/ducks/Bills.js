@@ -1,5 +1,4 @@
 import {billService} from 'Services';
-import { fail } from 'assert';
 
 export const types = {
     GET_REQUEST: 'BILL_GET_REQUEST',

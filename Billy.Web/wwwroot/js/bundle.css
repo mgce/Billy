@@ -6,7 +6,7 @@ body {
   margin: 0;
   font-family: Quicksand; }
 
-.shadow-primary-element, .signIn-right-container, .bill-list, .sidebar {
+.shadow-primary-element, .signIn-right-container, .sidebar, .bill-list {
   box-shadow: 0 2px 20px 0px #cccccc;
   z-index: 10; }
 
@@ -454,21 +454,11 @@ body {
   display: grid;
   grid-column: 2; }
 
-.bill-list {
-  grid-row: 2;
-  grid-column: 2;
-  background-color: white; }
-
 .content {
   display: grid;
   grid-area: content;
   grid-template-columns: 2em auto 2em;
   grid-template-rows: 1.5em auto; }
-
-.list-header {
-  text-align: center;
-  margin-top: 1em;
-  margin-bottom: 1em; }
 
 .navbar {
   display: grid;
@@ -768,3 +758,13 @@ body {
   100% {
     transform: rotateZ(-324deg);
     opacity: 1; } }
+
+.bill-list {
+  grid-row: 2;
+  grid-column: 2;
+  background-color: white; }
+
+.list-header {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em; }

@@ -1,10 +1,9 @@
 import React from 'react';
-import ListHeader from '../listHeader/ListHeader';
 import {Table} from 'Tables'
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import {actions} from 'Ducks/Bills'
-
+import ListHeader from './ListHeader.jsx'
 
 const BillListView = ({tableHeader, tableContent}) => {
     return(
@@ -17,29 +16,33 @@ const BillListView = ({tableHeader, tableContent}) => {
     )
 }
 
-export default class BillList extends React.Component{
+class BillList extends React.Component{
     constructor(props){
         super(props);
     }
     componentDidMount = () =>{
+        this.props.getAll();
     }
     render(){
         return(
-            <BillListView />
+            <BillListView
+                tableHeader = {this.props.tableHeader}
+                tableContent = {this.props.tableContent}/>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    props: state.bills
+    return{
+        bills: state.bills
+    }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     ...bindActionCreators({
         ...actions
     }, dispatch)
 })
-
 
 export default connect(
     mapStateToProps, 
