@@ -5,7 +5,7 @@ import {
     Switch,
     Route, 
 } from 'react-router-dom';
-import HomeContainer from 'Scenes/Home/Home';
+import Home from 'Scenes/Home/Home';
 import SignIn from 'Scenes/Sign/Sign';
 import LoadingPage from 'Scenes/LoadingPage/LoadingPage';
 import store from './../../store';
@@ -22,7 +22,7 @@ export default class App extends React.Component{
             <Router history={history}>
                 <div className="app-container">
                     <Switch>
-                        <PrivateRoute exact path='/' component={HomeContainer}/>
+                        <PrivateRoute exact path='/' component={Home}/>
                         <Route path="/login" component={SignIn}/>
                     </Switch>
                 </div>

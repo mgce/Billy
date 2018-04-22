@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {repository} from 'Services'
 
 const url = '/api/bills'

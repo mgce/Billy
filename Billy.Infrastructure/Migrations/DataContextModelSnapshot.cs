@@ -75,7 +75,11 @@ namespace Billy.Infrastructure.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Categories");
                 });
@@ -87,7 +91,11 @@ namespace Billy.Infrastructure.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Suppliers");
                 });
@@ -268,6 +276,20 @@ namespace Billy.Infrastructure.Migrations
 
                     b.HasOne("Billy.Domain.Models.User", "User")
                         .WithMany("Bills")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Billy.Domain.Models.Category", b =>
+                {
+                    b.HasOne("Billy.Domain.Models.User", "User")
+                        .WithMany("Categories")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Billy.Domain.Models.Supplier", b =>
+                {
+                    b.HasOne("Billy.Domain.Models.User", "User")
+                        .WithMany("Suppliers")
                         .HasForeignKey("UserId");
                 });
 

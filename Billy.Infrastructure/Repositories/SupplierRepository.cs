@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Billy.Domain.Models;
 using Billy.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Billy.Infrastructure.Repositories
 {
@@ -19,6 +20,12 @@ namespace Billy.Infrastructure.Repositories
         {
             var supplier = await Get(id);
             return supplier.Bills;
+        }
+
+        public async Task<Supplier> GetByName(string name, string userId)
+        {
+            return await _context.Suppliers.SingleOrDefaultAsync(supplier =>
+                supplier.Name == name && supplier.UserId == userId);
         }
     }
 }

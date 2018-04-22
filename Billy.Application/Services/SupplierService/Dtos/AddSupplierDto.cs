@@ -7,5 +7,6 @@ namespace Billy.Application.Services.SupplierService.Dtos
     public class AddSupplierDto
     {
         public string Name { get; set; }
+        public string UserId { get; set; }
     }
 }

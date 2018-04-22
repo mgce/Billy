@@ -29,28 +29,38 @@ namespace Billy.Infrastructure
             builder.Entity<Amount>().HasKey(x => x.Id);
 
             builder.Entity<Bill>()
-                .HasOne(b => b.Supplier)
-                .WithMany(s => s.Bills)
-                .HasForeignKey(b => b.SupplierId);
+                .HasOne(bill => bill.Supplier)
+                .WithMany(supplier => supplier.Bills)
+                .HasForeignKey(bill => bill.SupplierId);
 
             builder.Entity<Bill>()
-                .HasOne(b => b.Category)
-                .WithMany(c => c.Bills)
+                .HasOne(bill => bill.Category)
+                .WithMany(category => category.Bills)
                 .HasForeignKey(b => b.CategoryId);
 
             builder.Entity<Bill>()
-                .HasOne(b => b.Amount)
-                .WithOne(a => a.Bill);
+                .HasOne(bill => bill.Amount)
+                .WithOne(amount => amount.Bill);
 
             builder.Entity<Bill>()
-                .HasOne(b => b.User)
-                .WithMany(u => u.Bills)
-                .HasForeignKey(b => b.UserId);
+                .HasOne(bill => bill.User)
+                .WithMany(user => user.Bills)
+                .HasForeignKey(bill => bill.UserId);
 
             builder.Entity<Supplier>()
-                .HasMany(s => s.Bills)
-                .WithOne(b => b.Supplier)
+                .HasMany(supplier => supplier.Bills)
+                .WithOne(bill => bill.Supplier)
                 .HasForeignKey(b => b.SupplierId);
+
+            builder.Entity<Category>()
+                .HasOne(category => category.User)
+                .WithMany(user => user.Categories)
+                .HasForeignKey(category => category.UserId);
+
+            builder.Entity<Supplier>()
+                .HasOne(category => category.User)
+                .WithMany(user => user.Suppliers)
+                .HasForeignKey(category => category.UserId);
         }
     }
 }

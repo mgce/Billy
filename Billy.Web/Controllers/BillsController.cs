@@ -25,7 +25,7 @@ namespace Billy.Web.Controllers
         [HttpGet]
         [Authorize]
         public async Task<IEnumerable<GetBillDto>> Get()
-        {;
+        {
             var user = User.Identity.Name;
             return await _billService.GetAll(user);
         }
@@ -39,6 +39,7 @@ namespace Billy.Web.Controllers
         [HttpPost]
         public async Task Post([FromBody]AddBillDto dto)
         {
+            dto.UserId = User.Identity.Name;
             await _billService.Add(dto);
         }
 

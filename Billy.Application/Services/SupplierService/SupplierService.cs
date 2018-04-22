@@ -45,7 +45,7 @@ namespace Billy.Application.Services.SupplierService
 
         public async Task Add(AddSupplierDto dto)
         {
-            var supplier = _supplierFactory.Create(dto.Name);
+            var supplier = _supplierFactory.Create(dto.Name, dto.UserId);
             await _supplierRepository.Add(supplier);
         }
 
@@ -69,8 +69,8 @@ namespace Billy.Application.Services.SupplierService
             {
                 Name = x.Name,
                 AmountValue = x.Amount.Value,
-                Category = x.Category,
-                Currency = x.Amount.Currency,
+                Category = x.Category.Name,
+                Currency = x.Amount.Currency.ToString(),
                 PaymentDate = x.PaymentDate
             }).ToList();
         }

@@ -21,8 +21,9 @@ namespace Billy.UnitTests.Domain.Models
         public void Category_ShouldBeCreated()
         {
             var name = _fixture.Create<string>();
+            var userId = _fixture.Create<string>();
 
-            var category = new Category(name);
+            var category = new Category(name, userId);
 
             Assert.NotNull(category);
             Assert.Equal(category.Name, name);

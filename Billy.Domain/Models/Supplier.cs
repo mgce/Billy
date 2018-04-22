@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using Billy.SharedKernel.Domain;
 using Billy.SharedKernel.Exceptions;
@@ -8,17 +9,20 @@ namespace Billy.Domain.Models
 {
     public class Supplier : BaseEntity
     {
-        public string Name { get; set; }
-        public virtual List<Bill> Bills { get; set; }
+        public string Name { get; protected set; }
+        public virtual List<Bill> Bills { get; protected set; }
+        public string UserId { get; protected set; }
+        public User User { get; protected set; }
 
         protected Supplier()
         {
             Bills = new List<Bill>();
         }
 
-        public Supplier(string name)
+        public Supplier(string name, string userId)
         {
             SetName(name);
+            SetUserId(userId);
         }
 
         public void SetName(string name)
@@ -27,6 +31,15 @@ namespace Billy.Domain.Models
                 throw new NameCannotBeEmptyException();
             Name = name;
         }
+
+        public void SetUserId(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+                //TODO Add global exception of null user id
+                throw new DataException("User Id cannot be empty");
+            UserId = userId;
+        }
+
 
         public void AddBill(Bill bill)
         {

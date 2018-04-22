@@ -35,5 +35,7 @@
     "webpack": "^4.1.1",
     "webpack-dev-server": "^3.1.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-select": "^1.2.1"
+  }
 }

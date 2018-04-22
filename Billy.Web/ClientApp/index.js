@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles.scss';
+import 'react-select/dist/react-select.css';
 import { Provider, connect} from 'react-redux'
 import store from './store'
 import { bindActionCreators } from 'redux';

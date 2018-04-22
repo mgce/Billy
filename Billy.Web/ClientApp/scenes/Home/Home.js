@@ -3,29 +3,19 @@ import {Logo} from 'General';
 import {Sidebar} from 'HomeSidebar';
 import {Navbar} from 'HomeNavbar';
 import {Content} from 'HomeContent';
-import {Table} from 'Tables';
-import axios from 'axios';
-import {Helpers} from 'Others';
+import {actions} from 'Ducks/Home'
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {AddBill} from 'Scenes/AddBill';
 
-class HomeContainer extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-
-        }
-    }
-    componentWillMount = () =>{
-    }
-    render(){
-        return(
-            <Home />
-        )
-    }
-}
-
-const Home = props =>{
+const Home = ({
+    home: {addBillModalOpen},
+    hideAddBillModal
+}) =>{
     return(
         <div className="home-container">
+            {addBillModalOpen &&
+                <AddBill hideModal={hideAddBillModal}/>}
             <Sidebar/>
             <Navbar />
             <Content />
@@ -33,6 +23,20 @@ const Home = props =>{
     )
 }
 
+const mapStateToProps = (state) => {
+    return{
+        home: state.home
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    ...bindActionCreators({
+        ...actions
+    }, dispatch)
+})
 
 
-export default HomeContainer;
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps)(Home)
+

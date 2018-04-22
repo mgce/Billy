@@ -3,11 +3,14 @@ import {billService} from 'Services';
 export const types = {
     GET_REQUEST: 'BILL_GET_REQUEST',
     GET_SUCCESS: 'BILL_GET_SUCCESS',
-    GET_FAILURE: 'BILL_GET_FAILURE'
+    GET_FAILURE: 'BILL_GET_FAILURE',
+    ADD_REQUEST: 'BILL_ADD_REQUEST',
+    ADD_SUCCESS: 'BILL_ADD_SUCCESS',
+    ADD_FAILURE: 'BILL_ADD_FAILURE'
 };
 
 const initialState = {
-    items: [],
+    bills: [],
     loading: false,
 };
 
@@ -22,13 +25,29 @@ export default (state = initialState, action) => {
         return {
             ...state,
             loading: false,
-            items: action.items
+            bills: action.bills
         };
         case types.GET_FAILURE:
         return {
             ...state,
             loading: false,
-            items: []
+            bills: []
+        };
+        case types.ADD_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+        case types.ADD_SUCCESS:
+        return {
+            ...state,
+            loading: false,
+            bills: [...bills, action.bill]
+        };
+        case types.ADD_FAILURE:
+        return {
+            ...state,
+            loading: false,
         };
         default:
             return state;
@@ -36,7 +55,23 @@ export default (state = initialState, action) => {
 }
 
 export const actions = {
-    getAll
+    getAll,
+    add
+}
+
+function add(bill){
+    return dispatch => {
+        dispatch(request()); 
+        billService.add(bill).then(items => {
+            dispatch(success(items));
+        }, error => {
+            dispatch(failure(error))
+        })
+    }
+
+    function request(bill){ return { type: types.ADD_REQUEST, bill}}
+    function success() { return { type: types.ADD_SUCCESS } }
+    function failure(error) { return { type: types.ADD_FAILURE, error } }
 }
 
 function getAll(){

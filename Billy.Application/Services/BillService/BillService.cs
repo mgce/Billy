@@ -18,18 +18,24 @@ namespace Billy.Application.Services.BillService
         private readonly ICategoryRepository _categoryRepository;
         private readonly IBillFactory _billFactory;
         private readonly IAmountFactory _amountFactory;
+        private readonly ISupplierFactory _supplierFactory;
+        private readonly ICategoryFactory _categoryFactory;
 
         public BillService(IBillRepository billRepository,
             ISupplierRepository supplierRepository,
             ICategoryRepository categoryRepository,
             IBillFactory billFactory,
-            IAmountFactory amountFactory)
+            IAmountFactory amountFactory,
+            ISupplierFactory supplierFactory,
+            ICategoryFactory categoryFactory)
         {
             _billRepository = billRepository;
             _supplierRepository = supplierRepository;
             _categoryRepository = categoryRepository;
             _billFactory = billFactory;
             _amountFactory = amountFactory;
+            _supplierFactory = supplierFactory;
+            _categoryFactory = categoryFactory;
         }
 
         public async Task<GetBillDto> GetById(long id)
@@ -66,8 +72,8 @@ namespace Billy.Application.Services.BillService
         public async Task Add(AddBillDto dto)
         {
             var amount = _amountFactory.Create(dto.AmountValue, dto.Currency);
-            var supplier = await GetSupplier(dto.SupplierId);
-            var category = await GetCategory(dto.CategoryId);
+            var supplier = await GetSupplierByName(dto.Supplier, dto.UserId);
+            var category = await GetCategoryByName(dto.Category, dto.UserId);
 
             var bill = _billFactory.Create(dto.Name, amount, dto.PaymentDate, supplier, category);
 
@@ -104,12 +110,38 @@ namespace Billy.Application.Services.BillService
             return supplier;
         }
 
+        private async Task<Supplier> GetSupplierByName(string name, string userId)
+        {
+            var supplier = await _supplierRepository.GetByName(name, userId);
+
+            if (supplier == null)
+            {
+                supplier = _supplierFactory.Create(name, userId);
+                await _supplierRepository.Add(supplier);
+            }
+
+            return supplier;
+        }
+
         private async Task<Category> GetCategory(long categoryId)
         {
             var category = await _categoryRepository.Get(categoryId);
             if (category == null)
             {
                 throw new CategoryDoesntExistException();
+            }
+
+            return category;
+        }
+
+        private async Task<Category> GetCategoryByName(string name, string userId)
+        {
+            var category = await _categoryRepository.GetByName(name, userId);
+            if (category == null)
+            {
+                category = _categoryFactory.Create(name, userId);
+                await _categoryRepository.Add(category);
+
             }
 
             return category;

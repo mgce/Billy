@@ -62,10 +62,10 @@ namespace Billy.IntegrationTests.Controllers
             {
                 Name = "rquestBill",
                 AmountValue = 12,
-                CategoryId = 6,
+                Category = "Tet",
                 Currency = Currency.PLN,
                 PaymentDate = DateTime.Now.AddDays(2),
-                SupplierId = 5
+                Supplier = "Test2"
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(bill), Encoding.UTF8, "application/json");

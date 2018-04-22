@@ -11,6 +11,7 @@ const ApplyButton = ({
         <button 
             disabled={disabled} 
             type={type} 
+            onClick = {onClick}
             className="apply-btn span-between-btns">
         <span>
             {name}

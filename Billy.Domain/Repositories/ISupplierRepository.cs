@@ -10,5 +10,6 @@ namespace Billy.Domain.Repositories
     public interface ISupplierRepository : IRepository<Supplier>
     {
         Task<List<Bill>> GetAlRelatedBills(long id);
+        Task<Supplier> GetByName(string name, string userId);
     }
 }

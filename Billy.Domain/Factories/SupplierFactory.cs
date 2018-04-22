@@ -7,13 +7,13 @@ namespace Billy.Domain.Factories
 {
     public interface ISupplierFactory
     {
-        Supplier Create(string name);
+        Supplier Create(string name, string userId);
     }
     public class SupplierFactory : ISupplierFactory
     {
-        public Supplier Create(string name)
+        public Supplier Create(string name, string userId)
         {
-            return new Supplier(name);
+            return new Supplier(name, userId);
         }
     }
 }
