@@ -7,6 +7,8 @@ using Billy.Application.Services.AccountService.IoC;
 using Billy.Application.Services.BillService;
 using Billy.Application.Services.BillService.IoC;
 using Billy.Application.Services.CategoryService;
+using Billy.Application.Services.SupplierService;
+using Billy.Application.Services.SupplierService.IoC;
 
 namespace Billy.Application.Container.Modules
 {
@@ -18,6 +20,7 @@ namespace Billy.Application.Container.Modules
             builder.RegisterType<BillService>().As<IBillService>().InstancePerLifetimeScope();
             builder.RegisterType<AccountService>().As<IAccountService>().InstancePerLifetimeScope();
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<SupplierService>().As<ISupplierService>().InstancePerLifetimeScope();
         }
     }
 }

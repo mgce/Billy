@@ -879,6 +879,9 @@ body {
 .modal-content {
   padding: 6%; }
 
+.react-datepicker-wrapper {
+  width: 100%; }
+
 .sign-type-box {
   margin: auto;
   display: grid;

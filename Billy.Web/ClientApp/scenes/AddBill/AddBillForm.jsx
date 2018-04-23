@@ -4,13 +4,22 @@ import {Input, ErrorPlaceholder, FormLabel,Checkbox} from 'Forms';
 import {MultiInputDropdown, SelectDropdown} from 'Components/Dropdown';
 import {isRequired} from 'Others';
 import {ModalButtonsFooter} from 'Components/Modal';
+//import {Datepicker} from 'Components/Datepicker';
 import {actions} from 'Ducks/Bills';
+import {RadioButton} from 'material-ui/RadioButton';
+import {
+    RadioButtonGroup,
+    DatePicker
+  } from 'redux-form-material-ui';
+import moment from 'moment';
+
 
 const AddBillForm = ({
     handleSubmit,
     categories,
     suppliers
 }) => {
+    var dateTimeNow = new Date();
     return(
         <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -27,17 +36,17 @@ const AddBillForm = ({
             // In dropdown which are related with react-select
             //We can't use validate method
             //it should be in component
-                name="category"
+                name="supplier"
                 type="select"
-                placeholder="Select category..."
+                placeholder="Select supplier..."
                 component={MultiInputDropdown}
-                categories = {categories}
+                categories = {suppliers}
                 />
             </div>
             <div className="form-group">
             <FormLabel name="Amount"/>
             <Field 
-                name="amount"
+                name="amountValue"
                 type="number"
                 component={Input}
                 validate={isRequired}/>
@@ -58,18 +67,18 @@ const AddBillForm = ({
             </Field>
             </div>
             <div className="form-group">
-            <FormLabel name="Payment period"/>
-            <Field 
-                name="paymentPeriod"
-                type="select"
-                placeholder="Select payment period..."
-                options={[
-                    {value: true, label:"Periodical"},
-                    {value: false, label:"Once"},
-                ]}
-                component={SelectDropdown}
-                >
+                <FormLabel name="End of payment date"/>
+                <Field name="Payment period" component={RadioButtonGroup}>
+                <RadioButton value="true" label="Periodically" />
+                <RadioButton value="false" label="Once" />
             </Field>
+            </div>
+            <div className="form-group">
+            <FormLabel name="End of payment date"/>
+            <Field 
+                name="paymentDate"
+                formatDate={value => moment(value).format('DD-MM-YYYY')}
+                component={DatePicker}/>
             </div>
             <ModalButtonsFooter
             acceptText={"Add new bill"}/>
@@ -81,8 +90,9 @@ const onSubmit = (values, dispatch) => {
     const bill = {
         name: values.name,
         category: values.category.value,
-        supplier: values.supplier,
-        paymentPeriod: values.paymentPeriod.value
+        supplier: values.supplier.value,
+        paymentPeriod: values.paymentPeriod == 'true' ? (true) : (false),
+        amountValue: values.amountValue
     }
     dispatch(actions.add(bill))
 }

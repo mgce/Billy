@@ -59,7 +59,7 @@ export const actions = {
     addSupplier
 }
 
-const url="/api/suppliers"
+const url="/api/supplier"
 
 function addSupplier(supplier){
     return dispatch => {

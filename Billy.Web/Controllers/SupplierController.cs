@@ -37,6 +37,7 @@ namespace Billy.Web.Controllers
         [HttpPost]
         public async Task Post([FromBody]AddSupplierDto dto)
         {
+            dto.UserId = User.Identity.Name;
             await _supplierService.Add(dto);
         }
 

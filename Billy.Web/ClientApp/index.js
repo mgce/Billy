@@ -7,6 +7,7 @@ import store from './store'
 import { bindActionCreators } from 'redux';
 import App from 'Scenes/App'
 import {push} from 'react-router-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   push: () => push('/')
@@ -16,7 +17,9 @@ export default connect(null, mapDispatchToProps)(App);
 
 ReactDOM.render(
     <Provider store = {store}>
-        <App/>
+        <MuiThemeProvider>
+            <App/>
+        </MuiThemeProvider>
     </Provider>, 
     document.getElementById('App')
 );
