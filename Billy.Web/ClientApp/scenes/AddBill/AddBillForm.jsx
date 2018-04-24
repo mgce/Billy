@@ -4,7 +4,7 @@ import {Input, ErrorPlaceholder, FormLabel,Checkbox} from 'Forms';
 import {MultiInputDropdown, SelectDropdown} from 'Components/Dropdown';
 import {isRequired} from 'Others';
 import {ModalButtonsFooter} from 'Components/Modal';
-//import {Datepicker} from 'Components/Datepicker';
+import {Datepicker} from 'Components/Datepicker';
 import {actions} from 'Ducks/Bills';
 import {RadioButton} from 'material-ui/RadioButton';
 import {
@@ -68,7 +68,7 @@ const AddBillForm = ({
             </div>
             <div className="form-group">
                 <FormLabel name="End of payment date"/>
-                <Field name="Payment period" component={RadioButtonGroup}>
+                <Field name="paymentPeriod" component={RadioButtonGroup}>
                 <RadioButton value="true" label="Periodically" />
                 <RadioButton value="false" label="Once" />
             </Field>
@@ -77,8 +77,9 @@ const AddBillForm = ({
             <FormLabel name="End of payment date"/>
             <Field 
                 name="paymentDate"
-                formatDate={value => moment(value).format('DD-MM-YYYY')}
-                component={DatePicker}/>
+                autoOk={true}
+                //formatDate={value => moment(value).format('DD-MM-YYYY')}
+                component={Datepicker}/>
             </div>
             <ModalButtonsFooter
             acceptText={"Add new bill"}/>
@@ -92,7 +93,8 @@ const onSubmit = (values, dispatch) => {
         category: values.category.value,
         supplier: values.supplier.value,
         paymentPeriod: values.paymentPeriod == 'true' ? (true) : (false),
-        amountValue: values.amountValue
+        amountValue: values.amountValue,
+        paymentDate: values.paymentDate
     }
     dispatch(actions.add(bill))
 }

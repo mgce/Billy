@@ -69,7 +69,7 @@ namespace Billy.Application.Services.SupplierService
             {
                 Name = x.Name,
                 AmountValue = x.Amount.Value,
-                Category = x.Category.Name,
+                CategoryName = x.Category.Name,
                 Currency = x.Amount.Currency.ToString(),
                 PaymentDate = x.PaymentDate
             }).ToList();

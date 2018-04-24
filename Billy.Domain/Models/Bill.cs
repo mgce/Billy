@@ -29,7 +29,7 @@ namespace Billy.Domain.Models
         {
         }
 
-        public Bill(string name, Amount amount , DateTime paymentDate, Supplier supplier, Category category)
+        public Bill(string name, Amount amount , DateTime paymentDate, Supplier supplier, Category category, string userId)
         {
             SetName(name);
             SetAmount(amount);
@@ -37,6 +37,7 @@ namespace Billy.Domain.Models
             SetPaymentStatus(PaymentStatus.NotPaid);
             SetSupplier(supplier);
             SetCategory(category);
+            SetUserId(userId);
         }
 
         public void SetName(string name)
@@ -46,6 +47,13 @@ namespace Billy.Domain.Models
                 throw new NameCannotBeEmptyException();
             }
             Name = name;
+        }
+
+        public void SetUserId(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+                throw new UserIdCannotBeEmptyException();
+            UserId = userId;
         }
 
         public void SetAmount(Amount amount)

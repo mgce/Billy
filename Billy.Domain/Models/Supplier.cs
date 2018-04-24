@@ -35,8 +35,7 @@ namespace Billy.Domain.Models
         public void SetUserId(string userId)
         {
             if (string.IsNullOrEmpty(userId))
-                //TODO Add global exception of null user id
-                throw new DataException("User Id cannot be empty");
+                throw new UserIdCannotBeEmptyException();
             UserId = userId;
         }
 

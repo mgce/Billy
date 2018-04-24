@@ -47,8 +47,8 @@ namespace Billy.Application.Services.BillService
                 Name = bill.Name,
                 AmountValue = bill.Amount?.Value ?? 0,
                 Currency = bill.Amount?.Currency.ToString() ?? "",
-                Supplier = bill.Supplier,
-                Category = bill.Category.Name,
+                SupplierName = bill.Supplier.Name,
+                CategoryName = bill.Category.Name,
                 PaymentDate = bill.PaymentDate
             };
         }
@@ -64,7 +64,8 @@ namespace Billy.Application.Services.BillService
                 AmountValue = x.Amount?.Value,
                 Currency = x.Amount?.Currency.ToString(),
                 Status = x.PaymentStatus.ToString(),
-                Category = x.Category.Name
+                CategoryName = x.Category.Name,
+                SupplierName = x.Supplier.Name
 
             }).ToList();
         }
@@ -75,7 +76,7 @@ namespace Billy.Application.Services.BillService
             var supplier = await GetSupplierByName(dto.Supplier, dto.UserId);
             var category = await GetCategoryByName(dto.Category, dto.UserId);
 
-            var bill = _billFactory.Create(dto.Name, amount, dto.PaymentDate, supplier, category);
+            var bill = _billFactory.Create(dto.Name, amount, dto.PaymentDate, supplier, category, dto.UserId);
 
             await _billRepository.Add(bill);
         }

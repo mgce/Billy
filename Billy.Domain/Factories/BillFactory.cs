@@ -7,13 +7,13 @@ namespace Billy.Domain.Factories
 {
     public interface IBillFactory
     {
-        Bill Create(string name, Amount amount, DateTime paymentDate, Supplier supplier, Category category);
+        Bill Create(string name, Amount amount, DateTime paymentDate, Supplier supplier, Category category, string userId);
     }
     public class BillFactory : IBillFactory
     {
-        public Bill Create(string name, Amount amount, DateTime paymentDate, Supplier supplier, Category category)
+        public Bill Create(string name, Amount amount, DateTime paymentDate, Supplier supplier, Category category, string userId)
         {
-            return new Bill(name, amount, paymentDate, supplier, category);
+            return new Bill(name, amount, paymentDate, supplier, category, userId);
         }
     }
 }

@@ -4,23 +4,22 @@ import moment from 'moment';
 
 const Datepicker = ({
     input, 
-    placeholder, 
-    dateFormat,
-    defaultValue, 
     meta: {touched, error} 
-    }) => (
-    <div>
+    }) => {
+      //I had to wrap this input because in other case it cannot assign onBlur method
+      const inputWrap = {input};
+      return(
+        <div>
           <DatePicker 
-            floatingLabelStyle={{color: 'blue'}}
-            autoOk={true}
-            {...input}
-            {...custom}
+            {...inputWrap}
             errorText={touched && error}
             value={input.value !== '' ? new Date(input.value) : null}
             onChange={(e, date) => input.onChange(date)}
           />
-    </div>
-  );
+        </div>
+      )
+    }
+    
 
   
 export default Datepicker;
