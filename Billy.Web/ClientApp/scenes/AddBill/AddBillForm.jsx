@@ -10,7 +10,8 @@ import {actions as HomeActions} from 'Ducks/Home';
 import {RadioButton} from 'material-ui/RadioButton';
 import {
     RadioButtonGroup,
-    DatePicker
+    DatePicker,
+    AutoComplete
   } from 'redux-form-material-ui';
 import moment from 'moment';
 
@@ -33,16 +34,12 @@ const AddBillForm = ({
             </div>
             <div className="form-group">
             <FormLabel name="Supplier"/>
-            <Field 
-            // In dropdown which are related with react-select
-            //We can't use validate method
-            //it should be in component
+                <Field 
                 name="supplier"
-                type="select"
-                placeholder="Select supplier..."
-                component={MultiInputDropdown}
-                categories = {suppliers}
-                />
+                component={AutoComplete}
+                dataSource={suppliers}
+                hintText="Enter a supplier"
+                    />
             </div>
             <div className="form-group">
             <FormLabel name="Amount"/>
