@@ -123,18 +123,19 @@ namespace Billy.UnitTests.Domain.Models
         private Bill CreateBill()
         {
             var name = _fixture.Create<string>();
+            var userId = _fixture.Create<string>();
             var amount = new Amount(_fixture.Create<decimal>(), _fixture.Create<Currency>());
             var paymentDate = CreateFuturePaymentDate();
             var supplier = CreateSupplier();
             var category = _fixture.Create<Category>();
 
-            return new Bill(name, amount, paymentDate, supplier, category);
+            return new Bill(name, amount, paymentDate, supplier, category, userId);
 
         }
 
         private Supplier CreateSupplier()
         {
-            return new Supplier(_fixture.Create<string>());
+            return new Supplier(_fixture.Create<string>(), _fixture.Create<string>());
         }
 
         private DateTime CreateFuturePaymentDate()

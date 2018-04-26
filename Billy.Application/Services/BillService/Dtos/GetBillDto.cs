@@ -8,13 +8,12 @@ namespace Billy.Application.Services.BillService.Dtos
 {
     public class GetBillDto
     {
-        public string UserId { get; set; }
         public long BillId { get; set; }
         public string Name { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public string PaymentDate { get; set; }
         public int DaysLeft { get; set; }
-        public string SupplierName { get; set; }
-        public string CategoryName { get; set; }
+        public string Supplier { get; set; }
+        public string Category { get; set; }
         public decimal? AmountValue { get; set; }
         public string Currency { get; set; }
         public string Status { get; set; }

@@ -11,7 +11,7 @@ class AddBill extends React.Component{
         super(props);
     }
     componentDidMount = () =>{
-        this.props.getAllBills();
+        this.props.getAllCategories();
         this.props.getAllSuppliers();
     }
     render(){

@@ -4,14 +4,22 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import {actions} from 'Ducks/Bills'
 import ListHeader from './ListHeader.jsx'
+import {Loading} from 'Components/Loading'
 
-const BillListView = ({tableHeader, tableContent}) => {
+
+const BillListView = ({tableHeader, billsState}) => {
+    if(billsState.loading)
+        return(
+            <div className="bill-list">
+                <Loading/>
+            </div>
+    )
     return(
         <div className="bill-list">
             <ListHeader header={"Wrzesien"}/>
             <Table 
                 header = {tableHeader}
-                content = {tableContent}/>
+                content = {billsState.bills}/>
         </div>
     )
 }
@@ -26,6 +34,7 @@ class BillList extends React.Component{
     render(){
         return(
             <BillListView
+                billsState = {this.props.billsState}
                 tableHeader = {this.props.tableHeader}
                 tableContent = {this.props.tableContent}/>
         )
@@ -34,7 +43,7 @@ class BillList extends React.Component{
 
 const mapStateToProps = (state) => {
     return{
-        bills: state.bills
+        billsState: state.bills
     }
 }
 

@@ -48,7 +48,7 @@ namespace Billy.UnitTests.Domain.Models
 
         private Supplier CreateSupplier()
         {
-            return new Supplier(_fixture.Create<string>());
+            return new Supplier(_fixture.Create<string>(), _fixture.Create<string>());
         }
     }
 }

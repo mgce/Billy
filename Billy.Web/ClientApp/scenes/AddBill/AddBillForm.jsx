@@ -6,6 +6,7 @@ import {isRequired} from 'Others';
 import {ModalButtonsFooter} from 'Components/Modal';
 import {Datepicker} from 'Components/Datepicker';
 import {actions} from 'Ducks/Bills';
+import {actions as HomeActions} from 'Ducks/Home';
 import {RadioButton} from 'material-ui/RadioButton';
 import {
     RadioButtonGroup,
@@ -96,6 +97,7 @@ const onSubmit = (values, dispatch) => {
         amountValue: values.amountValue,
         paymentDate: values.paymentDate
     }
+    dispatch(HomeActions.hideAddBillModal())
     dispatch(actions.add(bill))
 }
 

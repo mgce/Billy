@@ -55,7 +55,7 @@ export default (state = initialState, action) => {
 
 export const actions = {
     addBill,
-    getAllBills
+    getAllCategories
 }
 
 //DODAJAC KATEGORIE MUSIMY OD RAZU DODAC JE NA SERWER ABY UZYSKAC ID
@@ -77,11 +77,11 @@ function addBill(category){
     function failure(error) { return { type: types.ADD_CATEGORY_FAILURE, error } }
 }
 
-function getAllBills(){
+function getAllCategories(){
     return dispatch => {
         dispatch(request());
         categoryService.getAll().then(categories => {
-            dispatch(success(categories.data));
+            dispatch(success(categories));
         }, error => {
             dispatch(failure(error))
         })
@@ -91,3 +91,4 @@ function getAllBills(){
     function success(categories) { return { type: types.LOAD_CATEGORIES_SUCCESS, categories } }
     function failure(error) { return { type: types.LOAD_CATEGORIES_FAILURE, error } }
 }
+

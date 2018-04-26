@@ -13,13 +13,26 @@ const Table = ({header, content}) => {
                 </tr>
             </thead>
         <tbody>
-            {content.map((row, key)=>
-            <tr key={key}>
-                {row.map((item, key)=>
-                <td key={key}>
-                    {item}
+            {content.map((item, key)=>
+            <tr key={item.billId}>
+                <td>
+                    {item.supplier}
                 </td>
-                )}
+                <td>
+                    {item.paymentDate}
+                </td>
+                <td>
+                    {item.daysLeft} {item.daysLeft > 1 ? 'days' : 'day'}
+                </td>
+                <td>
+                    {item.amountValue + " " + item.currency}
+                </td>
+                <td>
+                    {item.status}
+                </td>
+                <td>
+                    {item.category}
+                </td>
             </tr>)}
         </tbody>
         </table>

@@ -11,7 +11,7 @@ export const types = {
 
 const initialState = {
     bills: [],
-    loading: false,
+    loading: true,
 };
 
 export default (state = initialState, action) => {
@@ -85,6 +85,6 @@ function getAll(){
     }
 
     function request(){ return { type: types.GET_REQUEST}}
-    function success(items) { return { type: types.GET_SUCCESS, items } }
+    function success(bills) { return { type: types.GET_SUCCESS, bills } }
     function failure(error) { return { type: types.GET_FAILURE, error } }
 }

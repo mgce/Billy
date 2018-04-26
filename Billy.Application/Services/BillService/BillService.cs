@@ -47,9 +47,9 @@ namespace Billy.Application.Services.BillService
                 Name = bill.Name,
                 AmountValue = bill.Amount?.Value ?? 0,
                 Currency = bill.Amount?.Currency.ToString() ?? "",
-                SupplierName = bill.Supplier.Name,
-                CategoryName = bill.Category.Name,
-                PaymentDate = bill.PaymentDate
+                Supplier = bill.Supplier.Name,
+                Category = bill.Category.Name,
+                PaymentDate = bill.GetPaymentDateInString()
             };
         }
 
@@ -58,14 +58,15 @@ namespace Billy.Application.Services.BillService
             var bills = await _billRepository.GetAllForUser(userId);
             return bills.Select(x => new GetBillDto
             {
+                BillId = x.Id,
                 Name = x.Name,
-                PaymentDate = x.PaymentDate,
+                PaymentDate = x.PaymentDate.Date.ToString(),
                 DaysLeft = x.PaymentDate.Subtract(DateTime.Now).Days,
                 AmountValue = x.Amount?.Value,
                 Currency = x.Amount?.Currency.ToString(),
                 Status = x.PaymentStatus.ToString(),
-                CategoryName = x.Category.Name,
-                SupplierName = x.Supplier.Name
+                Category = x.Category.Name,
+                Supplier = x.Supplier.Name,
 
             }).ToList();
         }
@@ -76,7 +77,7 @@ namespace Billy.Application.Services.BillService
             var supplier = await GetSupplierByName(dto.Supplier, dto.UserId);
             var category = await GetCategoryByName(dto.Category, dto.UserId);
 
-            var bill = _billFactory.Create(dto.Name, amount, dto.PaymentDate, supplier, category, dto.UserId);
+            var bill = _billFactory.Create(dto.Name, amount, dto.PaymentDate.Date, supplier, category, dto.UserId);
 
             await _billRepository.Add(bill);
         }

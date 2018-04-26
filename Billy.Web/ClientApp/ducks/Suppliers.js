@@ -10,7 +10,7 @@ export const types = {
 };
 
 const initialState = {
-    items: [],
+    suppliers: [],
     loading: false,
 };
 
@@ -25,13 +25,13 @@ export default (state = initialState, action) => {
         return {
             ...state,
             loading: false,
-            items: action.item
+            suppliers: action.suppliers
         };
         case types.GET_FAILURE:
         return {
             ...state,
             loading: false,
-            items: []
+            suppliers: []
         };
         case types.ADD_REQUEST:
             return {
@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
         return {
             ...state,
             loading: false,
-            items: [...items, action.item]
+            suppliers: [...suppliers, action.supplier]
         };
         case types.ADD_FAILURE:
         return {
@@ -64,29 +64,36 @@ const url="/api/supplier"
 function addSupplier(supplier){
     return dispatch => {
         dispatch(request()); 
-        repository.add(url, supplier).then(items => {
-            dispatch(success(items));
+        repository.add(url, supplier).then(supplier => {
+            dispatch(success(supplier));
         }, error => {
             dispatch(failure(error))
         })
     }
 
     function request(supplier){ return { type: types.ADD_REQUEST, supplier}}
-    function success() { return { type: types.ADD_SUCCESS } }
+    function success(supplier) { return { type: types.ADD_SUCCESS, supplier } }
     function failure(error) { return { type: types.ADD_FAILURE, error } }
 }
 
 function getAllSuppliers(){
     return dispatch => {
         dispatch(request());
-        repository.getAll(url).then(items => {
-            dispatch(success(items));
+        repository.getAll(url).then(handleResponse).then(suppliers => {
+            dispatch(success(suppliers));
         }, error => {
             dispatch(failure(error))
         })
     }
 
     function request(){ return { type: types.GET_REQUEST}}
-    function success(items) { return { type: types.GET_SUCCESS, items } }
+    function success(suppliers) { return { type: types.GET_SUCCESS, suppliers } }
     function failure(error) { return { type: types.GET_FAILURE, error } }
+}
+
+const handleResponse = (response) => {
+    if(response.status !== 200){
+        return Promise.reject(response.statusText)
+    }
+    return response.data;
 }

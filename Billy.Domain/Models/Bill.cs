@@ -66,7 +66,7 @@ namespace Billy.Domain.Models
 
         public void SetPaymentDate(DateTime paymentDate)
         {
-            if (paymentDate < DateTime.Now)
+            if (paymentDate < DateTime.Now.Date)
             {
                 throw new PaymentDateCannotBeInPastException();
             }
@@ -91,6 +91,11 @@ namespace Billy.Domain.Models
         {
             if(Category != category)
                 Category = category;
+        }
+
+        public string GetPaymentDateInString()
+        {
+            return PaymentDate.Date.ToString();
         }
 
         public void Update(string name, Amount amount, DateTime? paymentDate,PaymentStatus? paymentStatus, Supplier supplier, Category category)
