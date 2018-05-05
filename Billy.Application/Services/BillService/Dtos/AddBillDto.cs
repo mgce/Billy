@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Billy.Domain.Models;
-using Billy.SharedKernel.Domain.Enums;
+using Billy.SharedKernel.Enums;
 
 namespace Billy.Application.Services.BillService.Dtos
 {

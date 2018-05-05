@@ -14,7 +14,7 @@ namespace Billy.IntegrationTests
 {
     public class TestStartup : Startup
     {
-        public TestStartup(IConfiguration configuration) : base(configuration)
+        public TestStartup(IConfiguration configuration, IHostingEnvironment env) : base(configuration, env)
         {
         }
 

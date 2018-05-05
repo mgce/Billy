@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Billy.Domain.Repositories;
-using Billy.SharedKernel.Domain;
+using Billy.SharedKernel.Models;
+using Billy.SharedKernel.PagedList;
 using Billy.SharedKernel.Repositories;
 using Microsoft.EntityFrameworkCore;
 

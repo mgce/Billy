@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Billy.Domain.Models;
+using Newtonsoft.Json;
+
+namespace Billy.Application.Resources
+{
+    public class CategoryResource : Resource
+    {
+        public string Name { get; set; }
+        [JsonProperty("bills", NullValueHandling = NullValueHandling.Ignore)]
+        public IList<BillResource> Bills { get; set; }
+        [JsonProperty("user", NullValueHandling = NullValueHandling.Ignore)]
+        public UserResource User { get; set; }
+    }
+}

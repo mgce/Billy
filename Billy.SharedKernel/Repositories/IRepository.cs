@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Billy.SharedKernel.Domain;
+using Billy.SharedKernel.Models;
+using Billy.SharedKernel.PagedList;
 
 namespace Billy.SharedKernel.Repositories
 {

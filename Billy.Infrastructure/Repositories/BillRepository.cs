@@ -17,7 +17,7 @@ namespace Billy.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<Bill>> GetAllForUser(string userId)
+        public async Task<IQueryable<Bill>> GetAllForUser(string userId)
         {
             var query = _context.Set<Bill>().Where(x=>x.UserId == userId).AsQueryable();
             //loading all related entities
@@ -25,7 +25,7 @@ namespace Billy.Infrastructure.Repositories
             {
                 query = query.Include(property.Name);
             }
-            return await query.ToListAsync();
+            return query;
         }
     }
 }

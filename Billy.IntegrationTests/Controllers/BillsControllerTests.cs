@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Billy.Application.Services.BillService.Dtos;
 using Billy.Domain.Models;
-using Billy.SharedKernel.Domain.Enums;
+using Billy.SharedKernel.Enums;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;

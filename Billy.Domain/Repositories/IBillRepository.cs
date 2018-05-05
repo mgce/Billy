@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Billy.Domain.Models;
@@ -9,6 +10,6 @@ namespace Billy.Domain.Repositories
 {
     public interface IBillRepository : IRepository<Bill>
     {
-        Task<IEnumerable<Bill>> GetAllForUser(string userId);
+        Task<IQueryable<Bill>> GetAllForUser(string userId);
     }
 }

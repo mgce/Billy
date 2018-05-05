@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
-using Billy.SharedKernel.Domain;
 using Billy.SharedKernel.Exceptions;
+using Billy.SharedKernel.Models;
 
 namespace Billy.Domain.Models
 {

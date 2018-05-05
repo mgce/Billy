@@ -1,5 +1,4 @@
 ﻿using System;
-using Billy.SharedKernel.Domain.Enums;
 
 namespace Billy.Application.Exceptions
 {

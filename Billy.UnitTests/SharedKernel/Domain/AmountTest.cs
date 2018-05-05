@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoFixture;
 using Billy.Domain.Models;
-using Billy.SharedKernel.Domain;
-using Billy.SharedKernel.Domain.Enums;
+using Billy.SharedKernel.Enums;
 using Xunit;
 
 namespace Billy.UnitTests.SharedKernel.Domain

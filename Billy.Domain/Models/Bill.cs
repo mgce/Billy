@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Billy.SharedKernel.Domain;
-using Billy.SharedKernel.Domain.Enums;
+using Billy.SharedKernel.Enums;
 using Billy.SharedKernel.Exceptions;
+using Billy.SharedKernel.Models;
 
 namespace Billy.Domain.Models
 {

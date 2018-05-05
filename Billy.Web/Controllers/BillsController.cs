@@ -4,9 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Billy.Application.Resources;
 using Billy.Application.Services.BillService.Dtos;
 using Billy.Application.Services.BillService.IoC;
 using Billy.Domain.Models;
+using Billy.SharedKernel.PagedList;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,14 +26,16 @@ namespace Billy.Web.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IEnumerable<GetBillDto>> Get()
+        public async Task<PagedList<Bill>> Get()
         {
-            var user = User.Identity.Name;
-            return await _billService.GetAll(user);
+            return await _billService.GetAll(new GetAllBillsDto
+            {
+                UserId = User.Identity.Name
+            });
         }
 
         [HttpGet("{id}")]
-        public async Task<GetBillDto> Get(long id)
+        public async Task<BillResource> Get(long id)
         {
             return await _billService.GetById(id);
         }
@@ -44,7 +48,7 @@ namespace Billy.Web.Controllers
         }
 
         [HttpPut]
-        public async Task Put([FromBody] UpdateBillDto dto)
+        public async Task Put([FromBody]UpdateBillDto dto)
         {
             await _billService.Update(dto);
         }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Billy.SharedKernel.Domain.Enums;
+using Billy.SharedKernel.Enums;
 
 namespace Billy.IntegrationTests.Data
 {

@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using AutoFixture;
 using Billy.Domain.Models;
-using Billy.SharedKernel.Domain.Enums;
+using Billy.SharedKernel.Enums;
 using Billy.SharedKernel.Exceptions;
 using Xunit;
 

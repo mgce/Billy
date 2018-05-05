@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Billy.Domain.Models;
-using Billy.SharedKernel.Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Billy.Application.Mappers;
+using Billy.Application.Resources;
 using Billy.Application.Services.BillService.Dtos;
 using Billy.Application.Services.BillService.Exceptions;
 using Billy.Application.Services.BillService.IoC;
 using Billy.Domain.Factories;
 using Billy.Domain.Models;
 using Billy.Domain.Repositories;
+using Billy.SharedKernel.PagedList;
 
 namespace Billy.Application.Services.BillService
 {
@@ -38,37 +41,16 @@ namespace Billy.Application.Services.BillService
             _categoryFactory = categoryFactory;
         }
 
-        public async Task<GetBillDto> GetById(long id)
+        public async Task<BillResource> GetById(long id)
         {
             var bill = await GetBillById(id);
-            return new GetBillDto
-            {
-                BillId = bill.Id,
-                Name = bill.Name,
-                AmountValue = bill.Amount?.Value ?? 0,
-                Currency = bill.Amount?.Currency.ToString() ?? "",
-                Supplier = bill.Supplier.Name,
-                Category = bill.Category.Name,
-                PaymentDate = bill.GetPaymentDateInString()
-            };
+            return bill.ToResource();
         }
 
-        public async Task<IEnumerable<GetBillDto>> GetAll(string userId)
+        public async Task<PagedList<Bill>> GetAll(GetAllBillsDto dto)
         {
-            var bills = await _billRepository.GetAllForUser(userId);
-            return bills.Select(x => new GetBillDto
-            {
-                BillId = x.Id,
-                Name = x.Name,
-                PaymentDate = x.PaymentDate.Date.ToString(),
-                DaysLeft = x.PaymentDate.Subtract(DateTime.Now).Days,
-                AmountValue = x.Amount?.Value,
-                Currency = x.Amount?.Currency.ToString(),
-                Status = x.PaymentStatus.ToString(),
-                Category = x.Category.Name,
-                Supplier = x.Supplier.Name,
-
-            }).ToList();
+            var bills = await _billRepository.GetAllForUser(dto.UserId);
+            return PagedList<Bill>.Create(bills, dto.PageNumber, dto.PageSize);
         }
 
         public async Task Add(AddBillDto dto)
